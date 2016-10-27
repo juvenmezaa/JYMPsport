@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('principal');
-});
+Route::get("/", "principalController@index");
+Route::get("/twitter", "principalController@twitter");
+Route::get("/facebook", "principalController@facebook");
+Route::get("/instagram", "principalController@instagram");
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

@@ -34,6 +34,9 @@
                     <li>
                         <a class="page-scroll" href="#about">Acerca de</a>
                     </li>
+                    <li>
+                        <a class="page-scroll" href="{{url('/login')}}">Iniciar Sesión</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

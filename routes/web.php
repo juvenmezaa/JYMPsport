@@ -18,4 +18,4 @@ Route::get("/instagram", "principalController@instagram");
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get("/home", "HomeController@index");

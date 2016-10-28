@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('principal')
 
 <!-- Main Content -->
-@section('content')
+@section('header')
+<br>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

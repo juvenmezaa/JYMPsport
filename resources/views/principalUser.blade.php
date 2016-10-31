@@ -34,9 +34,24 @@
                     <li>
                         <a class="page-scroll" href="#about">Acerca de</a>
                     </li>
+                    @if(Auth::check())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::User()->name}} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
+                    @else
                     <li>
                         <a class="page-scroll" href="{{url('/login')}}">Iniciar Sesión</a>
                     </li>
+                    @endif
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

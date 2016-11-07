@@ -1,0 +1,16 @@
+#carrusel{
+	margin-top:5%;
+}
+.carousel-caption{
+	color: black;
+
+}
+
+.highlight-caption{
+	background-color: #fec503;
+	border: 0;
+}
+.navbar-custom{
+	background-color: #222; 
+	padding: 10px 0;
+}

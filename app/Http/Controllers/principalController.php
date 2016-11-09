@@ -12,12 +12,12 @@ class principalController extends Controller
     	return view('principalUser');
     }
     public function twitter(){
-    	return redirect()->away("https://www.twitter.com");
+    	return redirect()->away("https://www.twitter.com/JJYMPstore");
     }
     public function facebook(){
-    	return redirect()->away("https://www.facebook.com");
+    	return redirect()->away("https://www.facebook.com/JYMPstore");
     }
     public function instagram(){
-    	return redirect()->away("https://www.instagram.com");
+    	return redirect()->away("https://www.instagram.com/JYMPstore");
     }
 }

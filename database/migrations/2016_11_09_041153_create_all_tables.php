@@ -20,6 +20,7 @@ class CreateAllTables extends Migration
             $table->double('costo');
             $table->bigInteger('visitas');
             $table->string('color',20);
+            $table->string('imagen',100);
             $table->timestamps();
         });
         Schema::create('tallas', function (Blueprint $table) {

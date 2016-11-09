@@ -17,7 +17,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="{{url('/register')}}" style="color:black">Registrar</a>
+                        <a class="page-scroll" href="{{url('/register')}}" style="color:white;">Registrar</a>
                     </li>
                 </ul>
             </div>

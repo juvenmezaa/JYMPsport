@@ -71,6 +71,7 @@
                 <div class="intro-heading">Me alegra que estes aquí</div>
                 <a href="#destacados" class="page-scroll btn btn-xl">Conoce nuestros productos</a>
             </div>
+<<<<<<< HEAD
         </div>-->
         <div id="carrusel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -83,25 +84,26 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <a href="http://google.com"><img src="img/carrusel/m4.jpg" alt="..." width="100%"></a>
-                    <div class="carousel-caption">
-                        <button class="highlight-caption"><h3>COMPRAR JEANS</h3></button>
-                    </div>
+                  <a href="http://google.com">
+                    <img src="{{asset('img/carrusel/m4.jpg')}}" alt="..." width="100%">
+                  </a>
+                  <div class="carousel-caption">
+                     <button class="highlight-caption"><h3>COMPRAR JEANS</h3></button>
+                  </div>
                 </div>
                 <div class="item">
-                    <img src="img/carrusel/m3.jpg" alt="..." width="100%">
-                    <div class="carousel-caption">
-                        <button class="highlight-caption"><h3>COMPRAR PARA ELLA</h3></button>
-                    </div>
+                  <img src="{{asset('img/carrusel/m3.jpg')}}" alt="..." width="100%">
+                  <div class="carousel-caption">
+                    <button class="highlight-caption"><h3>COMPRAR PARA ELLA</h3></button>
+                  </div>
                 </div>
                 <div class="item">
-                    <img src="img/carrusel/m6.jpg" alt="..." width="100%">
-                    <div class="carousel-caption">
-                        <button class="highlight-caption"><h3>COMPRAR PARA EL </h3></button>
-                    </div>
+                  <img src="{{asset('img/carrusel/m6.jpg')}}" alt="..." width="100%">
+                  <div class="carousel-caption">
+                     <button class="highlight-caption"><h3>COMPRAR PARA EL </h3></button>
+                  </div>
                 </div>
             </div>
-
             <!-- Controls -->
             <a class="left carousel-control" href="#carrusel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -110,88 +112,9 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div> <!-- Carousel -->
+<!--</section>-->
 </header>
-<hr>
-<h4>Los + vendidos</h4>
-<section id="losmasvendidos">
-<div id="carrusel-articulos" class="carousel slide" data-ride="carousel">
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-       <!-- Slide -->
-    <div class="item active">
-        <div class="row">
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://facebook.com"><img src="img/cararticulos/1.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://twitter.com"><img src="img/cararticulos/2.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://tumblr.com"><img src="img/cararticulos/3.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://google.com"><img src="img/cararticulos/4.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-        </div>
-    </div>
-       <!-- Slide -->
-    <div class="item">
-        <div class="row">
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://facebook.com"><img src="img/cararticulos/3.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://twitter.com"><img src="img/cararticulos/4.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://tumblr.com"><img src="img/cararticulos/2.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://google.com"><img src="img/cararticulos/1.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-        </div>
-    </div>
-       <!-- Slide -->
-    <div class="item">
-        <div class="row">
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://facebook.com"><img src="img/cararticulos/4.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://twitter.com"><img src="img/cararticulos/3.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://tumblr.com"><img src="img/cararticulos/2.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://google.com"><img src="img/cararticulos/1.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-        </div>
-    </div>
 
-</div>
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carrusel-articulos" data-slide="prev">
-    <span class="icon-prev"></span>
-  </a>
-  <a class="right carousel-control" href="#carrusel-articulos" data-slide="next">
-    <span class="icon-next"></span>
-  </a>
-    
-</section>
-<hr>
 @stop
 @section("1")
 <section id="destacados">

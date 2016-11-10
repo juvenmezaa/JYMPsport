@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,9 +21,15 @@ class principalController extends Controller
     public function instagram(){
     	return redirect()->away("https://www.instagram.com/JYMPstore");
     }
-    public function productos($n){
+    public function productos($g){
+        if($g == "hombres"){
+            $genero = 1;
+        }else{
+            $genero = 0;
+        }
+       
         $productos = productosModel::paginate(8);
-        return view('productos', compact('productos','genero'));
+        return view('productos', compact('productos'));
     }
     public function detalleProducto($id){
     	$producto=productos::find($id);

@@ -13,6 +13,12 @@ class CreateAllTables extends Migration
      */
     public function up()
     {
+        Schema::create('categorias', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre',50);
+            $table->string('descripcion',350);
+            $table->timestamps();
+        });
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descripcion',100);
@@ -24,6 +30,8 @@ class CreateAllTables extends Migration
             $table->string('color',20);
             $table->string('imagen',100);
             $table->boolean('genero');
+            $table->boolean('id_categoria')->unsigned();
+            $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->timestamps();
         });
         Schema::create('tallas', function (Blueprint $table) {
@@ -40,20 +48,6 @@ class CreateAllTables extends Migration
             $table->timestamps();
             $table->foreign('id_producto')->references('id')->on('productos');
             $table->foreign('id_talla')->references('id')->on('tallas');
-        });
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre',50);
-            $table->string('descripcion',350);
-            $table->timestamps();
-        });
-        Schema::create('categoriasa_productos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_categoria')->unsigned();
-            $table->integer('id_producto')->unsigned();
-            $table->timestamps();
-            $table->foreign('id_categoria')->references('id')->on('categorias');
-            $table->foreign('id_producto')->references('id')->on('productos');
         });
         Schema::create('calificaciones', function (Blueprint $table) {
             $table->increments('id');

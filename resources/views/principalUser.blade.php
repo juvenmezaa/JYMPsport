@@ -11,10 +11,10 @@
             <a class="navbar-brand page-scroll" href="#page-top">JYMPstore</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="bs-example-navbarcollapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li>
-                    <a class="page-scroll" href="#">Hombres</a>
+                    <a class="page-scroll" href="{{ url('/productos')}}">Hombres</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#">Mujeres</a>
@@ -71,16 +71,16 @@
                 <div class="intro-heading">Me alegra que estes aquí</div>
                 <a href="#destacados" class="page-scroll btn btn-xl">Conoce nuestros productos</a>
             </div>
-        </div>
-        <section id="destacados">-->
+<<<<<<< HEAD
+        </div>-->
         <div id="carrusel" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
+            <!-- Indicators -->
             <ol class="carousel-indicators">
-              <li data-target="#carrusel" data-slide-to="0" class="active"></li>
-              <li data-target="#carrusel" data-slide-to="1"></li>
-              <li data-target="#carrusel" data-slide-to="2"></li>
+                <li data-target="#carrusel" data-slide-to="0" class="active"></li>
+                <li data-target="#carrusel" data-slide-to="1"></li>
+                <li data-target="#carrusel" data-slide-to="2"></li>
             </ol>
-            
+
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
@@ -104,7 +104,6 @@
                   </div>
                 </div>
             </div>
- 
             <!-- Controls -->
             <a class="left carousel-control" href="#carrusel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>

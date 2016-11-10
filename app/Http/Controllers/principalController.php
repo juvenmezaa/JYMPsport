@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\productos;
 class principalController extends Controller
 {
     public function index(){
@@ -19,5 +19,9 @@ class principalController extends Controller
     }
     public function instagram(){
     	return redirect()->away("https://www.instagram.com/JYMPstore");
+    }
+    public function productos(){
+        /*$productos = productos::all();*/
+        return view('productos'/*, compact('productos')*/);
     }
 }

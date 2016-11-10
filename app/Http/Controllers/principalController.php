@@ -25,8 +25,8 @@ class principalController extends Controller
         $productos = productosModel::paginate(8);
         return view('productos', compact('productos','genero'));
     }
-    public function producto($id){
-    	$producto=productosModel::find($id);
-    	return view('producto', compact('producto'));
+    public function detalleProducto($id){
+    	$producto=productos::find($id);
+    	return view('detalleProducto', compact('producto'));
     }
 }

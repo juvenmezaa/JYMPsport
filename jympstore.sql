@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2016 a las 08:48:59
--- Versión del servidor: 10.1.16-MariaDB
--- Versión de PHP: 5.6.24
+-- Tiempo de generación: 10-11-2016 a las 06:05:39
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,6 +23,55 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `permissions` text COLLATE utf8_unicode_ci,
+  `activated` tinyint(1) NOT NULL DEFAULT '0',
+  `activation_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `activated_at` timestamp NULL DEFAULT NULL,
+  `last_login` timestamp NULL DEFAULT NULL,
+  `persist_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `reset_password_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `admins`
+--
+
+INSERT INTO `admins` (`id`, `email`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `remember_token`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
+(1, 'admin@change.me', '$2y$10$NP8bIILtKYH8qPj1kGqlDeq9S3ll1KhYeAjsnHiO7J.2Ay8anUCt2', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016-11-09 12:59:40', '2016-11-09 12:59:40');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `admin_role`
+--
+
+CREATE TABLE `admin_role` (
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `admin_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `admin_role`
+--
+
+INSERT INTO `admin_role` (`role_id`, `admin_id`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `calificaciones`
 --
 
@@ -31,9 +80,9 @@ CREATE TABLE `calificaciones` (
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `id_producto` int(10) UNSIGNED NOT NULL,
   `calificacion` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -45,11 +94,11 @@ CREATE TABLE `carrito` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `id_producto` int(10) UNSIGNED NOT NULL,
-  `cantidad` int(10) UNSIGNED NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `fecha_agregado` date NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -59,25 +108,25 @@ CREATE TABLE `carrito` (
 
 CREATE TABLE `categorias` (
   `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(350) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `descripcion` varchar(350) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorias_productos`
+-- Estructura de tabla para la tabla `categoriasa_productos`
 --
 
-CREATE TABLE `categorias_productos` (
+CREATE TABLE `categoriasa_productos` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_categoria` int(10) UNSIGNED NOT NULL,
   `id_producto` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -90,10 +139,10 @@ CREATE TABLE `comentarios` (
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `id_producto` int(10) UNSIGNED NOT NULL,
   `fecha` date NOT NULL,
-  `comentario` varchar(500) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `comentario` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -108,9 +157,9 @@ CREATE TABLE `compras` (
   `subtotal` double NOT NULL,
   `impuesto` double NOT NULL,
   `precio_total` double NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -122,11 +171,11 @@ CREATE TABLE `detalles_compras` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_compra` int(10) UNSIGNED NOT NULL,
   `id_producto` int(10) UNSIGNED NOT NULL,
-  `cantidad` int(10) UNSIGNED NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `precio_total` double NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -138,11 +187,37 @@ CREATE TABLE `detalles_pedidos` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_pedido` int(10) UNSIGNED NOT NULL,
   `id_producto` int(10) UNSIGNED NOT NULL,
-  `cantidad` int(10) UNSIGNED NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `precio_total` double NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `links`
+--
+
+CREATE TABLE `links` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `display` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `main` tinyint(1) DEFAULT NULL,
+  `show_menu` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `links`
+--
+
+INSERT INTO `links` (`id`, `display`, `url`, `created_at`, `updated_at`, `main`, `show_menu`) VALUES
+(1, 'Links', 'Link', '2016-11-09 12:59:41', '2016-11-09 12:59:49', 1, 1),
+(2, 'Roles', 'Role', NULL, NULL, 1, 1),
+(3, 'Permissions', 'Permission', NULL, NULL, 1, 1),
+(4, 'Admins', 'Admin', NULL, '2016-11-09 12:59:49', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -161,8 +236,16 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(3, '2014_10_12_000000_create_users_table', 1),
-(4, '2014_10_12_100000_create_password_resets_table', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2016_11_09_041153_create_all_tables', 1),
+(4, '2014_11_16_205658_create_admins_table', 2),
+(5, '2014_12_02_152920_create_password_reminders_table', 2),
+(6, '2015_02_20_130902_create_url_table', 2),
+(7, '2015_03_15_123956_edit_url_table', 2),
+(8, '2016_02_10_181651_create_roles_tables', 2),
+(9, '2016_09_20_123956_edit_url_menu_table', 2),
+(10, '2016_09_20_143956_edit_roles_table', 2);
 
 -- --------------------------------------------------------
 
@@ -175,9 +258,21 @@ CREATE TABLE `moderar_comentario` (
   `id_comentario` int(10) UNSIGNED NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `fecha` date NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `password_reminders`
+--
+
+CREATE TABLE `password_reminders` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -204,9 +299,34 @@ CREATE TABLE `pedidos` (
   `subtotal` double NOT NULL,
   `impuesto` double NOT NULL,
   `precio_total` double NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `label` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permission_role`
+--
+
+CREATE TABLE `permission_role` (
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -216,16 +336,36 @@ CREATE TABLE `pedidos` (
 
 CREATE TABLE `productos` (
   `id` int(10) UNSIGNED NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
-  `precio` double UNSIGNED NOT NULL,
-  `costo` double UNSIGNED NOT NULL,
-  `cantidad` int(10) UNSIGNED NOT NULL,
-  `visitas` int(10) UNSIGNED NOT NULL,
-  `talla` int(10) UNSIGNED NOT NULL,
-  `color` varchar(20) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `descripcion` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `precio` double NOT NULL,
+  `costo` double NOT NULL,
+  `visitas` bigint(20) NOT NULL,
+  `color` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `imagen` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `label` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `label`, `created_at`, `updated_at`) VALUES
+(1, 'super', 'This goup has all permissions', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -235,22 +375,26 @@ CREATE TABLE `productos` (
 
 CREATE TABLE `tallas` (
   `id` int(10) UNSIGNED NOT NULL,
-  `talla` varchar(10) NOT NULL,
-  `descripcion` varchar(35) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `talla` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `descripcion` varchar(35) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `tallas`
+-- Estructura de tabla para la tabla `tallas_productos`
 --
 
-INSERT INTO `tallas` (`id`, `talla`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 'XS', 'Extra chica', '2016-11-03 07:47:58', '0000-00-00 00:00:00'),
-(2, 'S', 'Chica', '2016-11-03 07:48:09', '0000-00-00 00:00:00'),
-(3, 'M', 'Mediana', '2016-11-03 07:48:18', '0000-00-00 00:00:00'),
-(4, 'L', 'Grande', '2016-11-03 07:48:30', '0000-00-00 00:00:00'),
-(5, 'XL', 'Extra grande', '2016-11-03 07:48:43', '0000-00-00 00:00:00');
+CREATE TABLE `tallas_productos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_producto` int(10) UNSIGNED NOT NULL,
+  `id_talla` int(10) UNSIGNED NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -278,23 +422,43 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `birthdate`, `email`, `password`, `verified`, `token`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(12, 'Jorge Luis', 'Treviño Sosa', '1994-01-21', 'JLTS.01.94@gmail.com', '$2y$10$421XvaV3x4zZRX0UPyJogeUi5RQ0HZ4gwN9PjyFFygAswg2I.pRbO', 1, NULL, 0, 'H6ZKgGkoF8ytqwy8PzkS3Jpo0ld7JvyNP27aUdRKmFVZ9Du8CGscH0uk83qC', '2016-11-03 10:44:08', '2016-11-03 10:45:51');
+(4, 'Juven', 'Meza', '1994-04-13', 'juvenmezaa@gmail.com', '$2y$10$51Hai/xaO5CuZkrh/8gPgu.ixjyJRCd/.FFi6tDd.bnsHlxY5FSR2', 1, NULL, 1, NULL, '2016-11-10 11:58:26', '2016-11-10 11:59:11');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admins_email_unique` (`email`),
+  ADD KEY `admins_activation_code_index` (`activation_code`),
+  ADD KEY `admins_reset_password_code_index` (`reset_password_code`);
+
+--
+-- Indices de la tabla `admin_role`
+--
+ALTER TABLE `admin_role`
+  ADD PRIMARY KEY (`role_id`,`admin_id`),
+  ADD KEY `admin_role_admin_id_foreign` (`admin_id`);
+
+--
 -- Indices de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `calificaciones_id_usuario_foreign` (`id_usuario`),
+  ADD KEY `calificaciones_id_producto_foreign` (`id_producto`);
 
 --
 -- Indices de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `carrito_id_usuario_foreign` (`id_usuario`),
+  ADD KEY `carrito_id_producto_foreign` (`id_producto`);
 
 --
 -- Indices de la tabla `categorias`
@@ -303,33 +467,48 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `categorias_productos`
+-- Indices de la tabla `categoriasa_productos`
 --
-ALTER TABLE `categorias_productos`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `categoriasa_productos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categoriasa_productos_id_categoria_foreign` (`id_categoria`),
+  ADD KEY `categoriasa_productos_id_producto_foreign` (`id_producto`);
 
 --
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comentarios_id_usuario_foreign` (`id_usuario`),
+  ADD KEY `comentarios_id_producto_foreign` (`id_producto`);
 
 --
 -- Indices de la tabla `compras`
 --
 ALTER TABLE `compras`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `compras_id_usuario_foreign` (`id_usuario`);
 
 --
 -- Indices de la tabla `detalles_compras`
 --
 ALTER TABLE `detalles_compras`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `detalles_compras_id_compra_foreign` (`id_compra`),
+  ADD KEY `detalles_compras_id_producto_foreign` (`id_producto`);
 
 --
 -- Indices de la tabla `detalles_pedidos`
 --
 ALTER TABLE `detalles_pedidos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `detalles_pedidos_id_pedido_foreign` (`id_pedido`),
+  ADD KEY `detalles_pedidos_id_producto_foreign` (`id_producto`);
+
+--
+-- Indices de la tabla `links`
+--
+ALTER TABLE `links`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -342,7 +521,16 @@ ALTER TABLE `migrations`
 -- Indices de la tabla `moderar_comentario`
 --
 ALTER TABLE `moderar_comentario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `moderar_comentario_id_comentario_foreign` (`id_comentario`),
+  ADD KEY `moderar_comentario_id_usuario_foreign` (`id_usuario`);
+
+--
+-- Indices de la tabla `password_reminders`
+--
+ALTER TABLE `password_reminders`
+  ADD KEY `password_reminders_email_index` (`email`),
+  ADD KEY `password_reminders_token_index` (`token`);
 
 --
 -- Indices de la tabla `password_resets`
@@ -355,20 +543,47 @@ ALTER TABLE `password_resets`
 -- Indices de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pedidos_id_usuario_foreign` (`id_usuario`);
+
+--
+-- Indices de la tabla `permissions`
+--
+ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `permission_role_role_id_foreign` (`role_id`);
 
 --
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `talla` (`talla`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `tallas`
 --
 ALTER TABLE `tallas`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `tallas_productos`
+--
+ALTER TABLE `tallas_productos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tallas_productos_id_producto_foreign` (`id_producto`),
+  ADD KEY `tallas_productos_id_talla_foreign` (`id_talla`);
 
 --
 -- Indices de la tabla `users`
@@ -381,6 +596,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
@@ -397,9 +617,9 @@ ALTER TABLE `carrito`
 ALTER TABLE `categorias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `categorias_productos`
+-- AUTO_INCREMENT de la tabla `categoriasa_productos`
 --
-ALTER TABLE `categorias_productos`
+ALTER TABLE `categoriasa_productos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
@@ -422,10 +642,15 @@ ALTER TABLE `detalles_compras`
 ALTER TABLE `detalles_pedidos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `links`
+--
+ALTER TABLE `links`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `moderar_comentario`
 --
@@ -437,29 +662,120 @@ ALTER TABLE `moderar_comentario`
 ALTER TABLE `pedidos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `tallas`
 --
 ALTER TABLE `tallas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `tallas_productos`
+--
+ALTER TABLE `tallas_productos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `productos`
+-- Filtros para la tabla `admin_role`
 --
-ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`talla`) REFERENCES `tallas` (`id`);
+ALTER TABLE `admin_role`
+  ADD CONSTRAINT `admin_role_admin_id_foreign` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `admin_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `calificaciones`
+--
+ALTER TABLE `calificaciones`
+  ADD CONSTRAINT `calificaciones_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `calificaciones_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD CONSTRAINT `carrito_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `carrito_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `categoriasa_productos`
+--
+ALTER TABLE `categoriasa_productos`
+  ADD CONSTRAINT `categoriasa_productos_id_categoria_foreign` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`),
+  ADD CONSTRAINT `categoriasa_productos_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
+
+--
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `comentarios_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `compras_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `detalles_compras`
+--
+ALTER TABLE `detalles_compras`
+  ADD CONSTRAINT `detalles_compras_id_compra_foreign` FOREIGN KEY (`id_compra`) REFERENCES `compras` (`id`),
+  ADD CONSTRAINT `detalles_compras_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
+
+--
+-- Filtros para la tabla `detalles_pedidos`
+--
+ALTER TABLE `detalles_pedidos`
+  ADD CONSTRAINT `detalles_pedidos_id_pedido_foreign` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id`),
+  ADD CONSTRAINT `detalles_pedidos_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
+
+--
+-- Filtros para la tabla `moderar_comentario`
+--
+ALTER TABLE `moderar_comentario`
+  ADD CONSTRAINT `moderar_comentario_id_comentario_foreign` FOREIGN KEY (`id_comentario`) REFERENCES `comentarios` (`id`),
+  ADD CONSTRAINT `moderar_comentario_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `pedidos_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `tallas_productos`
+--
+ALTER TABLE `tallas_productos`
+  ADD CONSTRAINT `tallas_productos_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `tallas_productos_id_talla_foreign` FOREIGN KEY (`id_talla`) REFERENCES `tallas` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

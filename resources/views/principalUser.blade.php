@@ -9,7 +9,7 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand page-scroll" href="#page-top">JYMPstore</a>
-        </div>-
+        </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbarcollapse-1">
             <ul class="nav navbar-nav navbar-left">

@@ -18,7 +18,9 @@ class CreateAllTables extends Migration
             $table->string('descripcion',100);
             $table->double('precio');
             $table->double('costo');
+            $table->bigInteger('cantidad');
             $table->bigInteger('visitas');
+            $table->integer('talla');
             $table->string('color',20);
             $table->string('imagen',100);
             $table->timestamps();

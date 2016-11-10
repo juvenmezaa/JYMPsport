@@ -36,6 +36,13 @@ class principalController extends Controller
         $productos = DB::table('productos AS P')->where('genero','=',$genero)->get();
         return view('productos', compact('productos','categoriasH','categoriasM'));
     }
+    public function productosCategoria($c){
+        $categoria = DB::table('categorias AS C')->where('nombre','=',$c)->get();
+        $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->get();
+        $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->get();
+        $productos = DB::table('productos AS P')->where('id_categoria','=',$categoria[0]->id)->get();
+        return view('productos', compact('productos','categoriasH','categoriasM'));
+    }
     public function detalleProducto($id){
     	$producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id)->select("p.*","c.nombre")->get();
         $tallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion")->get();

@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
                         @foreach($categoriasH as $c)
-                            <li><a href= "#">{{$c->nombre}}</a></li>
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -27,7 +27,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
                         @foreach($categoriasM as $c)
-                            <li><a href= "#">{{$c->nombre}}</a></li>
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
                         @endforeach
                     </ul>
                 </li>

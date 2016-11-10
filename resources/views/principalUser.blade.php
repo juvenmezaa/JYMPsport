@@ -14,10 +14,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbarcollapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li>
-                    <a class="page-scroll" href="{{ url('/productos') }}">Hombres</a>
+                    <a class="page-scroll" href="{{ url('/productos/1') }}">Hombres</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#">Mujeres</a>
+                    <a class="page-scroll" href="{{ url('/productos/2') }}">Mujeres</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

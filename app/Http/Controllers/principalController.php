@@ -23,12 +23,14 @@ class principalController extends Controller
     }
     public function productos($g){
         if($g == "hombres"){
-            $genero = 1;
+            $genero = '1';
+           // dd($genero);
         }else{
-            $genero = 0;
+            $genero = '0';
         }
        
-        $productos = productosModel::paginate(8);
+        //$productos = productosModel::paginate(8);
+        $productos = DB::table('productos AS P')->where('genero','=',$genero)->get();
         return view('productos', compact('productos'));
     }
     public function detalleProducto($id){

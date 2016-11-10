@@ -23,7 +23,7 @@ class CreateAllTables extends Migration
             $table->integer('talla');
             $table->string('color',20);
             $table->string('imagen',100);
-            $table->integer('genero');
+            $table->boolean('genero');
             $table->timestamps();
             $table->foreign('talla')->references('id')->on('tallas');
         });

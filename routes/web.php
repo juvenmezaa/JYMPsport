@@ -12,9 +12,9 @@
 */
 
 Route::get("/", "principalController@index");
-Route::get("/producto/{id}", "principalController@producto");
+Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
 
 Auth::routes();
 
-Route::get("/productos", "principalController@productos"); 
+Route::get("/productos/{n}", "principalController@productos"); 
 Route::get("/home", "HomeController@index");

@@ -67,3 +67,29 @@
 <header>
 </header>
 @stop
+@section("1")
+<section id="productos">
+	<article>
+			@foreach($productos as $producto)
+				<div class="panel panel-warning" id="producto">
+				  <div class="panel-heading">
+				    <h2 class="panel-title" style="font-size: 15px">{{$producto->descripcion }}</h2>
+				  </div>
+				  <div class="panel-body">
+				  	<a  href="#" >
+				   	 <img id= "imagen_producto" src="{{ asset("img/productos/$producto->imagen") }}">
+				   	</a><br>
+				    Precio: ${{$producto->precio}}<br>
+				    Color: {{$producto->color}}<br>
+				    Tallas: <br>
+				    <!--<span >PC: {{$producto->ataque}}</span>-->
+				  </div>
+				</div>
+			@endforeach
+			<article>
+				{!! $productos->links() !!}
+				
+			</article>
+		</article>
+</section>
+@stop

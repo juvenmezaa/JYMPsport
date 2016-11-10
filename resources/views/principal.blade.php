@@ -31,6 +31,7 @@
     <![endif]-->
     <!-- Hojas de estilo adicionales -->
     <link href="{{asset('css/carrusel.css')}}" rel="stylesheet">
+    <link href="{{asset('css/productos.css')}}" rel="stylesheet">
 </head>
 
 <body id="page-top" class="index">

@@ -33,6 +33,7 @@ class CreateAllTables extends Migration
             $table->boolean('id_categoria')->unsigned();
             $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->timestamps();
+            $table->foreign('talla')->references('id')->on('tallas');
         });
         Schema::create('tallas', function (Blueprint $table) {
             $table->increments('id');

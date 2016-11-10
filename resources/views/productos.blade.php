@@ -8,8 +8,8 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="{{ url('/') }}"">JYMPstore</a>
-        </div>-
+            <a class="navbar-brand page-scroll" href="{{ url('/') }}">JYMPstore</a>
+        </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbarcollapse-1">
             <ul class="nav navbar-nav navbar-left">
@@ -66,4 +66,25 @@
 @section("header")
 <header>
 </header>
+@stop
+@section("1")
+<section id="productos">
+	<article>
+			@foreach($productos as $producto)
+				<div class="panel panel-warning" id="producto">
+				  <div class="panel-heading">
+				    <h2 class="panel-title" style="font-size: 15px">{{$producto->descripcion }}</h2>
+				  </div>
+				  <div class="panel-body">
+				  	<a  href="#" >
+				   	 <img id= "imagen_producto" src="{{ asset("img/productos/$producto->imagen") }}">
+				   	</a><br>
+				    Precio: ${{$producto->precio}}<br>
+				    Color: {{$producto->color}}<br>
+				    Tallas: <br>
+				  </div>
+				</div>
+			@endforeach
+		</article>
+</section>
 @stop

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,9 +13,24 @@ class principalController extends Controller
     public function index(){
     	return view('principalUser');
     }
-    public function productos(){
-        /*$productos = productos::all();*/
-        return view('productos'/*, compact('productos')*/);
+    public function twitter(){
+    	return redirect()->away("https://www.twitter.com/JJYMPstore");
+    }
+    public function facebook(){
+    	return redirect()->away("https://www.facebook.com/JYMPstore");
+    }
+    public function instagram(){
+    	return redirect()->away("https://www.instagram.com/JYMPstore");
+    }
+    public function productos($g){
+        if($g == "hombres"){
+            $genero = 1;
+        }else{
+            $genero = 0;
+        }
+       
+        $productos = productosModel::paginate(8);
+        return view('productos', compact('productos'));
     }
     public function detalleProducto($id){
     	$producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id)->select("p.*","c.nombre")->get();

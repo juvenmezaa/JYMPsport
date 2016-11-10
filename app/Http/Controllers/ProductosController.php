@@ -13,14 +13,17 @@ class ProductosController extends CrudController{
     public function all($entity){
         parent::all($entity); 
 
-
         $this->filter = \DataFilter::source(new \App\Productos());
         $this->filter->add('id', 'ID', 'text');
         $this->filter->add('descripcion', 'Descripción', 'text');
         $this->filter->add('precio', 'Precio', 'text');
         $this->filter->add('costo', 'Costo', 'text');
-        $this->filter->add('talla', 'Talla', 'text');
+        $this->filter->add('talla', 'Talla', 'select')->options(\App\Tallas::pluck("talla","id")->all());
         $this->filter->add('color', 'Color', 'text');
+        $generos = array();
+        $generos["0"] = "Mujer";
+        $generos["1"] = "Hombre";
+        $this->filter->add('genero', 'Genero', 'select')->options($generos);
         $this->filter->submit('search');
         $this->filter->reset('reset');
         $this->filter->build();
@@ -30,8 +33,11 @@ class ProductosController extends CrudController{
         $this->grid->add('{{$descripcion}}', 'Descripción');
         $this->grid->add('precio','Precio');
         $this->grid->add('costo','Costo');
+        $this->grid->add('cantidad','Cantidad');
+        $this->grid->add('visitas','Visitas');
         $this->grid->add('talla','Talla');
         $this->grid->add('color','Color');
+        $this->grid->add('genero','Genero');
 
         $this->grid->paginate(10);
 
@@ -72,17 +78,12 @@ class ProductosController extends CrudController{
         //$this->edit->add('talla','Talla','select')->options($tallas);
         $this->edit->add('color','Color','text')->rule('required');
         $this->edit->add('imagen','Imagen','image')->move('','/img')->preview(80,80);
+        $generos = array();
+        $generos["0"] = "Mujer";
+        $generos["1"] = "Hombre";
+        //dd($generos);
+        $this->edit->add('genero','Genero','select')->options($generos)->rule('required');
 
-        /* Simple code of  edit part , List of all fields here : http://laravelpanel.com/docs/master/crud-fields
-	
-			$this->edit = \DataEdit::source(new \App\Category());
-
-			$this->edit->label('Edit Category');
-
-			$this->edit->add('name', 'Name', 'text');
-		
-			$this->edit->add('code', 'Code', 'text')->rule('required');
-        */
         return $this->returnEditView();
     }    
 }

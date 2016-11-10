@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\productosModel;
+use App\categoriasModel;
 
 class principalController extends Controller
 {
     public function index(){
-    	return view('principalUser');
+        $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->get();
+        $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->get();
+    	return view('principalUser', compact('productos','categoriasH','categoriasM'));
     }
     public function twitter(){
     	return redirect()->away("https://www.twitter.com/JJYMPstore");
@@ -28,10 +31,10 @@ class principalController extends Controller
         }else{
             $genero = '0';
         }
-       
-        //$productos = productosModel::paginate(8);
+        $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->get();
+        $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->get();
         $productos = DB::table('productos AS P')->where('genero','=',$genero)->get();
-        return view('productos', compact('productos'));
+        return view('productos', compact('productos','categoriasH','categoriasM'));
     }
     public function detalleProducto($id){
     	$producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id)->select("p.*","c.nombre")->get();

@@ -23,6 +23,7 @@ class CreateAllTables extends Migration
             $table->integer('talla');
             $table->string('color',20);
             $table->string('imagen',100);
+            $table->boolean('genero');
             $table->timestamps();
         });
         Schema::create('tallas', function (Blueprint $table) {

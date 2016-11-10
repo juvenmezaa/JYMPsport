@@ -8,8 +8,8 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="{{ url('/') }}"">JYMPstore</a>
-        </div>-
+            <a class="navbar-brand page-scroll" href="{{ url('/') }}">JYMPstore</a>
+        </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbarcollapse-1">
             <ul class="nav navbar-nav navbar-left">
@@ -82,14 +82,9 @@
 				    Precio: ${{$producto->precio}}<br>
 				    Color: {{$producto->color}}<br>
 				    Tallas: <br>
-				    <!--<span >PC: {{$producto->ataque}}</span>-->
 				  </div>
 				</div>
 			@endforeach
-			<article>
-				{!! $productos->links() !!}
-				
-			</article>
 		</article>
 </section>
 @stop

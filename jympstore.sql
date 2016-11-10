@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2016 a las 07:05:52
+-- Tiempo de generación: 10-11-2016 a las 09:22:18
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.6
 
@@ -114,19 +114,15 @@ CREATE TABLE `categorias` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `categoriasa_productos`
+-- Volcado de datos para la tabla `categorias`
 --
 
-CREATE TABLE `categoriasa_productos` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_categoria` int(10) UNSIGNED NOT NULL,
-  `id_producto` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'Camisa', 'Ropa blablabla', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(2, 'Saco', 'es pal frio', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(3, 'Jeans', 'van en las piernas', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(4, 'Playera', 'no tiene botones', '2016-10-10 05:30:15', '2016-10-10 05:30:15');
 
 -- --------------------------------------------------------
 
@@ -343,6 +339,7 @@ CREATE TABLE `productos` (
   `color` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `imagen` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `genero` tinyint(1) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -351,8 +348,8 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `descripcion`, `precio`, `costo`, `visitas`, `color`, `imagen`, `genero`, `created_at`, `updated_at`) VALUES
-(1, 'Playera hermosa', 100, 200, 0, 'Azul', 'p1.jpg', 1, '2016-10-10 05:30:15', '2016-10-10 05:30:15');
+INSERT INTO `productos` (`id`, `descripcion`, `precio`, `costo`, `visitas`, `color`, `imagen`, `genero`, `id_categoria`, `created_at`, `updated_at`) VALUES
+(1, 'Playera hermosa', 100, 200, 0, '#29088A', 'p1.jpg', 1, 4, '2016-10-10 05:30:15', '2016-10-10 05:30:15');
 
 -- --------------------------------------------------------
 
@@ -489,14 +486,6 @@ ALTER TABLE `carrito`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `categoriasa_productos`
---
-ALTER TABLE `categoriasa_productos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `categoriasa_productos_id_categoria_foreign` (`id_categoria`),
-  ADD KEY `categoriasa_productos_id_producto_foreign` (`id_producto`);
 
 --
 -- Indices de la tabla `comentarios`
@@ -639,12 +628,7 @@ ALTER TABLE `carrito`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `categoriasa_productos`
---
-ALTER TABLE `categoriasa_productos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
@@ -739,13 +723,6 @@ ALTER TABLE `calificaciones`
 ALTER TABLE `carrito`
   ADD CONSTRAINT `carrito_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`),
   ADD CONSTRAINT `carrito_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `categoriasa_productos`
---
-ALTER TABLE `categoriasa_productos`
-  ADD CONSTRAINT `categoriasa_productos_id_categoria_foreign` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`),
-  ADD CONSTRAINT `categoriasa_productos_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `comentarios`

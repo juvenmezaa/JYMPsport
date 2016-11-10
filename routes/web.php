@@ -16,5 +16,5 @@ Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
 
 Auth::routes();
 
-Route::get("/productos/{n}", "principalController@productos"); 
+Route::get("/productos/{g}", "principalController@productos"); 
 Route::get("/home", "HomeController@index");

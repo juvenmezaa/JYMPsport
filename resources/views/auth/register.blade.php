@@ -17,7 +17,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="{{url('/login')}}" style="color:white;">Iniciar Sesión</a>
+                        <a class="page-scroll" href="{{url('/login')}}">Iniciar Sesión</a>
                     </li>
                 </ul>
             </div>

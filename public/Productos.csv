@@ -1,2 +1,2 @@
-id, descripcion, precio, costo, cantidad, talla, color
-5,Chamarra de cuero,800,500,50,4,Negro
+id, descripcion, precio, costo, cantidad, talla, color, genero
+5,Chamarra de cuero,800,500,50,4,Negro,1

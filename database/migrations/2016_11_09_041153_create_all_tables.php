@@ -23,7 +23,9 @@ class CreateAllTables extends Migration
             $table->integer('talla');
             $table->string('color',20);
             $table->string('imagen',100);
+            $table->integer('genero');
             $table->timestamps();
+            $table->foreign('talla')->references('id')->on('tallas');
         });
         Schema::create('tallas', function (Blueprint $table) {
             $table->increments('id');

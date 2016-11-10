@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2016 a las 06:05:39
+-- Tiempo de generación: 10-11-2016 a las 07:05:52
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.6
 
@@ -342,9 +342,17 @@ CREATE TABLE `productos` (
   `visitas` bigint(20) NOT NULL,
   `color` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `imagen` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `genero` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `descripcion`, `precio`, `costo`, `visitas`, `color`, `imagen`, `genero`, `created_at`, `updated_at`) VALUES
+(1, 'Playera hermosa', 100, 200, 0, 'Azul', 'p1.jpg', 1, '2016-10-10 05:30:15', '2016-10-10 05:30:15');
 
 -- --------------------------------------------------------
 
@@ -381,6 +389,14 @@ CREATE TABLE `tallas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `tallas`
+--
+
+INSERT INTO `tallas` (`id`, `talla`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'XS', 'Extra chica', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(2, 'S', 'Chica', '2016-10-10 05:30:15', '2016-10-10 05:30:15');
+
 -- --------------------------------------------------------
 
 --
@@ -395,6 +411,14 @@ CREATE TABLE `tallas_productos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tallas_productos`
+--
+
+INSERT INTO `tallas_productos` (`id`, `id_producto`, `id_talla`, `cantidad`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 5, '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(2, 1, 2, 2, '2016-10-10 05:30:15', '2016-10-10 05:30:15');
 
 -- --------------------------------------------------------
 
@@ -422,7 +446,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `birthdate`, `email`, `password`, `verified`, `token`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Juven', 'Meza', '1994-04-13', 'juvenmezaa@gmail.com', '$2y$10$51Hai/xaO5CuZkrh/8gPgu.ixjyJRCd/.FFi6tDd.bnsHlxY5FSR2', 1, NULL, 1, NULL, '2016-11-10 11:58:26', '2016-11-10 11:59:11');
+(4, 'Juven', 'Meza', '1994-04-13', 'juvenmezaa@gmail.com', '$2y$10$51Hai/xaO5CuZkrh/8gPgu.ixjyJRCd/.FFi6tDd.bnsHlxY5FSR2', 1, NULL, 1, 's0IKaOPPsCaAYoMnMrsr1z6M9jJhydV7vfe3d5fDH8zX2NLSoKvyO3Dsn8Tc', '2016-11-10 11:58:26', '2016-11-10 12:19:47');
 
 --
 -- Índices para tablas volcadas
@@ -670,7 +694,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
@@ -680,12 +704,12 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tallas`
 --
 ALTER TABLE `tallas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tallas_productos`
 --
 ALTER TABLE `tallas_productos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --

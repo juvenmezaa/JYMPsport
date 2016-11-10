@@ -25,6 +25,7 @@ class CreateAllTables extends Migration
             $table->string('imagen',100);
             $table->boolean('genero');
             $table->timestamps();
+            $table->foreign('talla')->references('id')->on('tallas');
         });
         Schema::create('tallas', function (Blueprint $table) {
             $table->increments('id');

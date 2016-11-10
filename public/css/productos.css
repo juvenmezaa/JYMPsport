@@ -1,0 +1,15 @@
+#producto{
+	display: inline-block;
+	margin-left: 7px;
+	text-align: center;
+	height: 50%;
+	width: 20%;
+}
+#imagen_producto{
+	height: 200px;
+	width: auto;
+}
+#productos{
+	text-align: center;
+	padding-top: 100px;
+}

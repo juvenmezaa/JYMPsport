@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\productosModel;
-use DB;
 
 class principalController extends Controller
 {

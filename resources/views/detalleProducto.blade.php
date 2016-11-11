@@ -81,7 +81,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
-            <img src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="">
+            <img src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="" width="300px">
         </div>
         <div class="col-lg-2">
             <h6>{{$producto[0]->descripcion}}</h6>
@@ -93,7 +93,14 @@
                 <h6>{{$t->talla}} - Cantidad: {{$t->cantidad}}</h6>
             @endforeach
             <a href="#" class="btn btn-primary">Generar Pedido</a>
+            <form action="{{url('/rating')}}" method="POST" class="form-inline">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
+            <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
+            
+            <input type="number" name="calif" class="form-control" min="0" max="5">
+            <input type="submit" class="btn btn-primary">
 
+        </form>
         </div>
     </div>
 </div>

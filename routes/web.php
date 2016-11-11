@@ -19,3 +19,4 @@ Auth::routes();
 Route::get("/productos/{g}", "principalController@productos"); 
 Route::get("/productosCategoria/{c}", "principalController@productosCategoria");
 Route::get("/home", "HomeController@index");
+Route::post("/rating", "RatingController@rate");

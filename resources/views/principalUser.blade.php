@@ -118,7 +118,7 @@
 <hr>
 <h4>RECIEN LLEGADOS</h4><br>
 <section id="losmasvendidos">
-<div id="carrusel-articulos" class="carousel slide" data-ride="carousel">
+<div id="carrusel-articulos" class="carousel slide">
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
        <!-- Slide 1 -->

@@ -33,5 +33,28 @@ class RatingController extends Controller
 		}
 		return Redirect('/login');
     }
+    public function rateJ(Request $request){
+        
+        if (Auth::check()) {
+    // The user is logged in...
+            $idUser = Auth::user()->id;
+            $id=$request->input('idprod');
+            $cal=$request->input('rating');
+      
+        $existe=RatingModel::where('id_producto', '=', $id)->where('id_usuario', '=',$idUser)->exists();
+        if(!$existe){
+             $nuevo=new RatingModel;
+            $nuevo->id_producto=$id;
+            $nuevo->calificacion=$cal;
+            $nuevo->id_usuario=$idUser;
+               $nuevo->save();
+
+               return back()->withInput();
+        }
+           
+             
+        }
+        return Redirect('/login');
+    }
 
 }

@@ -78,6 +78,7 @@ class productosModelController extends CrudController{
         //$this->edit->add('talla','Talla','select')->options($tallas);
         $this->edit->add('color','Color','text')->rule('required');
         $this->edit->add('imagen','Imagen','image')->move(public_path().'/img/productos','')->preview(80,80);
+        $this->edit->add('id_categoria','Categoria','select')->options(\App\CategoriasModel::pluck("nombre","id")->all())->rule('required');
         $generos = array();
         $generos["0"] = "Mujer";
         $generos["1"] = "Hombre";

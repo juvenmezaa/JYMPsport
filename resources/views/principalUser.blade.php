@@ -112,53 +112,67 @@
         </div> <!-- Carousel -->
 </header>
 <hr>
-<h4>RECIEN LLEGADOS</h4>
+<h4>RECIEN LLEGADOS</h4><br>
 <section id="losmasvendidos">
 <div id="carrusel-articulos" class="carousel slide" data-ride="carousel">
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-       <!-- Slide -->
+       <!-- Slide 1 -->
     <div class="item active">
         <div class="row">
+            <ul>
             @foreach($recientess1 as $p)
-            <div class="col-sm-3 col-xs-6">
-                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
-                <div class="carousel-caption">{{$p->descripcion}}</div>
-            </div>
+            <li class="col-sm-3 col-xs-6">
+            <figure class="itemcarrusel">
+                    <a href="{{url('detalleProducto')}}/{{$p->id}}">
+                <input type="hidden" value="{{$p->id}}" name="id_art">
+                <img id="imagen_producto" src="{{ asset("img/productos/$p->imagen") }}" alt="{{$p->descripcion}}">
+                </a>
+            </figure>
+            <div id="info">
+                
+                <p>{{$p->descripcion}}</p>
+                <p><b>${{$p->precio}}</b></p>
+            </div></li>
             @endforeach
-        <!--    <div class="col-sm-3 col-xs-6">
-                <a href="http://twitter.com"><img src="img/cararticulos/2.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://tumblr.com"><img src="img/cararticulos/3.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>
-            <div class="col-sm-3 col-xs-6">
-                <a href="http://google.com"><img src="img/cararticulos/4.jpg" alt=""/></a>
-                <div class="carousel-caption">Desc. del prod</div>
-            </div>-->
+        </ul>
         </div>
     </div>
-       <!-- Slide -->
+       <!-- Slide 2-->
     <div class="item">
         <div class="row">
            @foreach($recientess2 as $p)
-            <div class="col-sm-3 col-xs-6">
-                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
-                <div class="carousel-caption">{{$p->descripcion}}</div>
-            </div>
+            <li class="col-sm-3 col-xs-6">
+            <figure class="itemcarrusel">
+                    <a href="{{url('detalleProducto')}}/{{$p->id}}">
+                <input type="hidden" value="{{$p->id}}" name="id_art">
+                <img id="imagen_producto" src="{{ asset("img/productos/$p->imagen") }}" alt="{{$p->descripcion}}">
+                </a>
+            </figure>
+            <div id="info">
+                
+                <p>{{$p->descripcion}}</p>
+                <p><b>${{$p->precio}}</b></p>
+            </div></li>
             @endforeach
         </div>
     </div>
-       <!-- Slide -->
+       <!-- Slide 3-->
     <div class="item">
         <div class="row">
             @foreach($recientess3 as $p)
-            <div class="col-sm-3 col-xs-6">
-                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
-                <div class="carousel-caption">{{$p->descripcion}}</div>
-            </div>
+            <li class="col-sm-3 col-xs-6">
+            <figure class="itemcarrusel">
+                    <a href="{{url('detalleProducto')}}/{{$p->id}}">
+                <input type="hidden" value="{{$p->id}}" name="id_art">
+                <img id="imagen_producto" src="{{ asset("img/productos/$p->imagen") }}" alt="{{$p->descripcion}}">
+                </a>
+            </figure>
+            <div id="info">
+                
+                <p>{{$p->descripcion}}</p>
+                <p><b>${{$p->precio}}</b></p>
+            </div></li>
             @endforeach
         </div>
     </div>

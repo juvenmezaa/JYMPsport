@@ -13,11 +13,23 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a class="page-scroll" href="#">Hombres</a>
+                <li class="dropdown" >
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Hombres<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
+                        @foreach($categoriasH as $c)
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        @endforeach
+                    </ul>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#">Mujeres</a>
+                <li class="dropdown" >
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Mujeres<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
+                        @foreach($categoriasM as $c)
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        @endforeach
+                    </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -503,7 +515,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Acerca de</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted">Equipo JYMPstore</h3>
                 </div>
             </div>
             <div class="row">
@@ -511,66 +523,68 @@
                     <ul class="timeline">
                         <li>
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{asset('img/about/1.jpg')}}" alt="">
+                                <img id="equipo" class="img-circle img-responsive" src="{{asset('img/about/equipoPebble.jpg')}}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>2009-2011</h4>
-                                    <h4 class="subheading">Our Humble Beginnings</h4>
+                                    <h4>Pebble Arrambí</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                    <p class="text-muted"></p>
                                 </div>
                             </div>
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{asset('img/about/2.jpg')}}" alt="">
+                                <img class="img-circle img-responsive" src="{{asset('img/about/equipoYukie.jpg')}}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>March 2011</h4>
-                                    <h4 class="subheading">An Agency is Born</h4>
+                                    <h4>Yukie Ley</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                    <p class="text-muted"></p>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{asset('img/about/3.jpg')}}" alt="">
+                                <img class="img-circle img-responsive" src="{{asset('img/about/equipoJuven.jpg')}}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>December 2012</h4>
-                                    <h4 class="subheading">Transition to Full Service</h4>
+                                    <h4>Juven Meza</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                    <p class="text-muted"></p>
                                 </div>
                             </div>
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{asset('img/about/4.jpg')}}" alt="">
+                                <img class="img-circle img-responsive" src="{{asset('img/about/equipoMonica.jpg')}}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>July 2014</h4>
-                                    <h4 class="subheading">Phase Two Expansion</h4>
+                                    <h4>Monica Salazar</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                    <p class="text-muted"></p>
                                 </div>
                             </div>
                         </li>
-                        <li class="timeline-inverted">
+                        <li class="timeline-image">
                             <div class="timeline-image">
-                                <h4>Be Part
-                                    <br>Of Our
-                                    <br>Story!</h4>
+                                <img class="img-circle img-responsive" src="{{asset('img/about/equipoJorge.jpg')}}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Jorge Treviño</h4>
                                 </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted"></p>
+                                </div>
+                            </div>
                             </li>
                         </ul>
                     </div>

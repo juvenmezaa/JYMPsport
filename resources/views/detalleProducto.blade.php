@@ -119,7 +119,57 @@
 </script>
 @stop
 @section("2")
-
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Fecha</th>
+                    <th class="col-md-2">Usuario</th>
+                    <th>Comentario</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(isset($comentarios))
+                    @foreach($comentarios as $c)
+                        <tr>
+                            <th>{{$c->fecha}}</th>
+                            <th>{{$c->name}}</th>
+                            <th>{{$c->comentario}}</th>
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <hr>
+</div>
+@if(Auth::check())
+    <div class="container">
+        <div class="row">
+            <form action="#" method="POST">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                <div class="col-lg-5">
+            <textarea class="form-control" rows="3" id="textArea" style="margin: 0px -76.8438px 10px 0px;"></textarea>
+          </div>
+                <div class="form-group  col-md-12">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>   
+            </form>
+        </div>
+    </div>  
+@else
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <a href="{{url('/login')}}"><h6>Inicia sesión para comentar</h6></a>
+            </div>
+        </div>
+    </div>
+@endif      
 @stop
 @section("3")
 

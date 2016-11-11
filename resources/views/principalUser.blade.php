@@ -11,10 +11,10 @@
             <a class="navbar-brand page-scroll" href="#page-top">JYMPstore</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbarcollapse-1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li class="dropdown" >
-                    <a class="page-scroll"  class="dropdown-toggle" data-toggle="dropdown" role="button">Hombres<span class="caret"></span></a>
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Hombres<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
                         @foreach($categoriasH as $c)
@@ -83,7 +83,6 @@
                 <div class="intro-heading">Me alegra que estes aquí</div>
                 <a href="#destacados" class="page-scroll btn btn-xl">Conoce nuestros productos</a>
             </div>
-<<<<<<< HEAD
         </div>-->
         <div id="carrusel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -100,22 +99,25 @@
                     <img src="{{asset('img/carrusel/m4.jpg')}}" alt="..." width="100%">
                   </a>
                   <div class="carousel-caption">
-                     <button class="highlight-caption"><h3>COMPRAR JEANS</h3></button>
+                     <button class="highlight-caption"><a href="" style="color:black;"><h3>COMPRAR JEANS</h3></a></button>
                   </div>
                 </div>
                 <div class="item">
                   <img src="{{asset('img/carrusel/m3.jpg')}}" alt="..." width="100%">
                   <div class="carousel-caption">
-                    <button class="highlight-caption"><h3>COMPRAR PARA ELLA</h3></button>
+                    <button class="highlight-caption">
+                            <a href="{{url('productos/mujeres')}}" style="color:black;"><h3>COMPRAR PARA ELLA</h3></a>
+                    </button>
                   </div>
                 </div>
                 <div class="item">
                   <img src="{{asset('img/carrusel/m6.jpg')}}" alt="..." width="100%">
                   <div class="carousel-caption">
-                     <button class="highlight-caption"><h3>COMPRAR PARA EL </h3></button>
+                     <button class="highlight-caption"><a href="{{url('productos/hombres')}}" style="color:black;"><h3>COMPRAR PARA EL </h3></a></button>
                   </div>
                 </div>
             </div>
+
             <!-- Controls -->
             <a class="left carousel-control" href="#carrusel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -124,9 +126,70 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div> <!-- Carousel -->
-<!--</section>-->
 </header>
+<hr>
+<h4>RECIEN LLEGADOS</h4>
+<section id="losmasvendidos">
+<div id="carrusel-articulos" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+       <!-- Slide -->
+    <div class="item active">
+        <div class="row">
+            @foreach($recientess1 as $p)
+            <div class="col-sm-3 col-xs-6">
+                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
+                <div class="carousel-caption">{{$p->descripcion}}</div>
+            </div>
+            @endforeach
+        <!--    <div class="col-sm-3 col-xs-6">
+                <a href="http://twitter.com"><img src="img/cararticulos/2.jpg" alt=""/></a>
+                <div class="carousel-caption">Desc. del prod</div>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="http://tumblr.com"><img src="img/cararticulos/3.jpg" alt=""/></a>
+                <div class="carousel-caption">Desc. del prod</div>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="http://google.com"><img src="img/cararticulos/4.jpg" alt=""/></a>
+                <div class="carousel-caption">Desc. del prod</div>
+            </div>-->
+        </div>
+    </div>
+       <!-- Slide -->
+    <div class="item">
+        <div class="row">
+           @foreach($recientess2 as $p)
+            <div class="col-sm-3 col-xs-6">
+                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
+                <div class="carousel-caption">{{$p->descripcion}}</div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+       <!-- Slide -->
+    <div class="item">
+        <div class="row">
+            @foreach($recientess3 as $p)
+            <div class="col-sm-3 col-xs-6">
+                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
+                <div class="carousel-caption">{{$p->descripcion}}</div>
+            </div>
+            @endforeach
+        </div>
+    </div>
 
+</div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carrusel-articulos" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#carrusel-articulos" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+    
+</section>
+<hr>
 @stop
 @section("1")
 <section id="destacados">
@@ -452,7 +515,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Acerca de</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted">Equipo JYMPstore</h3>
                 </div>
             </div>
             <div class="row">
@@ -460,66 +523,68 @@
                     <ul class="timeline">
                         <li>
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{asset('img/about/1.jpg')}}" alt="">
+                                <img id="equipo" class="img-circle img-responsive" src="{{asset('img/about/equipoPebble.jpg')}}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>2009-2011</h4>
-                                    <h4 class="subheading">Our Humble Beginnings</h4>
+                                    <h4>Pebble Arrambí</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                    <p class="text-muted"></p>
                                 </div>
                             </div>
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{asset('img/about/2.jpg')}}" alt="">
+                                <img class="img-circle img-responsive" src="{{asset('img/about/equipoYukie.jpg')}}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>March 2011</h4>
-                                    <h4 class="subheading">An Agency is Born</h4>
+                                    <h4>Yukie Ley</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                    <p class="text-muted"></p>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{asset('img/about/3.jpg')}}" alt="">
+                                <img class="img-circle img-responsive" src="{{asset('img/about/equipoJuven.jpg')}}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>December 2012</h4>
-                                    <h4 class="subheading">Transition to Full Service</h4>
+                                    <h4>Juven Meza</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                    <p class="text-muted"></p>
                                 </div>
                             </div>
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{{asset('img/about/4.jpg')}}" alt="">
+                                <img class="img-circle img-responsive" src="{{asset('img/about/equipoMonica.jpg')}}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>July 2014</h4>
-                                    <h4 class="subheading">Phase Two Expansion</h4>
+                                    <h4>Monica Salazar</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                    <p class="text-muted"></p>
                                 </div>
                             </div>
                         </li>
-                        <li class="timeline-inverted">
+                        <li class="timeline-image">
                             <div class="timeline-image">
-                                <h4>Be Part
-                                    <br>Of Our
-                                    <br>Story!</h4>
+                                <img class="img-circle img-responsive" src="{{asset('img/about/equipoJorge.jpg')}}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Jorge Treviño</h4>
                                 </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted"></p>
+                                </div>
+                            </div>
                             </li>
                         </ul>
                     </div>

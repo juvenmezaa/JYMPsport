@@ -13,7 +13,10 @@ class principalController extends Controller
     public function index(){
         $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->get();
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->get();
-    	return view('principalUser', compact('productos','categoriasH','categoriasM'));
+        $recientess1 =DB::table('productos')->latest()->limit(4)->get();
+        $recientess2 =DB::table('productos')->offset(4)->latest()->limit(4)->get();
+        $recientess3 =DB::table('productos')->offset(8)->latest()->limit(4)->get();
+    	return view('principalUser', compact('productos','categoriasH','categoriasM','recientess1','recientess2','recientess3'));
     }
     public function twitter(){
     	return redirect()->away("https://www.twitter.com/JJYMPstore");
@@ -49,4 +52,5 @@ class principalController extends Controller
         $comentarios=DB::table("comentarios AS c")->join("users AS u", "c.id_usuario","=","u.id")->where("c.id_producto","=", $id)->select("c.comentario","c.fecha","u.name")->get();
     	return view('detalleProducto', compact('producto','tallas','comentarios'));
     }
+
 }

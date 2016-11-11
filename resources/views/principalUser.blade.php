@@ -100,19 +100,21 @@
                     <img src="{{asset('img/carrusel/m4.jpg')}}" alt="..." width="100%">
                   </a>
                   <div class="carousel-caption">
-                     <button class="highlight-caption"><h3>COMPRAR JEANS</h3></button>
+                     <button class="highlight-caption"><a href="" style="color:black;"><h3>COMPRAR JEANS</h3></a></button>
                   </div>
                 </div>
                 <div class="item">
                   <img src="{{asset('img/carrusel/m3.jpg')}}" alt="..." width="100%">
                   <div class="carousel-caption">
-                    <button class="highlight-caption"><h3>COMPRAR PARA ELLA</h3></button>
+                    <button class="highlight-caption">
+                            <a href="{{url('productos/mujeres')}}" style="color:black;"><h3>COMPRAR PARA ELLA</h3></a>
+                    </button>
                   </div>
                 </div>
                 <div class="item">
                   <img src="{{asset('img/carrusel/m6.jpg')}}" alt="..." width="100%">
                   <div class="carousel-caption">
-                     <button class="highlight-caption"><h3>COMPRAR PARA EL </h3></button>
+                     <button class="highlight-caption"><a href="{{url('productos/hombres')}}" style="color:black;"><h3>COMPRAR PARA EL </h3></a</button>
                   </div>
                 </div>
             </div>

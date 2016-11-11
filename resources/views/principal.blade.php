@@ -32,10 +32,16 @@
     <!-- Hojas de estilo adicionales -->
     <link href="{{asset('css/carrusel.css')}}" rel="stylesheet">
     <link href="{{asset('css/productos.css')}}" rel="stylesheet">
+    <link href="{{asset('css/stars.css')}}" rel="stylesheet">
+
 </head>
 
 <body id="page-top" class="index">
+    <!-- jQuery -->
+    <script src="{{asset('js/jquery.min.js')}}"></script>
 
+    <!-- jQuery para ZOOM -->
+    <script src="{{asset('js/jquery.elevatezoom.min.js')}}"></script>
     @yield("navbar")
 
     <!-- Header -->
@@ -171,9 +177,8 @@
         </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-
+    
+    
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
 

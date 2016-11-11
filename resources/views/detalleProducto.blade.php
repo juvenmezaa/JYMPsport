@@ -80,23 +80,43 @@
 @section("1")
 <div class="container">
     <div class="row">
-        <div class="col-lg-4">
-            <img src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="">
+        <div class="col-md-4">
+            <img id="{{$producto[0]->id}}" src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="{{$producto[0]->descripcion}}" data-zoom-image="{{asset('img/productos')}}/{{$producto[0]->imagen}}" width="350px">
         </div>
-        <div class="col-lg-2">
+        <div class="col-md-3">
             <h6>{{$producto[0]->descripcion}}</h6>
             <h2>MNX {{$producto[0]->precio}}</h2>
-            <h4>Costo {{$producto[0]->costo}}</h4>
+            <h5>Colores</h5>
+            <hr>
             <h2><a class="glyphicon glyphicon-stop" style="color:{{$producto[0]->color}}"></a></h2>
-            <h5>Talla</h5>
+            <hr>
+            <h5>Tallas</h5>
             @foreach($tallas as $t)
-                <h6>{{$t->talla}} - Cantidad: {{$t->cantidad}}</h6>
+                <h6>- {{$t->talla}}</h6>
             @endforeach
             <a href="#" class="btn btn-primary">Generar Pedido</a>
-
+            <br><br>
+            @if(Auth::check())
+            <h6>Califica</h6>
+            <fieldset class="rating">
+                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+            </fieldset>
+            @else
+            <a href="{{url('/login')}}"><h6>Inicia sesión para calificar</h6></a>
+            @endif
         </div>
+        <div class="col-md-4" id="zoom"></div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#{{$producto[0]->id}}").elevateZoom({tint:true, tintColour:'black', tintOpacity:0.5, zoomWindowPosition: "zoom", borderSize: 0, easing:true});
+}); 
+</script>
 @stop
 @section("2")
 

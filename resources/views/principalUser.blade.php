@@ -11,25 +11,13 @@
             <a class="navbar-brand page-scroll" href="#page-top">JYMPstore</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbarcollapse-1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <li class="dropdown" >
-                    <a class="page-scroll"  class="dropdown-toggle" data-toggle="dropdown" role="button">Hombres<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
-                        @foreach($categoriasH as $c)
-                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
-                        @endforeach
-                    </ul>
+                <li>
+                    <a class="page-scroll" href="#">Hombres</a>
                 </li>
-                <li class="dropdown" >
-                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Mujeres<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
-                        @foreach($categoriasM as $c)
-                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
-                        @endforeach
-                    </ul>
+                <li>
+                    <a class="page-scroll" href="#">Mujeres</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -83,7 +71,6 @@
                 <div class="intro-heading">Me alegra que estes aquí</div>
                 <a href="#destacados" class="page-scroll btn btn-xl">Conoce nuestros productos</a>
             </div>
-<<<<<<< HEAD
         </div>-->
         <div id="carrusel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -96,26 +83,25 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                  <a href="http://google.com">
-                    <img src="{{asset('img/carrusel/m4.jpg')}}" alt="..." width="100%">
-                  </a>
-                  <div class="carousel-caption">
-                     <button class="highlight-caption"><h3>COMPRAR JEANS</h3></button>
-                  </div>
+                    <a href="http://google.com"><img src="img/carrusel/m4.jpg" alt="..." width="100%"></a>
+                    <div class="carousel-caption">
+                        <button class="highlight-caption"><h3>COMPRAR JEANS</h3></button>
+                    </div>
                 </div>
                 <div class="item">
-                  <img src="{{asset('img/carrusel/m3.jpg')}}" alt="..." width="100%">
-                  <div class="carousel-caption">
-                    <button class="highlight-caption"><h3>COMPRAR PARA ELLA</h3></button>
-                  </div>
+                    <img src="img/carrusel/m3.jpg" alt="..." width="100%">
+                    <div class="carousel-caption">
+                        <button class="highlight-caption"><h3>COMPRAR PARA ELLA</h3></button>
+                    </div>
                 </div>
                 <div class="item">
-                  <img src="{{asset('img/carrusel/m6.jpg')}}" alt="..." width="100%">
-                  <div class="carousel-caption">
-                     <button class="highlight-caption"><h3>COMPRAR PARA EL </h3></button>
-                  </div>
+                    <img src="img/carrusel/m6.jpg" alt="..." width="100%">
+                    <div class="carousel-caption">
+                        <button class="highlight-caption"><h3>COMPRAR PARA EL </h3></button>
+                    </div>
                 </div>
             </div>
+
             <!-- Controls -->
             <a class="left carousel-control" href="#carrusel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -124,9 +110,70 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div> <!-- Carousel -->
-<!--</section>-->
 </header>
+<hr>
+<h4>RECIEN LLEGADOS</h4>
+<section id="losmasvendidos">
+<div id="carrusel-articulos" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+       <!-- Slide -->
+    <div class="item active">
+        <div class="row">
+            @foreach($recientess1 as $p)
+            <div class="col-sm-3 col-xs-6">
+                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
+                <div class="carousel-caption">{{$p->descripcion}}</div>
+            </div>
+            @endforeach
+        <!--    <div class="col-sm-3 col-xs-6">
+                <a href="http://twitter.com"><img src="img/cararticulos/2.jpg" alt=""/></a>
+                <div class="carousel-caption">Desc. del prod</div>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="http://tumblr.com"><img src="img/cararticulos/3.jpg" alt=""/></a>
+                <div class="carousel-caption">Desc. del prod</div>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="http://google.com"><img src="img/cararticulos/4.jpg" alt=""/></a>
+                <div class="carousel-caption">Desc. del prod</div>
+            </div>-->
+        </div>
+    </div>
+       <!-- Slide -->
+    <div class="item">
+        <div class="row">
+           @foreach($recientess2 as $p)
+            <div class="col-sm-3 col-xs-6">
+                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
+                <div class="carousel-caption">{{$p->descripcion}}</div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+       <!-- Slide -->
+    <div class="item">
+        <div class="row">
+            @foreach($recientess3 as $p)
+            <div class="col-sm-3 col-xs-6">
+                <a href="{{url('detalleProducto')}}/{{$p->id}}"><img id= "imagen_producto" src="{{ asset("img/productos/$p->imagen") }}"></a>
+                <div class="carousel-caption">{{$p->descripcion}}</div>
+            </div>
+            @endforeach
+        </div>
+    </div>
 
+</div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carrusel-articulos" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#carrusel-articulos" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+    
+</section>
+<hr>
 @stop
 @section("1")
 <section id="destacados">

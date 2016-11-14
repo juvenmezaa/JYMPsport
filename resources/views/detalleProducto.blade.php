@@ -97,21 +97,21 @@
             <a href="#" class="btn btn-primary">Generar Pedido</a>
             <br><br>
             @if(Auth::check())
-            <h6>Califica</h6>
-             <form action="{{url('/rating')}}" method="POST" class="form-inline">
-        <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
-            <input type="submit" class="btn btn-primary">
+                <h6>Califica</h6>
+                <form action="{{url('/rating')}}" method="POST" class="form-inline">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
+                    <input type="submit" class="btn btn-primary">
 
-        
-            <fieldset class="rating">
-                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-            </fieldset>
-        </form>
+                
+                    <fieldset class="rating">
+                        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                    </fieldset>
+                </form>
             @else
             <a href="{{url('/login')}}"><h6>Inicia sesión para calificar</h6></a>
             @endif
@@ -157,14 +157,15 @@
 @if(Auth::check())
     <div class="container">
         <div class="row">
-            <form action="#" method="POST">
+            <form action="{{url('/comentar')}}" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="col-lg-5">
-            <textarea class="form-control" rows="3" id="textArea" style="margin: 0px -76.8438px 10px 0px;"></textarea>
-          </div>
+                    <textarea class="form-control" rows="3" name="txtComentario" style="margin: 0px -76.8438px 10px 0px;"></textarea>
+                </div>
                 <div class="form-group  col-md-12">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>   
+                    <input type="submit" class="btn btn-primary">
+                </div>
+                <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
             </form>
         </div>
     </div>  

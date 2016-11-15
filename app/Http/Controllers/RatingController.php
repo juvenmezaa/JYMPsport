@@ -49,7 +49,11 @@ class RatingController extends Controller
                 $nuevo->save();
 
                 return back()->withInput();
-            }
+            }else{
+                $update=DB::table('calificaciones')->where('id_producto', '=', $id)->where('id_usuario', '=',$idUser)->update(['calificacion' => $cal]);;
+                
+                return back()->withInput();
+        }
             return back()->withInput();
         }
         return Redirect('/login');

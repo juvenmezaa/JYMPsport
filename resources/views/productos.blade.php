@@ -83,11 +83,14 @@
 				   	 <img id= "imagen_producto" src="{{ asset("img/productos/$producto->imagen") }}">
 				   	</a><br>
 				    Precio: ${{$producto->precio}}<br>
-				    Color: {{$producto->color}}<br>
+				    Color: <a class="glyphicon glyphicon-stop" style="color:{{$producto->color}}; font-size:1.5em"></a><br>
 				    Tallas: <br>
 				  </div>
 				</div>
 			@endforeach
 		</article>
+        <div id="paginas">
+            {!! $productos->render() !!}
+        </div>
 </section>
 @stop

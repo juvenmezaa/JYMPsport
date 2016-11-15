@@ -27,14 +27,14 @@ class principalController extends Controller
         }
         $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
-        $productos = DB::table('productos AS P')->where('genero','=',$genero)->get();
+        $productos = DB::table('productos AS P')->where('genero','=',$genero)->paginate(4);
         return view('productos', compact('productos','categoriasH','categoriasM','breadcrumb'));
     }
     public function productosCategoria($c){
         $categoria = DB::table('categorias AS C')->where('nombre','=',$c)->get();
         $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
-        $productos = DB::table('productos AS P')->where('id_categoria','=',$categoria[0]->id)->get();
+        $productos = DB::table('productos AS P')->where('id_categoria','=',$categoria[0]->id)->paginate(4);
         return view('productos', compact('productos','categoriasH','categoriasM'));
     }
     public function detalleProducto($id){

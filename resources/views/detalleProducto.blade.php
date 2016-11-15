@@ -158,6 +158,9 @@
         </table>
         </div>
     </div>
+    <div id="paginas">
+        {!! $comentarios->render() !!}
+    </div>
     <hr>
 </div>
 @if(Auth::check())

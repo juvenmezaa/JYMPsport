@@ -18,15 +18,6 @@ class principalController extends Controller
         $recientess3 =DB::table('productos')->offset(8)->latest()->limit(4)->get();
     	return view('principalUser', compact('productos','categoriasH','categoriasM','recientess1','recientess2','recientess3'));
     }
-    public function twitter(){
-    	return redirect()->away("https://www.twitter.com/JJYMPstore");
-    }
-    public function facebook(){
-    	return redirect()->away("https://www.facebook.com/JYMPstore");
-    }
-    public function instagram(){
-    	return redirect()->away("https://www.instagram.com/JYMPstore");
-    }
     public function productos($g){
         if($g == "hombres"){
             $genero = '1';
@@ -49,7 +40,7 @@ class principalController extends Controller
     public function detalleProducto($id){
     	$producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id)->select("p.*","c.nombre")->get();
         $tallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion")->get();
-        $comentarios=DB::table("comentarios AS c")->join("users AS u", "c.id_usuario","=","u.id")->where("c.id_producto","=", $id)->select("c.comentario","c.fecha","u.name")->get();
+        $comentarios=DB::table("comentarios AS c")->join("users AS u", "c.id_usuario","=","u.id")->where("c.id_producto","=", $id)->select("c.comentario","c.fecha","u.name")->paginate(5);
         $calificacion=DB::table("calificaciones AS c")->join("users AS u", "c.id_usuario","=","u.id")->where("c.id_producto","=", $id)->select("c.calificacion")->get();
     	return view('detalleProducto', compact('producto','tallas','comentarios','calificacion'));
     }

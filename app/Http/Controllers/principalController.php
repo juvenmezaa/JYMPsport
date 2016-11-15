@@ -19,7 +19,7 @@ class principalController extends Controller
         foreach ($promedios as $p) {
             $prom[]=$p->id_producto;
         }
-        $destacados=DB::table('productos as p')->whereIn('p.id',$prom)->get();
+        $destacados=DB::table('productos as p')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->whereIn('p.id',$prom)->get();
 
         //select `p`.*, AVG(calificacion) as promedio from `calificaciones` as `c` inner join `productos` as `p` on `c`.`id_producto` = `P`.`id` group by `c`.`id_producto` limit 9
 

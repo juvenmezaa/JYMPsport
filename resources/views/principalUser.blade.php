@@ -159,7 +159,7 @@
                             <figure class="itemcarrusel">
                                     <a href="{{url('detalleProducto')}}/{{$destacados[$j]->id}}">
                                 <input type="hidden" value="{{$destacados[$j]->id}}" name="id_art">
-                                <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$destacados[$j]->imagen}}" alt="{{$destacados[$j]->descripcion}}">
+                                <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$destacados[$j]->imagen}}" alt="{{$destacados[$j]->descripcion}}" onerror="this.src='{{ asset('img/categorias')}}/{{$destacados[$j]->generica}}'">
                                 </a>
                             </figure>
                             <div id="info">
@@ -205,7 +205,7 @@
                 <figure class="itemcarrusel">
                         <a href="{{url('detalleProducto')}}/{{$p->id}}">
                     <input type="hidden" value="{{$p->id}}" name="id_art">
-                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}">
+                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'">
                     </a>
                 </figure>
                 <div id="info">
@@ -225,7 +225,7 @@
                 <figure class="itemcarrusel">
                         <a href="{{url('detalleProducto')}}/{{$p->id}}">
                     <input type="hidden" value="{{$p->id}}" name="id_art">
-                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}">
+                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'">
                     </a>
                 </figure>
                 <div id="info">
@@ -244,7 +244,7 @@
                 <figure class="itemcarrusel">
                         <a href="{{url('detalleProducto')}}/{{$p->id}}">
                     <input type="hidden" value="{{$p->id}}" name="id_art">
-                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}">
+                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'">
                     </a>
                 </figure>
                 <div id="info">

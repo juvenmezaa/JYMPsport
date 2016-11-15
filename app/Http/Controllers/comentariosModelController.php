@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Serverfireteam\Panel\CrudController;
 use DB;
+use App\comentariosModel;
 use Illuminate\Http\Request;
 
 class comentariosModelController extends CrudController{
@@ -13,7 +14,7 @@ class comentariosModelController extends CrudController{
     public function all($entity){
         parent::all($entity); 
 
-        $this->filter = \DataFilter::source(new \App\comentariosModel());
+        $this->filter = \DataFilter::source(comentariosModel::with('users'));
         $this->filter->add('id', 'ID', 'text');
         $this->filter->add('id_usuario', 'Usuario', 'text');
         $this->filter->add('id_producto', 'Producto', 'text');
@@ -30,11 +31,13 @@ class comentariosModelController extends CrudController{
         
         //$usuario = DB::table('users AS u')->join('comentarios AS c', 'c.id_usuario','=','u.id')->select('u.name')->get();
         $this->grid->add('id_usuario','Usuario');
-        $usuario = $this->grid->getColumn('id_usuario');
+        //$this->grid->add('{{ $comentarios->pluck("name")->all() }}','UsuarioNombre');
+        $this->grid->add('{{ implode(", ", $users->pluck("name")->all()) }}','Nombre de Usuario');
+        //$usuario = $this->grid->getColumn('id_usuario');
 
-        $user = $usuario->name;
+        //$user = $usuario->name;
         //dd($usuario);
-        $productos = array();
+        //$productos = array();
 
         //$productos = \App\comentariosModel::pluck("","id")->all();
         //$this->grid->add('{{ implode(", ", $roles->pluck("name")->all()) }}', 'Role');
@@ -53,6 +56,7 @@ class comentariosModelController extends CrudController{
         
         parent::edit($entity);
 		
+		/*
 		$this->edit = \DataEdit::source(new \App\comentariosModel());
 	
         $this->edit->label('Editar Comentario');
@@ -70,7 +74,7 @@ class comentariosModelController extends CrudController{
         $generos["1"] = "Hombre";
         //dd($generos);
         $this->edit->add('genero','Genero','select')->options($generos)->rule('required');
-       
+       */
         return $this->returnEditView();
     }    
 }

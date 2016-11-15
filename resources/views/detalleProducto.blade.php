@@ -13,21 +13,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                @if($producto[0]->genero==0)
-                    <li>
-                        <a class="page-scroll" href="#">Hombres</a>
-                    </li>
-                    <li class="active">
-                        <a class="page-scroll" href="#">Mujeres</a>
-                    </li>
-                @else
-                    <li class="active">
-                        <a class="page-scroll" href="#">Hombres</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Mujeres</a>
-                    </li>
-                @endif
+                <li class="dropdown" >
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Hombres<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
+                        @foreach($categoriasH as $c)
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="dropdown" >
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Mujeres<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
+                        @foreach($categoriasM as $c)
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
@@ -68,11 +71,11 @@
         <ul class="breadcrumb">
             <li><a href="#">Home</a></li>
             @if($producto[0]->genero==0)
-                <li><a href="#">Mujer</a></li>
+                <li><a href="#">Mujeres</a></li>
             @else
-                <li><a href="#">Hombre</a></li>
+                <li><a href="#">Hombres</a></li>
             @endif
-            <li><a href="#">{{$producto[0]->nombre}}</a></li>
+            <li><a href="#">{{$producto[0]->nombreCat}}</a></li>
         </ul>
     </div>
 </div>    
@@ -97,21 +100,27 @@
             <a href="#" class="btn btn-primary">Generar Pedido</a>
             <br><br>
             @if(Auth::check())
-            <h6>Califica</h6>
-             <form action="{{url('/rating')}}" method="POST" class="form-inline">
-        <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
-            <input type="submit" class="btn btn-primary">
+                <h6>Califica</h6>
+                <form action="{{url('/rating')}}" method="POST" class="form-inline">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
+                    <input type="submit" class="btn btn-primary">
 
-        
-            <fieldset class="rating">
-                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-            </fieldset>
-        </form>
+                
+                    <fieldset class="rating">
+                        @for($i = 5; $i > 0; $i--)
+                            @if(count($calificacion)>0)
+                                @if($i == $calificacion[0]->calificacion)
+                                    <input type="radio" id="star{{$i}}" name="rating" value="{{$i}}" checked /><label class = "full" for="star{{$i}}" title="{{$i}} stars"></label>
+                                @else
+                                    <input type="radio" id="star{{$i}}" name="rating" value="{{$i}}" /><label class = "full" for="star{{$i}}" title="{{$i}} stars"></label>
+                                @endif
+                            @else
+                                <input type="radio" id="star{{$i}}" name="rating" value="{{$i}}" /><label class = "full" for="star{{$i}}" title="{{$i}} stars"></label>
+                            @endif
+                        @endfor
+                    </fieldset>
+                </form>
             @else
             <a href="{{url('/login')}}"><h6>Inicia sesión para calificar</h6></a>
             @endif
@@ -152,19 +161,23 @@
         </table>
         </div>
     </div>
+    <div id="paginas">
+        {!! $comentarios->render() !!}
+    </div>
     <hr>
 </div>
 @if(Auth::check())
     <div class="container">
         <div class="row">
-            <form action="#" method="POST">
+            <form action="{{url('/comentar')}}" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="col-lg-5">
-            <textarea class="form-control" rows="3" id="textArea" style="margin: 0px -76.8438px 10px 0px;"></textarea>
-          </div>
+                    <textarea class="form-control" rows="3" name="txtComentario" style="margin: 0px -76.8438px 10px 0px;"></textarea>
+                </div>
                 <div class="form-group  col-md-12">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>   
+                    <input type="submit" class="btn btn-primary">
+                </div>
+                <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
             </form>
         </div>
     </div>  

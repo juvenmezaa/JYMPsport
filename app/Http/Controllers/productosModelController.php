@@ -37,7 +37,8 @@ class productosModelController extends CrudController{
         $this->grid->add('visitas','Visitas');
         $this->grid->add('talla','Talla');
         $this->grid->add('color','Color');
-        $this->grid->add('genero','Genero');
+        $this->grid->add('{{ $generos->pluck()->all() }}','Genero');
+        $this->grid->add('genero','El Genero');
 
         $this->grid->paginate(10);
 

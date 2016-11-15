@@ -13,7 +13,7 @@
 
 Route::get("/", "principalController@index");
 Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
-
+Route::get("/panel/categoriasproductosModel/all","categoriasproductosModelController@asignarACategoria");
 Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 

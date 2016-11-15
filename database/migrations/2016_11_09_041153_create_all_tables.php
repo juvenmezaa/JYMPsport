@@ -17,6 +17,7 @@ class CreateAllTables extends Migration
             $table->increments('id');
             $table->string('nombre',50);
             $table->string('descripcion',350);
+            $table->string('imagengen',50);
             $table->timestamps();
         });
         Schema::create('productos', function (Blueprint $table) {

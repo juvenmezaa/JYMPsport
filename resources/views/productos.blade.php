@@ -80,7 +80,7 @@
 				  </div>
 				  <div class="panel-body">
 				  	<a  href="{{url('/detalleProducto')}}/{{$producto->id}}" >
-				   	 <img id= "imagen_producto" src="{{ asset("img/productos/$producto->imagen") }}">
+				   	 <img id= "imagen_producto" src="{{ asset("img/productos/$producto->imagen") }}" onerror="this.src='{{ asset('img/categorias')}}/{{$producto->generica}}'" />
 				   	</a><br>
 				    Precio: ${{$producto->precio}}<br>
 				    Color: <a class="glyphicon glyphicon-stop" style="color:{{$producto->color}}; font-size:1.5em"></a><br>

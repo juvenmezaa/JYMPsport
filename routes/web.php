@@ -17,7 +17,7 @@ Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
 Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 
-Route::get("/productosCategoria/{c}", "principalController@productosCategoria");
+Route::get("/productosCategoria/{g}/{c}", "principalController@productosCategoria");
 Route::get("/home", "HomeController@index");
 Route::post("/rating", "RatingController@rateJ");
 Route::post("/comentar", "comentariosModelController@comentar");

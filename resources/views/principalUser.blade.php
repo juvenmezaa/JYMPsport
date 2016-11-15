@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
                         @foreach($categoriasH as $c)
-                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                            <li><a href= "{{url('productosCategoria')}}/hombres/{{$c->nombre}}">{{$c->nombre}}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -27,7 +27,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
                         @foreach($categoriasM as $c)
-                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                            <li><a href= "{{url('productosCategoria')}}/mujeres/{{$c->nombre}}">{{$c->nombre}}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -38,6 +38,9 @@
                 </li>
                 <li>
                     <a class="page-scroll" href="#destacados">Destacados</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#recientes">Recientes</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#portfolio">Colecciones</a>
@@ -89,11 +92,9 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                  <a href="http://google.com">
                     <img src="{{asset('img/carrusel/m4.jpg')}}" alt="..." width="100%">
-                  </a>
                   <div class="carousel-caption">
-                     <button class="highlight-caption"><a href="" style="color:black;"><h3>COMPRAR JEANS</h3></a></button>
+                     <button class="highlight-caption"><a href="{{url('/productosCategoria/Jeans')}}" style="color:black;"><h3>COMPRAR JEANS</h3></a></button>
                   </div>
                 </div>
                 <div class="item">
@@ -124,7 +125,7 @@
 
 @stop
 @section("1")
-<section id="destacados">
+<section id="destacados" class="bg-light-gray">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">

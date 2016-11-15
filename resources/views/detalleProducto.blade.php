@@ -13,21 +13,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                @if($producto[0]->genero==0)
-                    <li>
-                        <a class="page-scroll" href="#">Hombres</a>
-                    </li>
-                    <li class="active">
-                        <a class="page-scroll" href="#">Mujeres</a>
-                    </li>
-                @else
-                    <li class="active">
-                        <a class="page-scroll" href="#">Hombres</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Mujeres</a>
-                    </li>
-                @endif
+                <li class="dropdown" >
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Hombres<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
+                        @foreach($categoriasH as $c)
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="dropdown" >
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Mujeres<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
+                        @foreach($categoriasM as $c)
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
@@ -68,11 +71,11 @@
         <ul class="breadcrumb">
             <li><a href="#">Home</a></li>
             @if($producto[0]->genero==0)
-                <li><a href="#">Mujer</a></li>
+                <li><a href="#">Mujeres</a></li>
             @else
-                <li><a href="#">Hombre</a></li>
+                <li><a href="#">Hombres</a></li>
             @endif
-            <li><a href="#">{{$producto[0]->nombre}}</a></li>
+            <li><a href="#">{{$producto[0]->nombreCat}}</a></li>
         </ul>
     </div>
 </div>    
@@ -80,26 +83,113 @@
 @section("1")
 <div class="container">
     <div class="row">
-        <div class="col-lg-4">
-            <img src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="">
+        <div class="col-md-4">
+            <img id="{{$producto[0]->id}}" src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="{{$producto[0]->descripcion}}" data-zoom-image="{{asset('img/productos')}}/{{$producto[0]->imagen}}" width="350px">
         </div>
-        <div class="col-lg-2">
+        <div class="col-md-3">
             <h6>{{$producto[0]->descripcion}}</h6>
             <h2>MNX {{$producto[0]->precio}}</h2>
-            <h4>Costo {{$producto[0]->costo}}</h4>
+            <h5>Colores</h5>
+            <hr>
             <h2><a class="glyphicon glyphicon-stop" style="color:{{$producto[0]->color}}"></a></h2>
-            <h5>Talla</h5>
+            <hr>
+            <h5>Tallas</h5>
             @foreach($tallas as $t)
-                <h6>{{$t->talla}} - Cantidad: {{$t->cantidad}}</h6>
+                <h6>- {{$t->talla}}</h6>
             @endforeach
             <a href="#" class="btn btn-primary">Generar Pedido</a>
+            <br><br>
+            @if(Auth::check())
+                <h6>Califica</h6>
+                <form action="{{url('/rating')}}" method="POST" class="form-inline">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
+                    <input type="submit" class="btn btn-primary">
 
+                
+                    <fieldset class="rating">
+                        @for($i = 5; $i > 0; $i--)
+                            @if(count($calificacion)>0)
+                                @if($i == $calificacion[0]->calificacion)
+                                    <input type="radio" id="star{{$i}}" name="rating" value="{{$i}}" checked /><label class = "full" for="star{{$i}}" title="{{$i}} stars"></label>
+                                @else
+                                    <input type="radio" id="star{{$i}}" name="rating" value="{{$i}}" /><label class = "full" for="star{{$i}}" title="{{$i}} stars"></label>
+                                @endif
+                            @else
+                                <input type="radio" id="star{{$i}}" name="rating" value="{{$i}}" /><label class = "full" for="star{{$i}}" title="{{$i}} stars"></label>
+                            @endif
+                        @endfor
+                    </fieldset>
+                </form>
+            @else
+            <a href="{{url('/login')}}"><h6>Inicia sesión para calificar</h6></a>
+            @endif
         </div>
+        <div class="col-md-4" id="zoom"></div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#{{$producto[0]->id}}").elevateZoom({tint:true, tintColour:'black', tintOpacity:0.5, zoomWindowPosition: "zoom", borderSize: 0, easing:true});
+}); 
+</script>
 @stop
 @section("2")
-
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Fecha</th>
+                    <th class="col-md-2">Usuario</th>
+                    <th>Comentario</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(isset($comentarios))
+                    @foreach($comentarios as $c)
+                        <tr>
+                            <th>{{$c->fecha}}</th>
+                            <th>{{$c->name}}</th>
+                            <th>{{$c->comentario}}</th>
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <div id="paginas">
+        {!! $comentarios->render() !!}
+    </div>
+    <hr>
+</div>
+@if(Auth::check())
+    <div class="container">
+        <div class="row">
+            <form action="{{url('/comentar')}}" method="POST">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                <div class="col-lg-5">
+                    <textarea class="form-control" rows="3" name="txtComentario" style="margin: 0px -76.8438px 10px 0px;"></textarea>
+                </div>
+                <div class="form-group  col-md-12">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+                <input type="hidden" value="{{$producto[0]->id}}" name="idprod">
+            </form>
+        </div>
+    </div>  
+@else
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <a href="{{url('/login')}}"><h6>Inicia sesión para comentar</h6></a>
+            </div>
+        </div>
+    </div>
+@endif      
 @stop
 @section("3")
 

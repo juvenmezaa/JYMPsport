@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2016 a las 09:22:18
--- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 7.0.6
+-- Tiempo de generación: 15-11-2016 a las 05:13:43
+-- Versión del servidor: 10.1.16-MariaDB
+-- Versión de PHP: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -83,6 +83,18 @@ CREATE TABLE `calificaciones` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `calificaciones`
+--
+
+INSERT INTO `calificaciones` (`id`, `id_usuario`, `id_producto`, `calificacion`, `created_at`, `updated_at`) VALUES
+(1, 5, 10, 5, '2016-11-11 18:41:15', '2016-11-11 18:41:15'),
+(2, 5, 11, 2, '2016-11-11 18:52:03', '2016-11-11 18:52:03'),
+(3, 5, 13, 1, '2016-11-11 19:12:23', '2016-11-11 19:12:23'),
+(4, 5, 14, 3, '2016-11-11 19:33:41', '2016-11-11 19:33:41'),
+(5, 5, 6, 3, '2016-11-11 19:58:47', '2016-11-11 19:58:47'),
+(6, 5, 6, 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -213,7 +225,8 @@ INSERT INTO `links` (`id`, `display`, `url`, `created_at`, `updated_at`, `main`,
 (1, 'Links', 'Link', '2016-11-09 12:59:41', '2016-11-09 12:59:49', 1, 1),
 (2, 'Roles', 'Role', NULL, NULL, 1, 1),
 (3, 'Permissions', 'Permission', NULL, NULL, 1, 1),
-(4, 'Admins', 'Admin', NULL, '2016-11-09 12:59:49', 1, 1);
+(4, 'Admins', 'Admin', NULL, '2016-11-09 12:59:49', 1, 1),
+(5, 'Productos', 'productosModel', '2016-11-10 16:03:59', '2016-11-10 16:03:59', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -335,7 +348,7 @@ CREATE TABLE `productos` (
   `descripcion` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `precio` double NOT NULL,
   `costo` double NOT NULL,
-  `visitas` bigint(20) NOT NULL,
+  `visitas` bigint(20) NOT NULL DEFAULT '0',
   `color` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `imagen` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `genero` tinyint(1) NOT NULL,
@@ -349,7 +362,19 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `descripcion`, `precio`, `costo`, `visitas`, `color`, `imagen`, `genero`, `id_categoria`, `created_at`, `updated_at`) VALUES
-(1, 'Playera hermosa', 100, 200, 0, '#29088A', 'p1.jpg', 1, 4, '2016-10-10 05:30:15', '2016-10-10 05:30:15');
+(1, 'Playera hermosa', 100, 200, 0, '#29088A', 'p1.jpg', 1, 4, '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(2, 'BLUSA', 200, 120, 12, '#FFFFFF', 'P2.JPG', 1, 1, NULL, NULL),
+(3, 'VARSITY SHIRT', 250, 150, 0, '#ffffff', 'p59.jpg', 0, 4, '2016-11-11 11:25:19', '2016-11-11 11:25:19'),
+(4, 'GRAPHIC TEE STARWARS', 200, 150, 0, '#FFFFFF', 'p4.jpg', 1, 4, '2016-11-11 11:26:19', '2016-11-11 11:26:19'),
+(5, 'SHOULDER DRESS', 500, 350, 0, '#A11437', 'p119.jpg', 0, 1, '2016-11-11 11:27:26', '2016-11-11 11:27:26'),
+(6, 'GRAPHIC TEE SPIDER', 200, 150, 0, '#ff0000', 'p11.jpg', 1, 4, '2016-11-11 11:28:50', '2016-11-11 11:28:50'),
+(7, 'ANKLE SKINNY  JEANS', 700, 500, 0, '#050942', 'p103.jpg', 0, 3, '2016-11-11 11:31:28', '2016-11-11 11:31:28'),
+(8, 'GRAPHIC TEE NUTELLA', 200, 150, 0, '#FFFFFF', 'p7.jpg', 1, 4, '2016-11-11 12:22:01', '2016-11-11 12:22:01'),
+(9, 'FORMAL PINK DRESS', 420, 280, 0, '#ffe4e1', 'p112.jpg', 0, 1, '2016-11-11 12:24:57', '2016-11-11 12:24:57'),
+(10, 'BLACK JACKET', 1200, 800, 0, '#000000', 'p41.jpeg', 1, 2, '2016-11-11 12:26:02', '2016-11-11 12:26:02'),
+(11, 'TOP SIN MANGA', 130, 90, 0, '#F0F0F0', 'p67.jpg', 0, 1, '2016-11-11 12:27:28', '2016-11-11 12:27:28'),
+(13, 'SACO FORMAL DETALLE', 1300, 800, 0, '#000000', 'p45.jpg', 1, 2, '2016-11-11 12:29:09', '2016-11-11 12:29:09'),
+(14, 'MINI SKIRT', 250, 150, 0, '#eead0e', 'p62.jpg', 0, 1, '2016-11-11 12:30:21', '2016-11-11 12:30:21');
 
 -- --------------------------------------------------------
 
@@ -392,7 +417,9 @@ CREATE TABLE `tallas` (
 
 INSERT INTO `tallas` (`id`, `talla`, `descripcion`, `created_at`, `updated_at`) VALUES
 (1, 'XS', 'Extra chica', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
-(2, 'S', 'Chica', '2016-10-10 05:30:15', '2016-10-10 05:30:15');
+(2, 'S', 'Chica', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(3, 'M', 'MEDIANA', NULL, NULL),
+(4, 'L', 'GRANDE', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -443,7 +470,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `birthdate`, `email`, `password`, `verified`, `token`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Juven', 'Meza', '1994-04-13', 'juvenmezaa@gmail.com', '$2y$10$51Hai/xaO5CuZkrh/8gPgu.ixjyJRCd/.FFi6tDd.bnsHlxY5FSR2', 1, NULL, 1, 's0IKaOPPsCaAYoMnMrsr1z6M9jJhydV7vfe3d5fDH8zX2NLSoKvyO3Dsn8Tc', '2016-11-10 11:58:26', '2016-11-10 12:19:47');
+(5, 'Pebble', 'Ad', '1993-11-27', 'pebble.ad@hotmail.com', '$2y$10$pwCVnfBaNTdG.DQVgLdAlOAjPt77oqocrhKypx507I96qncQ8Lu4e', 1, 'ckQwRZN1pwKWFVNNwrDQyAepNC9ozQXnjw1JyjUP', 1, 'CLv7A34z0mLyj98phXvCBPCEDqut0Gv3sc7bIBBaK0zFVYVpcsYfqE5Ot0JD', '2016-11-11 11:09:04', '2016-11-11 19:02:36');
 
 --
 -- Índices para tablas volcadas
@@ -618,7 +645,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `carrito`
 --
@@ -653,7 +680,7 @@ ALTER TABLE `detalles_pedidos`
 -- AUTO_INCREMENT de la tabla `links`
 --
 ALTER TABLE `links`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
@@ -678,7 +705,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
@@ -688,7 +715,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tallas`
 --
 ALTER TABLE `tallas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tallas_productos`
 --
@@ -698,7 +725,7 @@ ALTER TABLE `tallas_productos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --

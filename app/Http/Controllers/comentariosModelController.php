@@ -8,6 +8,8 @@ use \Serverfireteam\Panel\CrudController;
 use DB;
 use App\comentariosModel;
 use Illuminate\Http\Request;
+use App\comentariosModel;
+use Illuminate\Support\Facades\Auth;
 
 class comentariosModelController extends CrudController{
 
@@ -76,5 +78,23 @@ class comentariosModelController extends CrudController{
         $this->edit->add('genero','Genero','select')->options($generos)->rule('required');
        */
         return $this->returnEditView();
+    }
+    public function comentar(Request $request){
+    	if (Auth::check()) {
+    	// The user is logged in...
+    		$fecha=getdate();
+            $idUser = Auth::user()->id;
+            $idProd=$request->input('idprod');
+            $com=$request->input('txtComentario');
+            $nuevo=new comentariosModel;
+            $nuevo->id_usuario=$idUser;
+            $nuevo->id_producto=$idProd;
+            $nuevo->comentario=$com;
+            $nuevo->fecha=$fecha["year"]."/".$fecha["mon"]."/".$fecha["mday"];
+            $nuevo->save();
+
+            return back()->withInput();
+        }
+        return Redirect('/login');
     }    
 }

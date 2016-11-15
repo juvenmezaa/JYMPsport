@@ -13,21 +13,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                @if($producto[0]->genero==0)
-                    <li>
-                        <a class="page-scroll" href="#">Hombres</a>
-                    </li>
-                    <li class="active">
-                        <a class="page-scroll" href="#">Mujeres</a>
-                    </li>
-                @else
-                    <li class="active">
-                        <a class="page-scroll" href="#">Hombres</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Mujeres</a>
-                    </li>
-                @endif
+                <li class="dropdown" >
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Hombres<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
+                        @foreach($categoriasH as $c)
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="dropdown" >
+                    <a class="page-scroll" href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button">Mujeres<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
+                        @foreach($categoriasM as $c)
+                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
@@ -68,11 +71,11 @@
         <ul class="breadcrumb">
             <li><a href="#">Home</a></li>
             @if($producto[0]->genero==0)
-                <li><a href="#">Mujer</a></li>
+                <li><a href="#">Mujeres</a></li>
             @else
-                <li><a href="#">Hombre</a></li>
+                <li><a href="#">Hombres</a></li>
             @endif
-            <li><a href="#">{{$producto[0]->nombre}}</a></li>
+            <li><a href="#">{{$producto[0]->nombreCat}}</a></li>
         </ul>
     </div>
 </div>    

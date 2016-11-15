@@ -36,15 +36,6 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#destacados">Destacados</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio">Colecciones</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#about">Acerca de</a>
-                </li>
                 @if(Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::User()->name}} <span class="caret"></span></a>
@@ -88,7 +79,7 @@
 				    <h2 class="panel-title" style="font-size: 15px">{{$producto->descripcion }}</h2>
 				  </div>
 				  <div class="panel-body">
-				  	<a  href="#" >
+				  	<a  href="{{url('/detalleProducto')}}/{{$producto->id}}" >
 				   	 <img id= "imagen_producto" src="{{ asset("img/productos/$producto->imagen") }}">
 				   	</a><br>
 				    Precio: ${{$producto->precio}}<br>

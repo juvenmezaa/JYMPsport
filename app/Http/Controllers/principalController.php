@@ -13,10 +13,22 @@ class principalController extends Controller
     public function index(){
         $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
+        
+        $promedios=DB::table("calificaciones AS c")->groupBy('id_producto')->select('id_producto')->orderBy(DB::raw('AVG(calificacion)'), 'desc')->limit(9)->get();
+        $prom;
+        foreach ($promedios as $p) {
+            $prom[]=$p->id_producto;
+        }
+        $destacados=DB::table('productos as p')->whereIn('p.id',$prom)->get();
+
+        //select `p`.*, AVG(calificacion) as promedio from `calificaciones` as `c` inner join `productos` as `p` on `c`.`id_producto` = `P`.`id` group by `c`.`id_producto` limit 9
+
+        //select * from productos as p inner JOIN calificaciones as c on p.id = c.id_producto group by p.id order by AVG(calificacion) DESC limit 9
+
         $recientess1 =DB::table('productos')->latest()->limit(4)->get();
         $recientess2 =DB::table('productos')->offset(4)->latest()->limit(4)->get();
         $recientess3 =DB::table('productos')->offset(8)->latest()->limit(4)->get();
-    	return view('principalUser', compact('productos','categoriasH','categoriasM','recientess1','recientess2','recientess3'));
+    	return view('principalUser', compact('productos','categoriasH','categoriasM','destacados','recientess1','recientess2','recientess3'));
     }
     public function productos($g){
         if($g == "hombres"){

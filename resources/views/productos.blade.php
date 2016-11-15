@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
 						@foreach($categoriasH as $c)
-	          				<li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+	          				<li><a href= "{{url('productosCategoria')}}/hombres/{{$c->nombre}}">{{$c->nombre}}</a></li>
 	          			@endforeach
 	          		</ul>
                 </li>
@@ -27,7 +27,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
 						@foreach($categoriasM as $c)
-	          				<li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+	          				<li><a href= "{{url('productosCategoria')}}/mujeres/{{$c->nombre}}">{{$c->nombre}}</a></li>
 	          			@endforeach
 	          		</ul>
                 </li>
@@ -67,8 +67,22 @@
 </nav>
 @stop
 @section("header")
-<header>
-</header>
+<br><br><br><br>
+<div class="container">
+    <div class="row col-lg-4">
+        <ul class="breadcrumb">
+            <li><a href="{{url('/')}}">Home</a></li>
+            <li><a href="{{url('productos')}}/{{$breadcrumb[0]}}">{{$breadcrumb[0]}}</a></li>
+            @if(isset($breadcrumb[1]))
+                <li><a href="#">{{$breadcrumb[1]}}</a></li>
+            @endif
+        </ul>
+    </div>
+    <div class="row col-lg-8 text-right">
+        <h1>{{$breadcrumb[0]}}</h1>
+    </div>
+</div> 
+    
 @stop
 @section("1")
 <section id="productos">

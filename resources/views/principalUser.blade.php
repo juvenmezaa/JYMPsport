@@ -18,7 +18,9 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
                         @foreach($categoriasH as $c)
-                        <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+
+                        <li><a href= "{{url('productosCategoria')}}/hombres/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                        
                         @endforeach
                     </ul>
                 </li>
@@ -27,7 +29,9 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
                         @foreach($categoriasM as $c)
-                        <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+
+                        <li><a href= "{{url('productosCategoria')}}/mujeres/{{$c->nombre}}">{{$c->nombre}}</a></li>
+
                         @endforeach
                     </ul>
                 </li>
@@ -39,7 +43,11 @@
                 <li>
                     <a class="page-scroll" href="#destacados">Destacados</a>
                 </li>
-               <!-- <li>
+                <li>
+                    <a class="page-scroll" href="#recientes">Recientes</a>
+                </li>
+                <!--<li>
+
                     <a class="page-scroll" href="#portfolio">Colecciones</a>
                 </li>-->
                 <li>
@@ -77,13 +85,7 @@
 @stop
 @section("header")
 <header>
-       <!-- <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Bienvenidos a JYMPstore!</div>
-                <div class="intro-heading">Me alegra que estes aquí</div>
-                <a href="#destacados" class="page-scroll btn btn-xl">Conoce nuestros productos</a>
-            </div>
-        </div>-->
+       
         <div id="carrusel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -95,26 +97,28 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                  <a href="http://google.com">
                     <img src="{{asset('img/carrusel/m4.jpg')}}" alt="..." width="100%">
-                </a>
-                <div class="carousel-caption">
-                   <button class="highlight-caption"><a href="" style="color:black;"><h3>COMPRAR JEANS</h3></a></button>
-               </div>
-           </div>
-           <div class="item">
-              <img src="{{asset('img/carrusel/m3.jpg')}}" alt="..." width="100%">
-              <div class="carousel-caption">
-                <button class="highlight-caption">
-                    <a href="{{url('productos/mujeres')}}" style="color:black;"><h3>COMPRAR PARA ELLA</h3></a>
-                </button>
+
+                  <div class="carousel-caption">
+                     <button class="highlight-caption"><a href="{{url('/productosCategoria/mujeres/Jeans')}}" style="color:black;"><h3>COMPRAR JEANS</h3></a></button>
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="{{asset('img/carrusel/m3.jpg')}}" alt="..." width="100%">
+                  <div class="carousel-caption">
+                    <button class="highlight-caption">
+                            <a href="{{url('productos/mujeres')}}" style="color:black;"><h3>COMPRAR PARA ELLA</h3></a>
+                    </button>
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="{{asset('img/carrusel/m6.jpg')}}" alt="..." width="100%">
+                  <div class="carousel-caption">
+                     <button class="highlight-caption"><a href="{{url('productos/hombres')}}" style="color:black;"><h3>COMPRAR PARA EL </h3></a></button>
+                  </div>
+                </div>
             </div>
         </div>
-        <div class="item">
-          <img src="{{asset('img/carrusel/m6.jpg')}}" alt="..." width="100%">
-          <div class="carousel-caption">
-           <button class="highlight-caption"><a href="{{url('productos/hombres')}}" style="color:black;"><h3>COMPRAR PARA EL </h3></a></button>
-       </div>
    </div>
 </div>
 
@@ -127,123 +131,146 @@
 </a>
 </div> <!-- Carousel -->
 </header>
-<hr>
-<h4>RECIEN LLEGADOS</h4><br>
-<section id="losmasvendidos">
-    <div id="carrusel-articulos" class="carousel slide">
+@stop
+@section("1")
+<section id="destacados" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Destacados</h2>
+                <h3 class="section-subheading text-muted">Articulos mejor calificados</h3>
+            </div>
+        </div>
+        
+      <div id="carrusel-destacados" class="carousel slide">
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
-         <!-- Slide 1 -->
-         <div class="item active">
-            <div class="row">
-                <ul>
-                    @foreach($recientess1 as $p)
-                    <li class="col-sm-3 col-xs-6">
-                        <figure class="itemcarrusel">
-                            <a href="{{url('detalleProducto')}}/{{$p->id}}">
-                                <input type="hidden" value="{{$p->id}}" name="id_art">
-                                <img id="imagen_producto" src="{{ asset("img/productos/$p->imagen") }}" alt="{{$p->descripcion}}" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'">
-                            </a>
-                        </figure>
-                        <div id="info">
-
-                            <p>{{$p->descripcion}}</p>
-                            <p><b>${{$p->precio}}</b></p>
-                        </div></li>
-                        @endforeach
+           <!-- Slide 1 -->
+        @for($i=0; $i < 3; $i++)
+            @if($i == 0)
+            <div class="item active">
+            @else
+            <div class="item">
+            @endif
+                <div class="row">
+                    <ul>
+                    @for($j=0+($i*3); $j < 3+($i*3); $j++)
+                        <li class="col-sm-4 col-xs-6">
+                            <figure class="itemcarrusel">
+                                    <a href="{{url('detalleProducto')}}/{{$destacados[$j]->id}}">
+                                <input type="hidden" value="{{$destacados[$j]->id}}" name="id_art">
+                                <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$destacados[$j]->imagen}}" alt="{{$destacados[$j]->descripcion}}">
+                                </a>
+                            </figure>
+                            <div id="info">
+                                <p>{{$destacados[$j]->descripcion}}</p>
+                                <p><b>${{$destacados[$j]->precio}}</b></p>
+                            </div>
+                        </li>
+                    @endfor
                     </ul>
                 </div>
             </div>
-            <!-- Slide 2-->
-            <div class="item">
-                <div class="row">
-                 @foreach($recientess2 as $p)
-                 <li class="col-sm-3 col-xs-6">
-                    <figure class="itemcarrusel">
+            @endfor
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carrusel-destacados" data-slide="prev">
+        <span class="icon-prev"></span>
+      </a>
+      <a class="right carousel-control" href="#carrusel-destacados" data-slide="next">
+        <span class="icon-next"></span>
+      </a>
+    </div>
+</div>
+</section><!--Wrapper for slides -->
+
+
+<section id="recientes">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Recien llegados</h2>
+                <h3 class="section-subheading text-muted">Top 12 de articulos ¡NUEVOS!</h3>
+            </div>
+        </div>
+        
+      <div id="carrusel-articulos" class="carousel slide">
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+           <!-- Slide 1 -->
+        <div class="item active">
+            <div class="row">
+                <ul>
+                @foreach($recientess1 as $p)
+                <li class="col-sm-3 col-xs-6">
+                <figure class="itemcarrusel">
                         <a href="{{url('detalleProducto')}}/{{$p->id}}">
-                            <input type="hidden" value="{{$p->id}}" name="id_art">
-                            <img id="imagen_producto" src="{{ asset("img/productos/$p->imagen") }}" alt="{{$p->descripcion}}" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'">
-                        </a>
-                    </figure>
-                    <div id="info">
-
-                        <p>{{$p->descripcion}}</p>
-                        <p><b>${{$p->precio}}</b></p>
-                    </div></li>
-                    @endforeach
-                </div>
+                    <input type="hidden" value="{{$p->id}}" name="id_art">
+                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}">
+                    </a>
+                </figure>
+                <div id="info">
+                    
+                    <p>{{$p->descripcion}}</p>
+                    <p><b>${{$p->precio}}</b></p>
+                </div></li>
+                @endforeach
+            </ul>
             </div>
-            <!-- Slide 3-->
-            <div class="item">
-                <div class="row">
-                    @foreach($recientess3 as $p)
-                    <li class="col-sm-3 col-xs-6">
-                        <figure class="itemcarrusel">
-                            <a href="{{url('detalleProducto')}}/{{$p->id}}">
-                                <input type="hidden" value="{{$p->id}}" name="id_art">
-                                <img id="imagen_producto" src="{{ asset("img/productos/$p->imagen") }}" alt="{{$p->descripcion}}" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'">
-                            </a>
-                        </figure>
-                        <div id="info">
-
-                            <p>{{$p->descripcion}}</p>
-                            <p><b>${{$p->precio}}</b></p>
-                        </div></li>
-                        @endforeach
-                    </div>
-                </div>
-
+        </div>
+           <!-- Slide 2-->
+        <div class="item">
+            <div class="row">
+               @foreach($recientess2 as $p)
+                <li class="col-sm-3 col-xs-6">
+                <figure class="itemcarrusel">
+                        <a href="{{url('detalleProducto')}}/{{$p->id}}">
+                    <input type="hidden" value="{{$p->id}}" name="id_art">
+                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}">
+                    </a>
+                </figure>
+                <div id="info">
+                    
+                    <p>{{$p->descripcion}}</p>
+                    <p><b>${{$p->precio}}</b></p>
+                </div></li>
+                @endforeach
             </div>
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carrusel-articulos" data-slide="prev">
-                <span class="icon-prev"></span>
-            </a>
-            <a class="right carousel-control" href="#carrusel-articulos" data-slide="next">
-                <span class="icon-next"></span>
-            </a>
-
-        </section>
-        <hr>
-        @stop
-        @section("1")
-        <section id="destacados">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">Destacados</h2>
-                        <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="service-heading">E-Commerce</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="service-heading">Responsive Design</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="service-heading">Web Security</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
-                </div>
+        </div>
+           <!-- Slide 3-->
+        <div class="item">
+            <div class="row">
+                @foreach($recientess3 as $p)
+                <li class="col-sm-3 col-xs-6">
+                <figure class="itemcarrusel">
+                        <a href="{{url('detalleProducto')}}/{{$p->id}}">
+                    <input type="hidden" value="{{$p->id}}" name="id_art">
+                    <img id="imagen_producto" src="{{ asset('img/productos') }}/{{$p->imagen}}" alt="{{$p->descripcion}}">
+                    </a>
+                </figure>
+                <div id="info">
+                    
+                    <p>{{$p->descripcion}}</p>
+                    <p><b>${{$p->precio}}</b></p>
+                </div></li>
+                @endforeach
             </div>
-        </section><!--Wrapper for slides -->
+        </div>
 
-        @stop
+    </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carrusel-articulos" data-slide="prev">
+        <span class="icon-prev"></span>
+      </a>
+      <a class="right carousel-control" href="#carrusel-articulos" data-slide="next">
+        <span class="icon-next"></span>
+      </a>
+    </div>
+</section><!--Wrapper for slides -->
+
+
+
+@stop
+
         @section("2")
         @stop
         @section("3")

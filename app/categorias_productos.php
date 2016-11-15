@@ -10,6 +10,6 @@ trait categorias_productos
     	//dd($this->hasMany('App\usersModel','id','id_usuario'));
         //return $this->hasMany('App\comentariosModel','id_usuario','id');
         //dd($this->belongsToMany('App\productosModel','categorias_productos','id_categoria','id_producto'));
-        return $this->belongsToMany('App\productosModel','categorias_productos','id_categoria','id_producto');
+        return $this->belongsToMany('App\Productos','categorias_productos','id_categoria','id_producto');
     }
 }

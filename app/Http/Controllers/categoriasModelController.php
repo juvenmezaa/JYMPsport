@@ -25,7 +25,8 @@ class categoriasModelController extends CrudController{
         $this->grid->add('id','ID', true)->style("width:100px");
         $this->grid->add('nombre','Nombre');
         $this->grid->add('{{$descripcion}}', 'Descripción');
-        $this->grid->add('{{ implode("\n ",$productos->pluck("descripcion")->all()) }}','Total de Productos');
+        $this->grid->add('{{ count($productos->pluck("descripcion")->all()) }}','Total de Productos');
+        //$this->grid->add('{{ implode("\n ",$productos->pluck("descripcion")->all()) }}','Total de Productos');
 
         $this->grid->paginate(10);
 		$this->addStylesToGrid();

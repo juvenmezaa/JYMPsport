@@ -16,10 +16,12 @@ Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
 Route::get("/panel/categoriasproductos/all","categoriasproductosController@asignarACategoria");
 Route::post("/panel/categoriasproductos/asignar","categoriasproductosController@asignar");
 // Route::get("/panel/categoriasproductos/asignar/{idp}/{idc}","categoriasproductosController@asignar");
+Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");
+Route::get("/pedidosUser", "pedidosController@pedidosUser");
 Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 
-Route::get("/productosCategoria/{c}", "principalController@productosCategoria");
+Route::get("/productosCategoria/{g}/{c}", "principalController@productosCategoria");
 Route::get("/home", "HomeController@index");
 Route::post("/rating", "RatingController@rateJ");
 Route::post("/comentar", "comentariosModelController@comentar");

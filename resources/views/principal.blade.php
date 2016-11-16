@@ -43,7 +43,7 @@
     <!-- jQuery para ZOOM -->
     <script src="{{asset('js/jquery.elevatezoom.min.js')}}"></script>
     @yield("navbar")
-
+    
     <!-- Header -->
     @yield("header")
 

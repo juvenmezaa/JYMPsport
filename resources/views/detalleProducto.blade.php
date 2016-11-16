@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/hombres')}}">Ver todo</a></li>
                         @foreach($categoriasH as $c)
-                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                            <li><a href= "{{url('productosCategoria')}}/hombres/{{$c->nombre}}">{{$c->nombre}}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -27,7 +27,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{url('productos/mujeres')}}">Ver todo</a></li>
                         @foreach($categoriasM as $c)
-                            <li><a href= "{{url('productosCategoria')}}/{{$c->nombre}}">{{$c->nombre}}</a></li>
+                            <li><a href= "{{url('productosCategoria')}}/mujeres/{{$c->nombre}}">{{$c->nombre}}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -40,6 +40,8 @@
                     <ul class="dropdown-menu" role="menu">
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
+                        @else
+                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -69,14 +71,22 @@
 <div class="container">
     <div class="row col-lg-4">
         <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
+            <li><a href="{{url('/')}}">Home</a></li>
             @if($producto[0]->genero==0)
-                <li><a href="#">Mujeres</a></li>
+                <li><a href="{{url('productos/mujeres')}}">Mujeres</a></li>
+                <li><a href="{{url('productosCategoria')}}/mujeres/{{$producto[0]->nombreCat}}">{{$producto[0]->nombreCat}}</a></li>
             @else
-                <li><a href="#">Hombres</a></li>
+                <li><a href="{{url('productos/hombres')}}">Hombres</a></li>
+                <li><a href="{{url('productosCategoria')}}/hombres/{{$producto[0]->nombreCat}}">{{$producto[0]->nombreCat}}</a></li>
             @endif
-            <li><a href="#">{{$producto[0]->nombreCat}}</a></li>
         </ul>
+    </div>
+    <div class="row col-lg-8 text-right">
+        @if($producto[0]->genero==0)
+            <h1>Mujeres</h1>
+        @else
+            <h1>Hombres</h1>
+        @endif
     </div>
 </div>    
 @stop
@@ -84,7 +94,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <img id="{{$producto[0]->id}}" src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="{{$producto[0]->descripcion}}" data-zoom-image="{{asset('img/productos')}}/{{$producto[0]->imagen}}" width="350px">
+            <img id="{{$producto[0]->id}}" src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="{{$producto[0]->descripcion}}" data-zoom-image="{{asset('img/productos')}}/{{$producto[0]->imagen}}" width="350px" onerror="this.src='{{ asset('img/categorias')}}/{{$producto[0]->generica}}'">
         </div>
         <div class="col-md-3">
             <h6>{{$producto[0]->descripcion}}</h6>
@@ -97,7 +107,7 @@
             @foreach($tallas as $t)
                 <h6>- {{$t->talla}}</h6>
             @endforeach
-            <a href="#" class="btn btn-primary">Generar Pedido</a>
+            <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary">Generar Pedido</a>
             <br><br>
             @if(Auth::check())
                 <h6>Califica</h6>

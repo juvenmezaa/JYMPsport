@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\productosModel;
 use App\categoriasModel;
 
+
 class principalController extends Controller
 {
     public function index(){
@@ -70,14 +71,6 @@ class principalController extends Controller
         $calificacion=DB::table("calificaciones AS c")->join("users AS u", "c.id_usuario","=","u.id")->where("c.id_producto","=", $id)->select("c.calificacion")->get();
     	return view('detalleProducto', compact('producto','tallas','comentarios','calificacion','categoriasH','categoriasM'));
 
-    }
-
-    public function pedidosUser(){
-        if (Auth::check()) {
-            $id_usuario=Auth::User()->id;
-                
-        }
-        return Redirect('/login');
     }
 
 }

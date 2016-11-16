@@ -77,20 +77,45 @@
 @stop
 <br><br><br>
 @section("1")
-	<div class="panel panel-warning">
-		<div class="panel-heading"> GENERAR PEDIDO</div>
+<div style="margin-left: 5%;">
+	<div class="panel panel-warning" style="width: 95%;">
+		<div class="panel-heading"> <h1>GENERAR PEDIDO </h1></div>
 		<div class="panel-body">
-			<label for=""> Datos del Cliente</label><br>
-			Nombre	<input type="text"><br>
-			Apellido paterno <input type="text"><br>
-			Apellido materno <input type="text"><br><br>
-			<label for=""> Datos del Pedido</label><br>
-			Producto <input type="text"> <br>
-			Cantidad <input type="text"><br>
-			Talla <input type="text"><br>
-			Total <input type="text"><br><br>
+			<h4>Datos del Pedido</h4><br>
+			<table class="table table-hover">
+				<tr>
+					<th>Id. del producto</th>
+					<th>Imagen</th>
+					<th>Descripcion</th>
+					<th>Cantidad</th>
+					<th>Talla</th>
+				</tr>
+				<tr>
+					<td>{{$producto[0]->id}}</td>
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
 
-			<label for=""> Datos de Envio</label><br>
+				</tr>
+			</table>
+			<h4>Datos del Cliente</h4><br>
+			<div class="panel panel-default" style="width: 90%; margin-left: 5%;">
+				<div class="panel-body" style="text-align: center;">
+					<div class="col-lg-2">
+						<label for="">Nombre</label><br><br><br>
+						<label for="">Apellido Paterno</label><br><br><br>
+						<label for="">Apellido Materno</label><br><br><br>
+					</div>
+					<div class="col-lg-8">
+						<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"><br>
+						<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"><br>
+						<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"><br>
+					</div>
+				</div>
+
+
+			</div>
+			<h4>Datos de Envio</h4><br>
 			Método de Envio: <select name="" id=""></select>
 			País <select name="" id=""></select><br>	
 			Estado <select name="" id=""></select><br>
@@ -101,4 +126,5 @@
 			Télefono <input type="text"><br>
 		</div>
 	</div>
+</div>
 @stop

@@ -40,6 +40,8 @@
                     <ul class="dropdown-menu" role="menu">
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
+                        @else
+                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -92,7 +94,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <img id="{{$producto[0]->id}}" src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="{{$producto[0]->descripcion}}" data-zoom-image="{{asset('img/productos')}}/{{$producto[0]->imagen}}" width="350px">
+            <img id="{{$producto[0]->id}}" src="{{asset('img/productos')}}/{{$producto[0]->imagen}}" alt="{{$producto[0]->descripcion}}" data-zoom-image="{{asset('img/productos')}}/{{$producto[0]->imagen}}" width="350px" onerror="this.src='{{ asset('img/categorias')}}/{{$producto[0]->generica}}'">
         </div>
         <div class="col-md-3">
             <h6>{{$producto[0]->descripcion}}</h6>

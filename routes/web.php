@@ -13,7 +13,9 @@
 
 Route::get("/", "principalController@index");
 Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
-Route::get("/panel/categoriasproductosModel/all","categoriasproductosModelController@asignarACategoria");
+Route::get("/panel/categoriasproductos/all","categoriasproductosController@asignarACategoria");
+Route::post("/panel/categoriasproductos/asignar","categoriasproductosController@asignar");
+// Route::get("/panel/categoriasproductos/asignar/{idp}/{idc}","categoriasproductosController@asignar");
 Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 

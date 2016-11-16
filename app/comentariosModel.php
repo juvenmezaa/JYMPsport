@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class comentariosModel extends Model {
 	use relacionUsers;
+	use relacionProductos;
     protected $table = 'comentarios';
 
     //protected $fillable = ['id','id_usuario','id_producto','fecha','comentario'];

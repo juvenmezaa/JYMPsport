@@ -59,6 +59,8 @@
                     <ul class="dropdown-menu" role="menu">
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
+                        @else
+                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
                         @endif
                         <li class="divider"></li>
                         <li>

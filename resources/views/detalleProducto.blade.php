@@ -40,6 +40,8 @@
                     <ul class="dropdown-menu" role="menu">
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
+                        @else
+                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -105,7 +107,7 @@
             @foreach($tallas as $t)
                 <h6>- {{$t->talla}}</h6>
             @endforeach
-            <a href="#" class="btn btn-primary">Generar Pedido</a>
+            <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary">Generar Pedido</a>
             <br><br>
             @if(Auth::check())
                 <h6>Califica</h6>

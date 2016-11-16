@@ -13,7 +13,8 @@
 
 Route::get("/", "principalController@index");
 Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
-
+Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");
+Route::get("/pedidosUser", "pedidosController@pedidosUser");
 Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 

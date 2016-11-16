@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\productosModel;
 use App\categoriasModel;
 
+
 class principalController extends Controller
 {
     public function index(){

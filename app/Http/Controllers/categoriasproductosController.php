@@ -26,13 +26,13 @@ class categoriasproductosController extends Controller
 		//dd($request);
 		$id_producto = $request->input('producto');
 		$id_categoria = $request->input('categoria');
-		$where = array();
-		$where[0] = 'id_producto = $id_producto';
-		$consulta = DB::table('categorias_productos')->where('id_producto','=',$id_producto,'and','id_categoria','=',$id_categoria)->get();
+
+		$consulta = DB::table('productos AS P')->join('categorias AS C', 'C.id','=','P.id_categoria')->where('P.id','=',$id_producto)->get();
+		//$consulta = DB::table('categorias_productos')->where('id_producto','=',$id_producto,'and','id_categoria','=',$id_categoria)->get();
 		//dd($consulta);
-		$nuevo = new categoriasproductos;
+		//$nuevo = new categoriasproductos;
+		$nuevo = productosModel::find($id_producto);
 		$nuevo->id_categoria = $id_categoria;
-		$nuevo->id_producto = $id_producto;
 		$nuevo->save();
 		//dd(123);
 		$productos = productosModel::all();

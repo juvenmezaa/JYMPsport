@@ -29,13 +29,14 @@ class Tallas_ProductosModelController extends CrudController
         $this->filter->submit('search');
         $this->filter->reset('reset');
         $this->filter->build();
-        //dd($tallas[$this->{'id_talla'}]);
+        //$t=$this->'id_talla';
+       // dd($t);
 
         $this->grid = \DataGrid::source($this->filter);
         $this->grid->add('id','ID', true)->style("width:100px");
-        $this->grid->add('id_talla', 'TALLA','select');
+        $this->grid->add('id_talla', 'TALLA');
         $this->grid->add('id_producto','PRODUCTO');
-        $this->filter->add('cantidad', 'Cantidad', 'text');
+        $this->grid->add('cantidad', 'Cantidad');
         
         $this->grid->paginate(10);
 

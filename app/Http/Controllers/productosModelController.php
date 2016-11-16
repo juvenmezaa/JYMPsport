@@ -35,7 +35,7 @@ class productosModelController extends CrudController{
         $this->grid->add('costo','Costo');
         $this->grid->add('cantidad','Cantidad');
         $this->grid->add('visitas','Visitas');
-        $this->grid->add('talla','Talla');
+       // $this->grid->add('talla','Talla');
         $this->grid->add('color','Color');
         $this->grid->add('genero','Genero');
 
@@ -76,6 +76,7 @@ class productosModelController extends CrudController{
         $this->edit->add('talla','Talla','select')->options(\App\Tallas::pluck("talla","id")->all())->rule('required');
         //$tallas = DB::table('tallas')->select('id','talla')->get();
         //$this->edit->add('talla','Talla','select')->options($tallas);
+        
         $this->edit->add('color','Color','colorpicker')->rule('required');
         $this->edit->add('imagen','Imagen','image')->move(public_path().'/img/productos','')->preview(80,80);
         $this->edit->add('id_categoria','Categoria','select')->options(\App\CategoriasModel::pluck("nombre","id")->all())->rule('required');

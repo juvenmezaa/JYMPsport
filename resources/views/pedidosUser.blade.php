@@ -66,3 +66,47 @@
     <!-- /.container-fluid -->
 </nav>
 @stop
+@section('1')
+<br><br><br>
+    <div class="row text-center">
+        <h1>Tus Pedidos</h1>
+    </div>
+    <br><br>    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Fecha</th>
+                        <th class="col-md-3">Producto</th>
+                        <th class="col-md-1">Talla</th>
+                        <th class="col-md-1">Cantidad</th>
+                        <th class="col-md-2">Subtotal</th>
+                        <th class="col-md-1">Impuestos</th>
+                        <th class="col-md-2">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($pedidos as $p)
+                        <tr>
+                            <th>{{$p->fecha}}</th>
+                            <th>{{$p->descripcion}}</th>
+                            <th>{{$p->talla}}</th>
+                            <th>{{$p->cantidad}}</th>
+                            <th>{{$p->subtotal}}</th>
+                            <th>{{$p->impuesto}}</th>
+                            <th>{{$p->precio_total}}</th>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div id="paginas">
+            {!! $pedidos->render() !!}
+        </div>
+        <hr>
+    </div>
+
+@stop

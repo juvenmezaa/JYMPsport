@@ -72,4 +72,12 @@ class principalController extends Controller
 
     }
 
+    public function pedidosUser(){
+        if (Auth::check()) {
+            $id_usuario=Auth::User()->id;
+                
+        }
+        return Redirect('/login');
+    }
+
 }

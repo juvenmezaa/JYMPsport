@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2016 a las 20:26:33
--- Versión del servidor: 10.1.16-MariaDB
--- Versión de PHP: 5.6.24
+-- Tiempo de generación: 16-11-2016 a las 06:01:57
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -310,6 +310,9 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `pedidos` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `id_talla` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `subtotal` double NOT NULL,
   `impuesto` double NOT NULL,
@@ -476,7 +479,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `birthdate`, `email`, `password`, `verified`, `token`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(5, 'Pebble', 'Ad', '1993-11-27', 'pebble.ad@hotmail.com', '$2y$10$pwCVnfBaNTdG.DQVgLdAlOAjPt77oqocrhKypx507I96qncQ8Lu4e', 1, 'ckQwRZN1pwKWFVNNwrDQyAepNC9ozQXnjw1JyjUP', 1, 'CLv7A34z0mLyj98phXvCBPCEDqut0Gv3sc7bIBBaK0zFVYVpcsYfqE5Ot0JD', '2016-11-11 11:09:04', '2016-11-11 19:02:36');
+(5, 'Pebble', 'Ad', '1993-11-27', 'pebble.ad@hotmail.com', '$2y$10$pwCVnfBaNTdG.DQVgLdAlOAjPt77oqocrhKypx507I96qncQ8Lu4e', 1, 'ckQwRZN1pwKWFVNNwrDQyAepNC9ozQXnjw1JyjUP', 1, 'CLv7A34z0mLyj98phXvCBPCEDqut0Gv3sc7bIBBaK0zFVYVpcsYfqE5Ot0JD', '2016-11-11 11:09:04', '2016-11-11 19:02:36'),
+(6, 'Juven', 'Meza', '1994-04-13', 'juvenmezaa@gmail.com', '$2y$10$kSeF39b79vWvDvGL19DDy.2V4NnPXG9enG5L/M42XYRAGQMzyOho6', 1, NULL, 0, 'Bwbk4oRN4OS1aXCuBykAw5WcKLaxI3CBYYFGTshf9i1GwRzYJqgi9Jvc4k9z', '2016-11-16 11:26:59', '2016-11-16 11:30:32');
 
 --
 -- Índices para tablas volcadas
@@ -731,7 +735,7 @@ ALTER TABLE `tallas_productos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Restricciones para tablas volcadas
 --

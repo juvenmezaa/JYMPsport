@@ -102,12 +102,17 @@ class CreateAllTables extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_usuario')->unsigned();
+            $table->integer('id_producto')->unsigned();
+            $table->integer('id_talla')->unsigned();
+            $table->integer('cantidad');
             $table->date('fecha');
             $table->double('subtotal');
             $table->double('impuesto');
             $table->double('precio_total');
             $table->timestamps();
             $table->foreign('id_usuario')->references('id')->on('users');
+            $table->foreign('id_producto')->references('id')->on('productos');
+            $table->foreign('id_talla')->references('id')->on('tallas');
         });
         Schema::create('detalles_pedidos', function (Blueprint $table) {
             $table->increments('id');

@@ -105,7 +105,7 @@
             @foreach($tallas as $t)
                 <h6>- {{$t->talla}}</h6>
             @endforeach
-            <a href="#" class="btn btn-primary">Generar Pedido</a>
+            <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary">Generar Pedido</a>
             <br><br>
             @if(Auth::check())
                 <h6>Califica</h6>

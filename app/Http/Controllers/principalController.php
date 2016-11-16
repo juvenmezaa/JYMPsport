@@ -68,5 +68,4 @@ class principalController extends Controller
     	return view('detalleProducto', compact('producto','tallas','comentarios','calificacion','categoriasH','categoriasM'));
 
     }
-
 }

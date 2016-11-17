@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2016 a las 07:16:53
+-- Tiempo de generación: 17-11-2016 a las 19:06:34
 -- Versión del servidor: 10.1.16-MariaDB
--- Versión de PHP: 5.6.24
+-- Versión de PHP: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -136,11 +136,10 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `imagengen`, `created_at`, `updated_at`) VALUES
-(1, 'Camisa', 'Ropa blablabla', 'c1.jpg', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
-(2, 'Saco', 'es pal frio', '', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
-(3, 'Jeans', 'van en las piernas', '', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
-(4, 'Playera', 'no tiene botones', 'c4.jpg', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
-(10, 'PRUEBA', 'FUNCIONA', 'c10.jpg', NULL, NULL);
+(1, 'Camisa', 'Es una prenda de vestir tanto formal como informal de tela que cubre el torso y usualmente tiene cuello, mangas y botones en el frente. ', 'camisa.jpg', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(2, 'Saco', 'Es una prenda de vestir. Se emplea a modo de abrigo y se utiliza, por lo general, en un ámbito formal.', 'saco.jpg', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(3, 'Jeans', 'Son pantalones de mezclilla, pantalones vaqueros o tejanos, son un tipo de pantalón hecho con un tejido de algodón bastante resistente.', 'jeans.jpg', '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(4, 'Playera', 'Es una prenda de vestir por lo general de mangas cortas, cuello redondo, sin bolsillos y sin botones a lo largo de su parte frontal.', 'playera.jpg', '2016-10-10 05:30:15', '2016-10-10 05:30:15');
 
 -- --------------------------------------------------------
 
@@ -3523,7 +3522,12 @@ INSERT INTO `links` (`id`, `display`, `url`, `created_at`, `updated_at`, `main`,
 (2, 'Roles', 'Role', NULL, NULL, 1, 1),
 (3, 'Permissions', 'Permission', NULL, NULL, 1, 1),
 (4, 'Admins', 'Admin', NULL, '2016-11-09 12:59:49', 1, 1),
-(5, 'Productos', 'productosModel', '2016-11-10 16:03:59', '2016-11-10 16:03:59', NULL, 1);
+(5, 'Productos', 'productosModel', '2016-11-10 16:03:59', '2016-11-10 16:03:59', NULL, 1),
+(6, 'Tallas_Prod', 'Tallas_ProductosModel', NULL, NULL, NULL, 1),
+(7, 'Comentario', 'comentariosModel', '2016-11-17 01:28:41', '2016-11-17 01:28:41', NULL, 1),
+(8, 'Usuarios', 'usersModel', '2016-11-17 01:29:43', '2016-11-17 01:29:43', NULL, 1),
+(9, 'Categorias', 'categoriasModel', '2016-11-17 01:30:16', '2016-11-17 01:30:16', NULL, 1),
+(10, 'Asignar Productos a Categorias', 'categoriasproductos', '2016-11-17 01:30:54', '2016-11-17 01:30:54', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -3904,19 +3908,80 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `descripcion`, `precio`, `costo`, `visitas`, `color`, `imagen`, `genero`, `id_categoria`, `created_at`, `updated_at`) VALUES
-(1, 'Playera hermosa', 100, 200, 0, '#29088A', 'p1.jpg', 1, 4, '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
-(2, 'BLUSA', 200, 120, 12, '#FFFFFF', 'P2.JPG', 1, 1, NULL, NULL),
-(3, 'VARSITY SHIRT', 250, 150, 0, '#ffffff', 'p59.jpg', 0, 4, '2016-11-11 11:25:19', '2016-11-11 11:25:19'),
-(4, 'GRAPHIC TEE STARWARS', 200, 150, 0, '#FFFFFF', 'p4.jpg', 1, 4, '2016-11-11 11:26:19', '2016-11-11 11:26:19'),
-(5, 'SHOULDER DRESS', 500, 350, 0, '#A11437', 'p119.jpg', 0, 1, '2016-11-11 11:27:26', '2016-11-11 11:27:26'),
-(6, 'GRAPHIC TEE SPIDER', 200, 150, 0, '#ff0000', 'p11.jpg', 1, 4, '2016-11-11 11:28:50', '2016-11-11 11:28:50'),
-(7, 'ANKLE SKINNY  JEANS', 700, 500, 0, '#050942', 'p103.jpg', 0, 3, '2016-11-11 11:31:28', '2016-11-11 11:31:28'),
-(8, 'GRAPHIC TEE NUTELLA', 200, 150, 0, '#FFFFFF', 'p7.jpg', 1, 4, '2016-11-11 12:22:01', '2016-11-11 12:22:01'),
-(9, 'FORMAL PINK DRESS', 420, 280, 0, '#ffe4e1', 'p112.jpg', 0, 1, '2016-11-11 12:24:57', '2016-11-11 12:24:57'),
-(10, 'BLACK JACKET', 1200, 800, 0, '#000000', 'p41.jpeg', 1, 2, '2016-11-11 12:26:02', '2016-11-11 12:26:02'),
-(11, 'TOP SIN MANGA', 130, 90, 0, '#F0F0F0', 'p67.jpg', 0, 1, '2016-11-11 12:27:28', '2016-11-11 12:27:28'),
-(13, 'SACO FORMAL DETALLE', 1300, 800, 0, '#000000', 'p45.jpg', 1, 2, '2016-11-11 12:29:09', '2016-11-11 12:29:09'),
-(14, 'MINI SKIRT', 250, 150, 0, '#eead0e', 'p62.jpg', 0, 1, '2016-11-11 12:30:21', '2016-11-11 12:30:21');
+(1, 'GRAPHIC LOVE', 100, 200, 0, '#29088A', 'p1.jpg', 1, 4, '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(2, 'CAMISA CORRUGADA', 200, 120, 6, '#FFFFFF', 'P2.JPG', 1, 1, NULL, '2016-11-18 00:32:44'),
+(3, 'GRAPHIC GAME OVER', 200, 150, 0, 'White', 'p3.jpg', 1, 4, NULL, '2016-11-18 01:01:18'),
+(4, 'GRAPHIC STARWARS', 200, 150, 0, 'White', 'p4.jpg', 1, 4, NULL, '2016-11-18 01:01:18'),
+(5, 'GRAPHIC BRILLANTE', 200, 150, 0, 'White', 'p5.jpg', 1, 4, NULL, '2016-11-18 01:01:18'),
+(6, 'GRAPHIC BATMAN', 250, 200, 0, 'Black', 'p6.jpg', 1, 4, NULL, '2016-11-18 01:01:18'),
+(7, 'GRAPHIC NUTELLA', 250, 200, 0, 'White', 'p7.jpg', 1, 4, NULL, '2016-11-18 01:01:18'),
+(8, 'GRAPHIC FOREVERALONE', 200, 150, 0, 'Blue', 'p8.jpg', 1, 4, NULL, '2016-11-18 01:01:18'),
+(9, 'GRAPHIC FRASE', 150, 100, 0, 'White', 'p9.jpg', 1, 4, NULL, '2016-11-18 01:01:18'),
+(10, 'GRAPHIC EMOJIS', 200, 150, 0, 'White', 'p10.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(11, 'GRAPHIC SPIDERMAN', 200, 150, 0, 'Red', 'p11.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(13, 'KENLEY', 250, 200, 0, 'Gray', 'p13.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(14, 'GRAPHIC AWESOME', 200, 150, 0, 'Yellow', 'p14.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(15, 'GRAPHIC FRIKI', 200, 150, 0, 'Yellow', 'p15.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(16, 'GRAPHIC PELIGRO', 200, 150, 0, 'Blue', 'p16.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(17, 'GRAPHIC SUPERMAN', 200, 150, 0, 'Blue', 'p17.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(18, 'CUELLO V', 250, 200, 0, 'Black', 'p18.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(19, 'GRAPHIC GOT', 200, 150, 0, 'Black', 'p19.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(20, 'GRAPHIC GOT', 200, 150, 0, 'Gray', 'p20.jpg', 1, 4, NULL, '2016-11-18 01:01:19'),
+(21, 'SKINNY CON ROTOS', 500, 450, 0, 'Blue', 'p21.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(22, 'VINTAGE', 500, 450, 0, 'Blue', 'p22.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(23, 'SLIM FIT', 500, 450, 0, 'Blue', 'p23.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(24, 'SUPER SKINNY', 500, 450, 0, 'Blue', 'p24.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(25, 'SKINNY', 500, 450, 0, 'Blue', 'p25.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(26, 'CROPPED', 500, 450, 0, 'Black', 'p26.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(27, 'CROPPED', 500, 450, 0, 'Blue', 'p27.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(28, 'VINTAGE', 550, 500, 0, 'Blue', 'p28.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(29, 'SLIM FIT', 500, 450, 0, 'Blue', 'p29.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(30, 'CROPPED', 500, 450, 0, 'Blue', 'p30.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(31, 'SKINNY CON ROTOS', 500, 450, 0, 'Blue', 'p31.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(32, 'SLIM FIT', 500, 450, 0, 'Blue', 'p32.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(33, 'SLIM FIT', 500, 450, 0, 'Blue', 'p33.jpg', 1, 3, NULL, '2016-11-18 01:01:20'),
+(34, 'ROBOT', 300, 250, 0, 'Black', 'p34.jpg', 1, 1, NULL, '2016-11-18 01:01:21'),
+(35, 'ESTAMBRE', 400, 350, 0, 'Red', 'p35.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(36, 'CUELO SPORT', 400, 350, 0, 'Gray', 'p36.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(37, 'ESTAMBRE BOTONES', 400, 350, 0, 'Azul', 'p37.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(38, 'CUELO REDONDO', 400, 350, 0, 'Red', 'p38.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(39, 'ROMBOS', 400, 350, 0, 'Blue', 'p39.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(40, 'CUELLO SPORT', 400, 350, 0, 'Gray', 'p40.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(41, 'CHAMARRA BOTONES', 550, 350, 0, 'Black', 'p41.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(42, 'MEZCLIALLA', 400, 350, 0, 'Blue', 'p42.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(43, 'ELEGANT', 600, 550, 0, 'Black', 'p43.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(44, 'BLAISER', 700, 650, 0, 'Blue', 'p44.jpg', 1, 2, NULL, '2016-11-18 01:01:21'),
+(45, 'BLAISER BLACK', 850, 750, 0, 'Black', 'p45.jpg', 1, 2, NULL, '2016-11-18 01:01:22'),
+(46, 'BLAISER BLACK', 850, 750, 0, 'Black', 'p45.jpg', 1, 2, NULL, NULL),
+(47, 'BLAISER COMBINADO', 700, 650, 0, 'Gray', 'p47.jpg', 1, 2, NULL, '2016-11-18 01:01:22'),
+(48, 'GRAPHIC PANDA', 200, 150, 0, 'Gray', 'p52.jpg', 0, 4, NULL, NULL),
+(49, 'GRAPHIC BESOS', 200, 150, 0, 'Red', 'p53.jpg', 0, 4, NULL, NULL),
+(50, 'GRAPHIC GORILA', 200, 150, 0, 'Black', 'p54.jpg', 0, 4, NULL, NULL),
+(51, 'GRAPHIC FRIENDS', 200, 150, 0, 'Red', 'p56.jpg', 0, 4, NULL, NULL),
+(52, 'GRAPHIC PANDA', 200, 150, 0, 'Gray', 'p52.jpg', 0, 4, NULL, '2016-11-18 01:01:22'),
+(53, 'GRAPHIC BESOS', 200, 150, 0, 'Red', 'p53.jpg', 0, 4, NULL, '2016-11-18 01:01:22'),
+(54, 'GRAPHIC GORILA', 200, 150, 0, 'Black', 'p54.jpg', 0, 4, NULL, '2016-11-18 01:01:22'),
+(55, 'SKYNNI CON ROTOS', 500, 450, 0, 'Blue', 'p64.jpg', 0, 3, NULL, NULL),
+(56, 'GRAPHIC FRIENDS', 200, 150, 0, 'Red', 'p56.jpg', 0, 4, NULL, '2016-11-18 01:01:22'),
+(57, 'SKYNNI CON ROTOS', 600, 550, 0, 'Black', 'p101.jpg', 0, 3, NULL, NULL),
+(58, 'MANGA LARGA', 200, 150, 0, 'Whiite', 'p58.jpg', 0, 1, NULL, '2016-11-18 01:01:22'),
+(59, 'CROPPED', 650, 500, 0, 'Blue', 'p103.jpg', 0, 3, NULL, NULL),
+(60, 'CUADROS', 200, 150, 0, 'Red', 'p60.jpg', 0, 1, NULL, '2016-11-18 01:01:22'),
+(61, 'VAQUEROS CON ROTOS', 750, 550, 0, 'Black', 'p105.jpg', 0, 3, NULL, NULL),
+(62, 'ALGODON', 300, 250, 0, 'White', 'p62.jpg', 0, 1, NULL, '2016-11-18 01:01:22'),
+(63, 'VAQUEROS', 700, 650, 0, 'Azul', 'p107.jpg', 0, 3, NULL, NULL),
+(64, 'SKYNNI CON ROTOS', 500, 450, 0, 'Blue', 'p64.jpg', 0, 3, NULL, '2016-11-18 01:01:22'),
+(65, 'GRAPHIC BRUSLI', 200, 150, 0, 'Gray', 'p12.jpg', 1, 4, NULL, NULL),
+(66, ' CROPPED', 600, 550, 0, 'Blue', 'p100.jpg', 0, 3, NULL, NULL),
+(67, 'SKYNNI CON ROTOS', 600, 550, 0, 'Black', 'p101.jpg', 0, 3, NULL, NULL),
+(68, 'VAQUEROS  CON ROTOS', 650, 550, 0, 'Blue', 'p102.jpg', 0, 3, NULL, NULL),
+(69, 'CROPPED', 650, 500, 0, 'Blue', 'p103.jpg', 0, 3, NULL, NULL),
+(70, 'CROPPED CON ROTOS', 550, 500, 0, 'Blue', 'p104.jpg', 0, 3, NULL, NULL),
+(71, 'VAQUEROS CON ROTOS', 750, 550, 0, 'Black', 'p105.jpg', 0, 3, NULL, NULL),
+(72, 'SKYNNI', 600, 550, 0, 'Black', 'p106.jpg', 0, 3, NULL, NULL),
+(73, 'VAQUEROS', 700, 650, 0, 'Azul', 'p107.jpg', 0, 3, NULL, NULL),
+(74, 'CUELLO BOBO', 500, 450, 0, 'White', 'p65.jpg', 0, 1, NULL, NULL),
+(75, 'Outfit Treviño', 10000, 10000, 0, '#ff0000', '', 1, 4, '2016-11-18 01:03:08', '2016-11-18 01:03:08');
 
 -- --------------------------------------------------------
 
@@ -5388,7 +5453,32 @@ CREATE TABLE `tallas_productos` (
 
 INSERT INTO `tallas_productos` (`id`, `id_producto`, `id_talla`, `cantidad`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 5, '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
-(2, 1, 2, 2, '2016-10-10 05:30:15', '2016-10-10 05:30:15');
+(2, 1, 2, 2, '2016-10-10 05:30:15', '2016-10-10 05:30:15'),
+(3, 15, 3, 10, NULL, NULL),
+(4, 16, 4, 9, NULL, NULL),
+(5, 17, 4, 6, NULL, NULL),
+(6, 18, 3, 8, NULL, NULL),
+(7, 19, 2, 7, NULL, NULL),
+(8, 20, 3, 5, NULL, NULL),
+(9, 21, 4, 10, NULL, NULL),
+(10, 22, 3, 7, NULL, NULL),
+(11, 23, 3, 14, NULL, NULL),
+(12, 24, 3, 10, NULL, NULL),
+(13, 25, 4, 10, NULL, NULL),
+(14, 26, 3, 8, NULL, NULL),
+(15, 27, 3, 11, NULL, NULL),
+(16, 28, 2, 12, NULL, NULL),
+(17, 29, 3, 5, NULL, NULL),
+(18, 30, 2, 7, NULL, NULL),
+(19, 31, 3, 11, NULL, NULL),
+(20, 32, 1, 7, NULL, NULL),
+(21, 33, 2, 5, NULL, NULL),
+(22, 34, 3, 8, NULL, NULL),
+(23, 35, 1, 5, NULL, NULL),
+(24, 36, 4, 10, NULL, NULL),
+(25, 37, 1, 3, NULL, NULL),
+(26, 38, 2, 5, NULL, NULL),
+(27, 75, 3, 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -5418,7 +5508,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `lastname`, `birthdate`, `email`, `password`, `verified`, `token`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
 (5, 'Pebble', 'Ad', '1993-11-27', 'pebble.ad@hotmail.com', '$2y$10$pwCVnfBaNTdG.DQVgLdAlOAjPt77oqocrhKypx507I96qncQ8Lu4e', 1, 'ckQwRZN1pwKWFVNNwrDQyAepNC9ozQXnjw1JyjUP', 1, 'CLv7A34z0mLyj98phXvCBPCEDqut0Gv3sc7bIBBaK0zFVYVpcsYfqE5Ot0JD', '2016-11-11 11:09:04', '2016-11-11 19:02:36'),
 (6, 'Juven', 'Meza', '1994-04-13', 'juvenmezaa@gmail.com', '$2y$10$kSeF39b79vWvDvGL19DDy.2V4NnPXG9enG5L/M42XYRAGQMzyOho6', 1, NULL, 0, 'Bwbk4oRN4OS1aXCuBykAw5WcKLaxI3CBYYFGTshf9i1GwRzYJqgi9Jvc4k9z', '2016-11-16 11:26:59', '2016-11-16 11:30:32'),
-(7, 'Yukie', 'Ley', '1993-09-06', 'cylg93@hotmail.com', '$2y$10$Jex2acu744d7aAA8SvCuvuKNl6JDRWJYP1JRPof0GOcBzdAB95Z2a', 0, '8wUYJjNU8100ipds1vXgicr01wUrp7V3xBbV2Iic', 0, NULL, '2016-11-17 01:31:50', '2016-11-17 01:31:50');
+(7, 'Yukie', 'Ley', '1993-09-06', 'cylg93@hotmail.com', '$2y$10$Jex2acu744d7aAA8SvCuvuKNl6JDRWJYP1JRPof0GOcBzdAB95Z2a', 0, '8wUYJjNU8100ipds1vXgicr01wUrp7V3xBbV2Iic', 0, NULL, '2016-11-17 01:31:50', '2016-11-17 01:31:50'),
+(9, 'Monibeth', 'Salazar', '1994-01-15', 'monica_beatriz15@hotmail.com', '$2y$10$yhnW9h5Blk.bwIuuytw6UerPyWxuds9J5vCxKEzxjQ2aq5H2KDIpS', 1, 'rDI7wogMMO6aGzQuInzKC7e2QXP7OE2RvgcdQ9nl', 1, NULL, '2016-11-18 00:36:36', '2016-11-18 00:36:36');
 
 --
 -- Índices para tablas volcadas
@@ -5647,7 +5738,7 @@ ALTER TABLE `detalles_pedidos`
 -- AUTO_INCREMENT de la tabla `links`
 --
 ALTER TABLE `links`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
@@ -5672,7 +5763,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
@@ -5687,12 +5778,12 @@ ALTER TABLE `tallas`
 -- AUTO_INCREMENT de la tabla `tallas_productos`
 --
 ALTER TABLE `tallas_productos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Restricciones para tablas volcadas
 --

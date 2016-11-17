@@ -16,11 +16,10 @@ class Tallas_ProductosModelController extends CrudController
 
         $this->filter = \DataFilter::source(Tallas_ProductosModel::with('productos','tallas'));
         $this->filter->add('id', 'ID', 'text');
-        $tallas = array();
-        $tallas["1"] = "XS";
-        $tallas["2"] = "S";
-        $tallas["3"] = "M";
-        $tallas["4"] = "L";
+
+        $opciones = \App\Tallas::pluck("talla", "id")->all();
+        $first_opcion = array(""=>"Selecciona una talla...");
+        $tallas = $first_opcion + $opciones;
         //dd($tallas);
         $this->filter->add('id_talla', 'TALLA', 'select')->options($tallas);
         $this->filter->add('id_producto', 'Producto', 'text');

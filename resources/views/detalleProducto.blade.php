@@ -104,9 +104,13 @@
             <h2><a class="glyphicon glyphicon-stop" style="color:{{$producto[0]->color}}"></a></h2>
             <hr>
             <h5>Tallas</h5>
-            @foreach($tallas as $t)
-                <h6>- {{$t->talla}}</h6>
-            @endforeach
+            @if($Ntallas>0)
+                @foreach($tallas as $t)
+                    <h6>- {{$t->talla}}</h6>
+                @endforeach
+            @else
+                <h4><button disabled class="btn btn-danger">SOLD OUT</button></h4>
+            @endif
             <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary">Generar Pedido</a>
             <br><br>
             @if(Auth::check())

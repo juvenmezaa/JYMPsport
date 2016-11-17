@@ -87,14 +87,23 @@
 					<th>Id. del producto</th>
 					<th>Imagen</th>
 					<th>Descripcion</th>
-					<th>Cantidad</th>
 					<th>Talla</th>
+					<th>Cantidad</th>
 				</tr>
 				<tr>
 					<td>{{$producto[0]->id}}</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
+					<td style="width: 15%;">
+						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" /></td>
+					<td>{{$producto[0]->descripcion}}</td>
+					<td>
+						<select name="" id="">
+							@foreach($tallas as $t)
+								<option value="">{{$t->talla}}</option>
+							@endforeach
+						</select></td>
+					<td>
+						<input type="number">
+					</td>
 
 				</tr>
 			</table>
@@ -103,27 +112,86 @@
 				<div class="panel-body" style="text-align: center;">
 					<div class="col-lg-2">
 						<label for="">Nombre</label><br><br><br>
-						<label for="">Apellido Paterno</label><br><br><br>
-						<label for="">Apellido Materno</label><br><br><br>
+						<label for="">Apellido</label><br><br><br>
 					</div>
 					<div class="col-lg-8">
-						<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"><br>
-						<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"><br>
-						<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"><br>
+						<input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon2" disabled value ="{{$user->name}}"><br>
+						<input type="text" class="form-control" placeholder="Last Name" aria-describedby="sizing-addon2" disabled value="{{$user->lastname}}"><br>
 					</div>
 				</div>
-
-
 			</div>
 			<h4>Datos de Envio</h4><br>
-			Método de Envio: <select name="" id=""></select>
-			País <select name="" id=""></select><br>	
-			Estado <select name="" id=""></select><br>
-			Ciudad <select name="" id=""></select><br>
-			Calle <input type="text"><br>
-			Número Interior <input type="text"><br>
-			Número Exterior <input type="text"><br>
-			Télefono <input type="text"><br>
+				<div class="panel panel-default" style="width: 90%; margin-left: 5%;">
+					<div class="panel-body">
+						<table class="table table-hover">	
+							<tr>
+								<td><label>Método de Envio</label></td>
+								<td >
+									<select name="" id="" style="margin-left: 30px; width: 200px;"></select>
+								</td>		
+							</tr>
+							<tr>
+								<td><label>País</label></td>
+								<td >
+									<select name="	" id="" style="margin-left: 30px; width: 200px;">
+										@foreach($paises as $p)
+												<option>{{$p->Name}}</option>
+										@endforeach
+									</select>	
+								</td>		
+							</tr>
+							<tr>
+								<td><label>Estado</label></td>
+								<td >
+									<select name="	" id="" style="margin-left: 30px; width: 200px;"></select>	
+								</td>		
+							</tr>
+							<tr>
+								<td><label >Ciudad</label></td>
+								<td >
+									<select name="	" id="" style="margin-left: 30px; width: 200px;"></select>	
+								</td>		
+							</tr>
+							<tr>
+								<td><label >Código Postal</label></td>
+								<td>
+										<input type="text" style="margin-left: 30px; width: 200px;">
+								</td>		
+							</tr>
+							<tr>
+								<td><label>Colonia</label></td>
+								<td>
+										<input type="text" style="margin-left: 30px; width: 200px;">
+								</td>		
+							</tr>
+							<tr>
+								<td><label>Calle</label></td>
+								<td>
+										<input type="text" style="margin-left: 30px; width: 200px;">
+								</td>		
+							</tr>
+							<tr>
+								<td><label>Número Exterior</label></td>
+								<td>
+										<input type="text" style="margin-left: 30px; width: 200px;">
+								</td>		
+							</tr>
+							<tr>
+								<td><label>Número Interior</label></td>
+								<td>
+										<input type="text" style="margin-left: 30px; width: 200px;">
+								</td>		
+							</tr>
+							<tr>
+								<td><label>Télefono</label></td>
+								<td>
+										<input type="text" style="margin-left: 30px; width: 200px;">
+								</td>		
+							</tr>
+						</table>
+					</div>
+				</div>
+			<a href="" class="btn btn-primary" style="margin-left: 80%;">Enviar</a>
 		</div>
 	</div>
 </div>

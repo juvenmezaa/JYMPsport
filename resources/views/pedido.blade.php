@@ -1,5 +1,7 @@
 @extends("principal")
 @section("navbar")
+<script src="{{asset('js/pedidosCascada.js')}}"></script>
+
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container">
@@ -33,24 +35,14 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#destacados">Destacados</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio">Colecciones</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#about">Acerca de</a>
-                </li>
                 @if(Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::User()->name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
+                        @else
+                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -75,13 +67,13 @@
     <!-- /.container-fluid -->
 </nav>
 @stop
-<br><br><br>
 @section("1")
+<br><br><br>
 <form action="{{url('/pedidoEnviado')}}" method="POST">
 <input type="hidden" name="_token" value="{{csrf_token()}}">
 <div style="margin-left: 5%;">
 	<div class="panel panel-warning" style="width: 95%;">
-		<div class="panel-heading"> <h1>GENERAR PEDIDO </h1></div>
+		<div class="panel-heading"> <h1>GENERAR PEDIDO</h1></div>
 		<div class="panel-body">
 			<h4>Datos del Pedido</h4><br>
 			<table class="table table-hover">
@@ -94,23 +86,27 @@
 					<th>Precio Unitario</th>
 				</tr>
 				<tr>
-					<td><input type="hidden" value="{{$producto[0]->id}}" name="id_producto">{{$producto[0]->id}}</td>
+				<input type="hidden" value="{{$producto[0]->id}}" name="id_producto">
+					<td>{{$producto[0]->id}}</td>
 					<td style="width: 15%;">
 						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" /></td>
 					<td>{{$producto[0]->descripcion}}</td>
 					<td>
-						<select name="tallas" id="tallas">
+						<select name="tallas" id="tallas" onchange="cascadaCantidad()">
 							@foreach($tallas as $t)
-								<option value="{{$t->id}}">{{$t->talla}}</option>
-
+								<option value="{{$t->id}}" value2="{{$t->cantidad}}">{{$t->talla}}</option>
 							@endforeach
 						</select></td>
 					<td>
-						<input type="number" id="cantidad" name="cantidad" required>
+						<select name="cantidad" id="cantidad">
+							@for($i=1; $i<=$tallas[0]->cantidad; $i++)
+								<option value="{{$i}}">{{$i}}</option>
+							@endfor
+						</select>
 					</td>
+					<input type="hidden" value="{{$producto[0]->precio}}" id="precio" name="precio">
 					<th>
 						{{$producto[0]->precio}}
-						<input type="hidden" value="{{$producto[0]->precio}}" id="precio" name="precio">
 					</th>
 
 				</tr>

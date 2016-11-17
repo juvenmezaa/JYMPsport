@@ -58,7 +58,7 @@ class principalController extends Controller
         $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
         $categoria = DB::table('categorias AS C')->where('nombre','=',$c)->get();
-        $productos = DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->where('id_categoria','=',$categoria[0]->id)->paginate(4);
+        $productos = DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->where('id_categoria','=',$categoria[0]->id)->where('genero','=',$genero)->paginate(4);
         return view('productos', compact('breadcrumb','productos','categoriasH','categoriasM'));
     }
 

@@ -22,6 +22,7 @@ Route::post("/panel/productosModel/guardar","productosModelController@guardar");
 //////////////
 Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");
 Route::get("/pedidosUser", "pedidosController@pedidosUser");
+Route::post("/pedidoEnviado","pedidosController@pedidoEnviado");
 Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 

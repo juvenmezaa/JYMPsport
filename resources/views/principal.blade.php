@@ -191,7 +191,6 @@
 
     <!-- Theme JavaScript -->
     <script src="{{asset('js/agency.min.js')}}"></script>
-
 </body>
 
 </html>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Http\Requests;
 use App\productosModel;
+use App\pedidosModel;
 use App\categoriasModel;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,7 +51,11 @@ class pedidosController extends Controller
         $producto   = $request->input('id_producto');
         $talla      = $request->input('tallas');  
         $cantidad   = $request->input('cantidad');
-        $fecha      = getdate();
+        $fechaF     = getdate();
+        $año        = $fechaF['year'];
+        $mes        = $fechaF['mon'];
+        $dia        = $fechaF['mday'];
+        $fecha      = $año."-".$mes."-".$dia;
         $precio     = $request->input('precio');
         $precio_total = $cantidad*$precio;
         $pais       =   $request->input('pais');    
@@ -60,8 +65,31 @@ class pedidosController extends Controller
         $codigoPostal   =   $request->input('codigoPostal');
         $colonia        =   $request->input('colonia');
         $calle          =   $request->input('calle');
-        $numExt         =   $request->input('num_ext');
-        $numInt         =   $request->input('num_int');
+        $numExt         =   $request->input('numero_ext');
+        $numInt         =   $request->input('numero_int');
         $tel            =   $request->input('tel');
+
+        $pedido = new pedidosModel;
+        $pedido->id_usuario     = $usuario;
+        $pedido->id_producto    = $producto;
+        $pedido->id_talla       = $talla;
+        $pedido->cantidad       = $cantidad;
+        $pedido->fecha          = $fecha;
+        $pedido->precio_total   = $precio_total;
+        $pedido->created_at     = $fecha;
+        $pedido->updated_at     = $fecha;
+        $pedido->pais           = $pais;
+        $pedido->estado         = $estado;
+        $pedido->ciudad         = $ciudad;
+        $pedido->metodo_envio   = $metodoEnvio;
+        $pedido->codigo_postal  = $codigoPostal;
+        $pedido->colonia        = $colonia;
+        $pedido->calle          = $calle;
+        $pedido->num_ext        = $numExt;
+        $pedido->num_int        = $numInt;
+        $pedido->tel            = $tel;
+        $pedido->save();
+
+        return view('pedidoEnviado', compact('precio_total'))
     }
 }

@@ -15,7 +15,10 @@ Route::get("/", "principalController@index");
 Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
 Route::get("/panel/categoriasproductos/all","categoriasproductosController@asignarACategoria");
 Route::post("/panel/categoriasproductos/asignar","categoriasproductosController@asignar");
-// Route::get("/panel/categoriasproductos/asignar/{idp}/{idc}","categoriasproductosController@asignar");
+//////////////
+Route::get("/panel/productosModel/edit","productosModelController@registrar");
+Route::post("/panel/productosModel/guardar","productosModelController@guardar");
+//////////////
 Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");
 Route::get("/pedidosUser", "pedidosController@pedidosUser");
 Auth::routes();

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use DB;
+
 trait TallasProdTrait
 {
 	public function productos()
@@ -17,4 +19,14 @@ trait TallasProdTrait
     public function tallas(){
     	return $this->belongsToMany('App\Tallas','tallas_productos','id_talla','id');
     }
+
+    public function tallasProd(){
+    	//return $this->performInsert(DB::table('tallas_productos')->insert(['id_producto' => 1,'id_talla' => 4,'cantidad' => 69]));
+    	return $this->belongsToMany('App\Tallas','tallas_productos','id_producto','id_talla');
+    }
+
+    // public function registrar($tallaProd){
+    // 	//$query = DB::raw('insert into "tallas_productos" ("id_producto","id_talla","cantidad") values ()');
+    // 	return Tallas_ProductosModel->id;
+    // }
 }

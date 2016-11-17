@@ -90,6 +90,6 @@ class pedidosController extends Controller
         $pedido->tel            = $tel;
         $pedido->save();
 
-        return view('pedidoEnviado', compact('precio_total'))
+        return view('pedidoEnviado', compact('precio_total'));
     }
 }

@@ -26,7 +26,17 @@ trait TallasProdTrait
 
     public function tallasProd(){
     	//return $this->performInsert(DB::table('tallas_productos')->insert(['id_producto' => 1,'id_talla' => 4,'cantidad' => 69]));
-    	return $this->belongsToMany('App\Tallas','tallas_productos','id_producto','id_talla');
+    	//$ble = $this->belongsToMany('App\Tallas_ProductosModel','productos','id','id');
+    	$plis = $this->hasMany('App\Tallas_ProductosModel','id_producto');
+    	//dd($plis);
+    	return $plis;
+
+    	//dd($ble->pluck("cantidad")->all());
+    	//return $ble;
+    	$si = $this->belongsToMany('App\Tallas','tallas_productos','id_producto','id_talla');
+    	//dd($si->pluck("cantidad"));
+    	return $si;
+    	//return $this->belongsToMany('App\productosModel','tallas_productos','id_producto','id_talla');
     }
 
     // public function registrar($tallaProd){

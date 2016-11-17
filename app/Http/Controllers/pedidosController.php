@@ -9,6 +9,9 @@ use App\Http\Requests;
 use App\productosModel;
 use App\pedidosModel;
 use App\categoriasModel;
+use App\ciudad;
+use App\estado;
+use App\pais;
 use Illuminate\Support\Facades\Auth;
 
 //use Alert;
@@ -27,13 +30,24 @@ class pedidosController extends Controller
 		    	 /*alert()->error('El Pokémon que busca no fue encontrado, intenta con otro nombre...')->persistent('OK');*/
         		return back()->withInput();
 		    
-		    $paises=DB::table("country")->get();
-            $estados=DB::table("city")->get();
-            $ciudades=DB::table("province")->get();
-		    return  view ('pedido', compact('categoriasH','categoriasM','producto','tallas','user','paises','estados','ciudades'));
+		    //$paises=DB::table("country")->get();
+            $paises=pais::pluck('Name','Code');
+		    return  view ('pedido', compact('categoriasH','categoriasM','producto','tallas','user','paises'));
 		}
         return Redirect('/login');
 	}
+    public function getEstados(Request $request, $id){
+            if($request->ajax()){
+            $estados=estado::estados($id);
+            return response()->json($estados);
+        }
+    }
+    public function getCiudades(Request $request, $id){
+            if($request->ajax()){
+            $ciudades=ciudad::ciudades($id);
+            return response()->json($ciudades);
+        }
+    }
 
 	public function pedidosUser(){
         if (Auth::check()) {
@@ -47,9 +61,11 @@ class pedidosController extends Controller
         return Redirect('/login');
     }
     public function pedidoEnviado(Request $request){
+        $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
+        $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
         $usuario    = $request->input('usuario_id');
-        $producto   = $request->input('id_producto');
-        $talla      = $request->input('tallas');  
+        $id_producto= $request->input('id_producto');
+        $id_talla   = $request->input('tallas');  
         $cantidad   = $request->input('cantidad');
         $fechaF     = getdate();
         $año        = $fechaF['year'];
@@ -71,8 +87,8 @@ class pedidosController extends Controller
 
         $pedido = new pedidosModel;
         $pedido->id_usuario     = $usuario;
-        $pedido->id_producto    = $producto;
-        $pedido->id_talla       = $talla;
+        $pedido->id_producto    = $id_producto;
+        $pedido->id_talla       = $id_talla;
         $pedido->cantidad       = $cantidad;
         $pedido->fecha          = $fecha;
         $pedido->precio_total   = $precio_total;
@@ -89,7 +105,9 @@ class pedidosController extends Controller
         $pedido->num_int        = $numInt;
         $pedido->tel            = $tel;
         $pedido->save();
-
-        return view('pedidoEnviado', compact('precio_total'))
+        
+        $producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id_producto)->select("p.*","c.nombre as nombreCat","c.imagengen as generica")->get();
+        $talla=DB::table("tallas")->find($id_talla);
+        return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio'));
     }
 }

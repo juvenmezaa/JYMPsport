@@ -33,4 +33,4 @@ Route::post("/comentar", "comentariosModelController@comentar");
 
 //selects dinamicos
 Route::get("estados/{id}","pedidosController@getEstados");
-Route::get("ciudades/{id}","pedidosController@getCiudades");
+Route::get("ciudades/{idE}/{idP}","pedidosController@getCiudades");

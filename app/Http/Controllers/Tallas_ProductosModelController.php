@@ -23,7 +23,7 @@ class Tallas_ProductosModelController extends CrudController
         $tallas["4"] = "L";
         //dd($tallas);
         $this->filter->add('id_talla', 'TALLA', 'select')->options($tallas);
-        $this->filter->add('id_producto', 'PRODUCTO', 'text');
+        $this->filter->add('id_producto', 'Producto', 'text');
   		$this->filter->add('cantidad', 'Cantidad', 'text');
 
         $this->filter->submit('search');
@@ -34,10 +34,12 @@ class Tallas_ProductosModelController extends CrudController
 
         $this->grid = \DataGrid::source($this->filter);
         $this->grid->add('id','ID', true)->style("width:100px");
-        $this->grid->add('id_talla', 'TALLA');
-        $this->grid->add('{{ implode(", ", $tallas->pluck("talla")->all()) }}','Talla');
-        $this->grid->add('id_producto','PRODUCTO');
-        $this->grid->add('{{ implode(", ", $productos->pluck("descripcion")->all()) }}','Descripción Producto');
+        $this->grid->add('id_talla', 'ID_TALLA');
+        $this->grid->add('{{ $tallas->pluck("talla")->all()[0] }}','Talla');
+        //$this->grid->add('{{ implode(", ", $tallas->pluck("talla")->all()) }}','Talla');
+        $this->grid->add('id_producto','ID_PRODUCTO');
+        $this->grid->add('{{ $productos->pluck("descripcion")->all()[0] }}','Descripción Producto');
+        //$this->grid->add('{{ implode(", ", $productos->pluck("descripcion")->all()) }}','Descripción Producto');
         $this->grid->add('cantidad', 'Cantidad');
         
         $this->grid->paginate(10);
@@ -62,10 +64,8 @@ class Tallas_ProductosModelController extends CrudController
         return $this->returnView();
     }
 
-    public function  edit($entity){
-        
+    public function edit($entity){        
         parent::edit($entity);
-
 
         $this->edit = \DataEdit::source(new \App\Tallas_ProductosModel());
 

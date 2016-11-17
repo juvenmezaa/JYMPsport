@@ -17,6 +17,7 @@ Route::get("/panel/categoriasproductos/all","categoriasproductosController@asign
 Route::post("/panel/categoriasproductos/asignar","categoriasproductosController@asignar");
 //////////////
 Route::get("/panel/productosModel/edit","productosModelController@registrar");
+Route::get("/panel/productosModel/edit?delete={id}","productosModelController@eliminar");
 Route::post("/panel/productosModel/guardar","productosModelController@guardar");
 //////////////
 Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");

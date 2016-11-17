@@ -44,6 +44,7 @@ class categoriasModelController extends CrudController{
        
         $this->edit->add('nombre','Nombre', 'text')->rule('required');
         $this->edit->add('descripcion', 'Descripción', 'text')->rule('required');
+        $this->edit->add('imagengen','Imagen','image')->move(public_path().'/img/categorias','')->preview(80,80);
 
         return $this->returnEditView();
     }    

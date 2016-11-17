@@ -47,9 +47,11 @@ class pedidosController extends Controller
         return Redirect('/login');
     }
     public function pedidoEnviado(Request $request){
+        $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
+        $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
         $usuario    = $request->input('usuario_id');
-        $producto   = $request->input('id_producto');
-        $talla      = $request->input('tallas');  
+        $id_producto= $request->input('id_producto');
+        $id_talla   = $request->input('tallas');  
         $cantidad   = $request->input('cantidad');
         $fechaF     = getdate();
         $año        = $fechaF['year'];
@@ -71,8 +73,8 @@ class pedidosController extends Controller
 
         $pedido = new pedidosModel;
         $pedido->id_usuario     = $usuario;
-        $pedido->id_producto    = $producto;
-        $pedido->id_talla       = $talla;
+        $pedido->id_producto    = $id_producto;
+        $pedido->id_talla       = $id_talla;
         $pedido->cantidad       = $cantidad;
         $pedido->fecha          = $fecha;
         $pedido->precio_total   = $precio_total;
@@ -90,6 +92,8 @@ class pedidosController extends Controller
         $pedido->tel            = $tel;
         $pedido->save();
 
-        return view('pedidoEnviado', compact('precio_total'))
+        $producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id_producto)->select("p.*","c.nombre as nombreCat","c.imagengen as generica")->get();
+        $talla=DB::table("tallas")->find($id_talla);
+        return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio'));
     }
 }

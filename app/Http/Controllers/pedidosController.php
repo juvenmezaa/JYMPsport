@@ -13,7 +13,7 @@ use App\ciudad;
 use App\estado;
 use App\pais;
 use Illuminate\Support\Facades\Auth;
-
+use App\tallas_ProductosModel;
 //use Alert;
 class pedidosController extends Controller
 {
@@ -54,7 +54,9 @@ class pedidosController extends Controller
             $id_usuario=Auth::User()->id;
             $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
             $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
-            $pedidos=DB::table("pedidos AS p")->join("productos AS pr", "p.id_producto","=","pr.id")->join("tallas_productos AS tp", "pr.id","=","tp.id_producto")->join("tallas AS t", "tp.id_talla","=","t.id")->where("p.id_usuario","=", $id_usuario)->select("p.fecha","pr.descripcion","t.talla","p.cantidad","p.subtotal","p.impuesto","p.precio_total")->paginate(5);
+            $pedidos=DB::table("pedidos AS p")->join("productos AS pr", "p.id_producto","=","pr.id")->join("tallas AS t", "p.id_talla","=","t.id")->join("categorias AS c", "pr.id_categoria","=","c.id")->where("p.id_usuario","=", $id_usuario)->select("p.fecha","pr.descripcion","t.talla","p.cantidad","p.precio_total","pr.imagen","c.nombre as nombreCat", "c.imagengen as generica")->paginate(5);
+
+
             return view('pedidosUser', compact('categoriasH','categoriasM','pedidos'));
 
         }
@@ -105,6 +107,11 @@ class pedidosController extends Controller
         $pedido->num_int        = $numInt;
         $pedido->tel            = $tel;
         $pedido->save();
+        
+        $id_tallas_productos=DB::table('tallas_productos')->where('id_producto','=',$id_producto)->where('id_talla','=',$id_talla)->select('id')->get();
+        $restarCantidad=tallas_ProductosModel::find($id_tallas_productos[0]->id);
+        $restarCantidad->cantidad=($restarCantidad->cantidad)-1;
+        $restarCantidad->save();
         
         $producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id_producto)->select("p.*","c.nombre as nombreCat","c.imagengen as generica")->get();
         $talla=DB::table("tallas")->find($id_talla);

@@ -31,8 +31,9 @@
                                 <div class="panel-footer">
 
                                      <a href='{{$box['showListUrl']}}' class="pull-left">{{ \Lang::get('panel::fields.showList') }} <i class="icon ic-chevron-right"></i></a>
+                                     @if($box['title'] !== 'Comentario')
                                     <div class="pull-right"> <a class="add " href="{{$box['addUrl']}}">{{ \Lang::get('panel::fields.Add') }}  </a></div>
-
+                                    @endif
                                     <div class="clearfix"></div>
                                 </div>
                         </div>

@@ -25,16 +25,13 @@ class CreateAllTables extends Migration
             $table->string('descripcion',100);
             $table->double('precio');
             $table->double('costo');
-            $table->bigInteger('cantidad');
             $table->bigInteger('visitas');
-            $table->integer('talla');
             $table->string('color',20);
             $table->string('imagen',100);
             $table->boolean('genero');
             $table->boolean('id_categoria')->unsigned();
             $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->timestamps();
-            $table->foreign('talla')->references('id')->on('tallas');
         });
         Schema::create('tallas', function (Blueprint $table) {
             $table->increments('id');

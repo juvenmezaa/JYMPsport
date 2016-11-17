@@ -98,7 +98,7 @@
         </div>
         <div class="col-md-3">
             <h6>{{$producto[0]->descripcion}}</h6>
-            <h2>MNX {{$producto[0]->precio}}</h2>
+            <h2>MXN {{$producto[0]->precio}}</h2>
             <h5>Colores</h5>
             <hr>
             <h2><a class="glyphicon glyphicon-stop" style="color:{{$producto[0]->color}}"></a></h2>

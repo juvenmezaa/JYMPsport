@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
 -- Tiempo de generación: 17-11-2016 a las 03:59:51
+=======
+-- Tiempo de generación: 16-11-2016 a las 19:56:15
+>>>>>>> b672316ced5c2e48094a0734f1b6badcb2e8b52a
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -3523,7 +3527,12 @@ INSERT INTO `links` (`id`, `display`, `url`, `created_at`, `updated_at`, `main`,
 (2, 'Roles', 'Role', NULL, NULL, 1, 1),
 (3, 'Permissions', 'Permission', NULL, NULL, 1, 1),
 (4, 'Admins', 'Admin', NULL, '2016-11-09 12:59:49', 1, 1),
-(5, 'Productos', 'productosModel', '2016-11-10 16:03:59', '2016-11-10 16:03:59', NULL, 1);
+(5, 'Productos', 'productosModel', '2016-11-10 16:03:59', '2016-11-10 16:03:59', NULL, 1),
+(6, 'Tallas_Prod', 'Tallas_ProductosModel', NULL, NULL, NULL, 1),
+(7, 'Comentario', 'comentariosModel', '2016-11-17 01:28:41', '2016-11-17 01:28:41', NULL, 1),
+(8, 'Usuarios', 'usersModel', '2016-11-17 01:29:43', '2016-11-17 01:29:43', NULL, 1),
+(9, 'Categorias', 'categoriasModel', '2016-11-17 01:30:16', '2016-11-17 01:30:16', NULL, 1),
+(10, 'Asignar Productos a Categorias', 'categoriasproductos', '2016-11-17 01:30:54', '2016-11-17 01:30:54', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -5639,7 +5648,7 @@ ALTER TABLE `detalles_pedidos`
 -- AUTO_INCREMENT de la tabla `links`
 --
 ALTER TABLE `links`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --

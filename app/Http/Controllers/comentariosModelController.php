@@ -16,7 +16,7 @@ class comentariosModelController extends CrudController{
     public function all($entity){
         parent::all($entity); 
 
-        $this->filter = \DataFilter::source(comentariosModel::with('users'));
+        $this->filter = \DataFilter::source(comentariosModel::with('users','productos'));
         $this->filter->add('id', 'ID', 'text');
         $this->filter->add('id_usuario', 'Usuario', 'text');
         $this->filter->add('id_producto', 'Producto', 'text');
@@ -46,6 +46,7 @@ class comentariosModelController extends CrudController{
         //$this->grid->add('{{ implode(" ", DB::table("users")->pluck("name","id")->all()) }}','Usuario');
         //$this->grid->add('{{ DB::table("users AS U")->join("comentarios AS C","U.id","=","C.id_usuario")->pluck("U.name")->all() }}','UsuarioNombre');
         $this->grid->add('id_producto','Producto');
+        $this->grid->add('{{ implode(", ", $productos->pluck("descripcion")->all()) }}','Descripción del Producto');
 
         $this->grid->paginate(10);
 

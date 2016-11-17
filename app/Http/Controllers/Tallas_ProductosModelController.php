@@ -14,7 +14,7 @@ class Tallas_ProductosModelController extends CrudController
         public function all($entity){
         parent::all($entity); 
 
-        $this->filter = \DataFilter::source(new \App\Tallas_ProductosModel());
+        $this->filter = \DataFilter::source(Tallas_ProductosModel::with('productos','tallas'));
         $this->filter->add('id', 'ID', 'text');
         $tallas = array();
         $tallas["1"] = "XS";
@@ -35,7 +35,9 @@ class Tallas_ProductosModelController extends CrudController
         $this->grid = \DataGrid::source($this->filter);
         $this->grid->add('id','ID', true)->style("width:100px");
         $this->grid->add('id_talla', 'TALLA');
+        $this->grid->add('{{ implode(", ", $tallas->pluck("talla")->all()) }}','Talla');
         $this->grid->add('id_producto','PRODUCTO');
+        $this->grid->add('{{ implode(", ", $productos->pluck("descripcion")->all()) }}','Descripción Producto');
         $this->grid->add('cantidad', 'Cantidad');
         
         $this->grid->paginate(10);

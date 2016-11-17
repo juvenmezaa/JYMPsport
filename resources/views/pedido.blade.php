@@ -77,6 +77,8 @@
 @stop
 <br><br><br>
 @section("1")
+<form action="{{url('/pedidoEnviado')}}" method="POST">
+<input type="hidden" name="_token" value="{{csrf_token()}}">
 <div style="margin-left: 5%;">
 	<div class="panel panel-warning" style="width: 95%;">
 		<div class="panel-heading"> <h1>GENERAR PEDIDO </h1></div>
@@ -89,21 +91,27 @@
 					<th>Descripcion</th>
 					<th>Talla</th>
 					<th>Cantidad</th>
+					<th>Precio Unitario</th>
 				</tr>
 				<tr>
-					<td>{{$producto[0]->id}}</td>
+					<td><input type="hidden" value="{{$producto[0]->id}}" name="id_producto">{{$producto[0]->id}}</td>
 					<td style="width: 15%;">
 						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" /></td>
 					<td>{{$producto[0]->descripcion}}</td>
 					<td>
-						<select name="" id="">
+						<select name="tallas" id="tallas">
 							@foreach($tallas as $t)
-								<option value="">{{$t->talla}}</option>
+								<option value="{{$t->id}}">{{$t->talla}}</option>
+
 							@endforeach
 						</select></td>
 					<td>
-						<input type="number">
+						<input type="number" id="cantidad" name="cantidad" required>
 					</td>
+					<th>
+						{{$producto[0]->precio}}
+						<input type="hidden" value="{{$producto[0]->precio}}" id="precio" name="precio">
+					</th>
 
 				</tr>
 			</table>
@@ -115,8 +123,9 @@
 						<label for="">Apellido</label><br><br><br>
 					</div>
 					<div class="col-lg-8">
-						<input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon2" disabled value ="{{$user->name}}"><br>
-						<input type="text" class="form-control" placeholder="Last Name" aria-describedby="sizing-addon2" disabled value="{{$user->lastname}}"><br>
+						<input type="hidden" value="{{$user->id}}" id="usuario_id" name="usuario_id">
+						<input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon2" disabled value ="{{$user->name}}" name="usuario_nombre" id="usuario_nombre"><br>
+						<input type="text" class="form-control" placeholder="Last Name" aria-describedby="sizing-addon2" disabled value="{{$user->lastname}}" name="usuario_apellido" id="usuario_apellido"><br>
 					</div>
 				</div>
 			</div>
@@ -127,13 +136,15 @@
 							<tr>
 								<td><label>Método de Envio</label></td>
 								<td >
-									<select name="" id="" style="margin-left: 30px; width: 200px;"></select>
+									<select name="envio" id="envio" style="margin-left: 30px; width: 200px;">
+										<option value="">1</option>
+									</select>
 								</td>		
 							</tr>
 							<tr>
 								<td><label>País</label></td>
 								<td >
-									<select name="	" id="" style="margin-left: 30px; width: 200px;">
+									<select name="pais" id="pais" style="margin-left: 30px; width: 200px;">
 										@foreach($paises as $p)
 												<option>{{$p->Name}}</option>
 										@endforeach
@@ -143,56 +154,60 @@
 							<tr>
 								<td><label>Estado</label></td>
 								<td >
-									<select name="	" id="" style="margin-left: 30px; width: 200px;"></select>	
+									<select name="estado" id="estado" style="margin-left: 30px; width: 200px;">
+										<option value="">1</option>
+									</select>	
 								</td>		
 							</tr>
 							<tr>
 								<td><label >Ciudad</label></td>
 								<td >
-									<select name="	" id="" style="margin-left: 30px; width: 200px;"></select>	
+									<select name="ciudad" id="ciudad" style="margin-left: 30px; width: 200px;"><option value="">1</option></select>	
 								</td>		
 							</tr>
 							<tr>
 								<td><label >Código Postal</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;">
+										<input type="text" style="margin-left: 30px; width: 200px;" id="codigoPostal" name="codigoPostal">
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Colonia</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;">
+										<input type="text" id="colonia" name="colonia"style="margin-left: 30px; width: 200px;">
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Calle</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;">
+										<input type="text" id="calle" name="calle"style="margin-left: 30px; width: 200px;">
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Número Exterior</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;">
+										<input type="text" style="margin-left: 30px; width: 200px;" id="numero_ext" name="numero_ext">
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Número Interior</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;">
+										<input type="text" style="margin-left: 30px; width: 200px;" id="numero_int" name="numero_int">
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Télefono</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;">
+										<input type="text" style="margin-left: 30px; width: 200px;" id="tel" name="tel">
 								</td>		
 							</tr>
 						</table>
 					</div>
 				</div>
-			<a href="" class="btn btn-primary" style="margin-left: 80%;">Enviar</a>
+
+			<button type="submit" class="btn btn-primary" style="margin-left: 80%;">Enviar</a>
 		</div>
 	</div>
 </div>
+</form>
 @stop

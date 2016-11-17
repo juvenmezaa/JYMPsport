@@ -18,6 +18,7 @@ Route::post("/panel/categoriasproductos/asignar","categoriasproductosController@
 // Route::get("/panel/categoriasproductos/asignar/{idp}/{idc}","categoriasproductosController@asignar");
 Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");
 Route::get("/pedidosUser", "pedidosController@pedidosUser");
+Route::post("/pedidoEnviado","pedidosController@pedidoEnviado");
 Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 

@@ -30,3 +30,7 @@ Route::get("/productosCategoria/{g}/{c}", "principalController@productosCategori
 Route::get("/home", "HomeController@index");
 Route::post("/rating", "RatingController@rateJ");
 Route::post("/comentar", "comentariosModelController@comentar");
+
+//selects dinamicos
+Route::get("estados/{id}","pedidosController@getEstados");
+Route::get("ciudades/{id}","pedidosController@getCiudades");

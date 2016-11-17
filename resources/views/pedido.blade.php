@@ -147,25 +147,19 @@
 							<tr>
 								<td><label>País</label></td>
 								<td >
-									<select name="pais" id="pais" style="margin-left: 30px; width: 200px;">
-										@foreach($paises as $p)
-												<option>{{$p->Name}}</option>
-										@endforeach
-									</select>	
+									{!! Form::select('pais',$paises,null,['id'=>'pais']) !!}
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Estado</label></td>
 								<td >
-									<select name="estado" id="estado" style="margin-left: 30px; width: 200px;">
-										<option value="">1</option>
-									</select>	
+									{!! Form::select('estado',['placeholder'=>'Selecciona'],null,['id'=>'estado']) !!}	
 								</td>		
 							</tr>
 							<tr>
 								<td><label >Ciudad</label></td>
 								<td >
-									<select name="ciudad" id="ciudad" style="margin-left: 30px; width: 200px;"><option value="">1</option></select>	
+									{!! Form::select('ciudad',['placeholder'=>'Selecciona'],null,['id'=>'ciudad']) !!}	
 								</td>		
 							</tr>
 							<tr>

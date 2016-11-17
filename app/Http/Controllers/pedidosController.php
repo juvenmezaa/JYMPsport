@@ -9,6 +9,9 @@ use App\Http\Requests;
 use App\productosModel;
 use App\pedidosModel;
 use App\categoriasModel;
+use App\ciudad;
+use App\estado;
+use App\pais;
 use Illuminate\Support\Facades\Auth;
 
 //use Alert;
@@ -27,13 +30,24 @@ class pedidosController extends Controller
 		    	 /*alert()->error('El Pokémon que busca no fue encontrado, intenta con otro nombre...')->persistent('OK');*/
         		return back()->withInput();
 		    
-		    $paises=DB::table("country")->get();
-            $estados=DB::table("city")->get();
-            $ciudades=DB::table("province")->get();
-		    return  view ('pedido', compact('categoriasH','categoriasM','producto','tallas','user','paises','estados','ciudades'));
+		    //$paises=DB::table("country")->get();
+            $paises=pais::pluck('Name','Code');
+		    return  view ('pedido', compact('categoriasH','categoriasM','producto','tallas','user','paises'));
 		}
         return Redirect('/login');
 	}
+    public function getEstados(Request $request, $id){
+            if($request->ajax()){
+            $estados=estado::estados($id);
+            return response()->json($estados);
+        }
+    }
+    public function getCiudades(Request $request, $id){
+            if($request->ajax()){
+            $ciudades=ciudad::ciudades($id);
+            return response()->json($ciudades);
+        }
+    }
 
 	public function pedidosUser(){
         if (Auth::check()) {
@@ -90,6 +104,6 @@ class pedidosController extends Controller
         $pedido->tel            = $tel;
         $pedido->save();
 
-        return view('pedidoEnviado', compact('precio_total'))
+        return view('pedidoEnviado', compact('precio_total'));
     }
 }

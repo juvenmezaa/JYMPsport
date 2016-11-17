@@ -80,10 +80,10 @@
                     <tr>
                         <th class="col-md-2">Fecha</th>
                         <th class="col-md-3">Producto</th>
+                        <th class="col-md-3">Categoria</th>
+                        <th class="col-md-2">Imagen</th>
                         <th class="col-md-1">Talla</th>
                         <th class="col-md-1">Cantidad</th>
-                        <th class="col-md-2">Subtotal</th>
-                        <th class="col-md-1">Impuestos</th>
                         <th class="col-md-2">Total</th>
                     </tr>
                 </thead>
@@ -92,10 +92,12 @@
                         <tr>
                             <th>{{$p->fecha}}</th>
                             <th>{{$p->descripcion}}</th>
+                            <th>{{$p->nombreCat}}</th>
+                            <td style="width: 15%;">
+                                <img id= "imagenP" src="{{ asset('img/productos')}}/{{$p->imagen}}" style="width: 30%;" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'" />
+                            </td>
                             <th>{{$p->talla}}</th>
                             <th>{{$p->cantidad}}</th>
-                            <th>{{$p->subtotal}}</th>
-                            <th>{{$p->impuesto}}</th>
                             <th>{{$p->precio_total}}</th>
                         </tr>
                     @endforeach

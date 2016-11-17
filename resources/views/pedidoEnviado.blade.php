@@ -33,24 +33,14 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#destacados">Destacados</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio">Colecciones</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#about">Acerca de</a>
-                </li>
                 @if(Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::User()->name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
+                        @else
+                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
                         @endif
                         <li class="divider"></li>
                         <li>

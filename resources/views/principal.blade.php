@@ -177,7 +177,8 @@
         </div>
     </div>
 
-    
+    <!--jQuery para selects dinamicos-->
+    <script src="{{asset('js/selectsdinamicos.js')}}"></script>
     
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>

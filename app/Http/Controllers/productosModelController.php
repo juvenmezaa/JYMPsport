@@ -43,7 +43,8 @@ class productosModelController extends CrudController{
         $this->grid->add('{{$descripcion}}', 'Descripción');
         $this->grid->add('precio','Precio');
         $this->grid->add('costo','Costo');
-        $this->grid->add('{{ count( $tallasProd->pluck("talla")->all() ) }}','Cantidad Total');
+        //$this->grid->add('{{ $tallasProd->pluck("cantidad")->sum() }}','Cantidad Total');
+        $this->grid->add('{{ $tallasProd->pluck("cantidad")->sum() }}','Cantidad Total');
         $this->grid->add('visitas','Visitas');
         $this->grid->add('color','Color');
         $this->grid->add('genero','Genero');

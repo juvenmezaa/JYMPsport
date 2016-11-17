@@ -133,7 +133,10 @@
 								<td><label>Método de Envio</label></td>
 								<td >
 									<select name="envio" id="envio" style="margin-left: 30px; width: 200px;">
-										<option value="">1</option>
+										<option value="DHL">DHL</option>
+										<option value="UPS">UPS</option>
+										<option value="Tufesa">Tufesa</option>
+										<option value="Correos de Mexico">Correos de Mexico</option>
 									</select>
 								</td>		
 							</tr>

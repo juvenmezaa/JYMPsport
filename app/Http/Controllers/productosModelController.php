@@ -22,9 +22,15 @@ class productosModelController extends CrudController{
         $this->filter->add('descripcion', 'Descripción', 'text');
         $this->filter->add('precio', 'Precio', 'text');
         $this->filter->add('costo', 'Costo', 'text');
-        $this->filter->add('talla', 'Talla', 'select')->options(\App\Tallas::pluck("talla","id")->all());
+
+        $opciones = \App\Tallas::pluck("talla", "id")->all();
+        $first_opcion = array(""=>"Selecciona una talla...");
+        $tallas = $first_opcion + $opciones;
+
+        $this->filter->add('talla', 'Talla', 'select')->options($tallas);
         $this->filter->add('color', 'Color', 'colorpicker');
         $generos = array();
+        $generos[""] = "Selecciona un género...";
         $generos["0"] = "Mujer";
         $generos["1"] = "Hombre";
         $this->filter->add('genero', 'Genero', 'select')->options($generos);

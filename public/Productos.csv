@@ -1,2 +1,6 @@
-id, descripcion, precio, costo, cantidad, talla, color, genero
-5,Chamarra de cuero,800,500,50,4,Negro,1
+id, descripcion, precio, costo, visitas, color, imagen, genero, id_categoria
+40,Chamarra de cuero,800,500,0,Negro,p17.jpg,1,10
+41,Chamarra de azucar,801,501,0,White,p17.jpg,1,10
+42,Chamarra de pimienta,802,502,0,Gray,p17.jpg,1,10
+43,Chamarrin,803,503,0,Lila,p17.jpg,1,10
+44,Le Chamarre,804,504,0,Arcoiris,p18.jpg,1,10

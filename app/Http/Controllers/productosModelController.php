@@ -34,11 +34,14 @@ class productosModelController extends CrudController{
         $generos["0"] = "Mujer";
         $generos["1"] = "Hombre";
         $this->filter->add('genero', 'Genero', 'select')->options($generos);
+        //dd($this);
         $this->filter->submit('search');
         $this->filter->reset('reset');
+        //dd($this);
         $this->filter->build();
-
+        //dd($this);
         $this->grid = \DataGrid::source($this->filter);
+        //dd($this);
         $this->grid->add('id','ID', true)->style("width:100px");
         $this->grid->add('{{$descripcion}}', 'Descripción');
         $this->grid->add('precio','Precio');
@@ -48,10 +51,11 @@ class productosModelController extends CrudController{
         $this->grid->add('visitas','Visitas');
         $this->grid->add('color','Color');
         $this->grid->add('genero','Genero');
-
+        //dd($this);
         $this->grid->paginate(10);
 
         $this->addStylesToGrid();
+        //dd($this);
         /** Simple code of  filter and grid part , List of all fields here : http://laravelpanel.com/docs/master/crud-fields
 
 
@@ -100,6 +104,22 @@ class productosModelController extends CrudController{
         return $this->returnEditView();
     }    
     public function registrar(Request $datos){
+        //Se recibe la opción eliminar :
+        if($datos->request->get('delete') !== null){
+            //Eliminamos de la tabla Tallas_Productos:
+            $id_Producto = $datos->request->get('delete');
+            $talla = DB::table('productos AS P')->join('tallas_productos AS TP','P.id','=','TP.id_producto')->where('P.id',$id_Producto)->get();
+            DB::table('tallas_productos')->where('id_producto','=',$id_Producto)->delete();
+            productosModel::find($id_Producto)->delete();
+            return Redirect("/panel/productosModel/all");
+
+            //dd('HELLOOOOO MURILLO');
+        }
+        //dd($datos->request->get('delete'));
+        if($datos->id){
+            dd('WAZZAA');
+        }
+
         $categorias = categoriasModel::all();
         $tallas = Tallas::all();
         return view("registrarProducto", compact('categorias','tallas'));

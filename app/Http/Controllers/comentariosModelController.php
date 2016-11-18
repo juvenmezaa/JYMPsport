@@ -22,6 +22,11 @@ class comentariosModelController extends CrudController{
         $this->filter->add('id_producto', 'Producto', 'text');
         $this->filter->add('fecha', 'Fecha de Publicación', 'date');
         $this->filter->add('comentario', 'Comentario', 'text');
+        $aut=array();
+        $aut[""]="AUTOR";
+        $aut['0']='NO';
+        $aut['1']='SI';
+        $this->filter->add('autorizado', 'autorizado', 'select')->options($aut);
 
         $this->filter->submit('search');
         $this->filter->reset('reset');
@@ -30,6 +35,7 @@ class comentariosModelController extends CrudController{
         $this->grid = \DataGrid::source($this->filter);
         $this->grid->add('id','ID', true)->style("width:100px");
         $this->grid->add('comentario', 'Comentario');
+        $this->grid->add('autorizado', 'autorizado', 'checkbox');
         
         //$usuario = DB::table('users AS u')->join('comentarios AS c', 'c.id_usuario','=','u.id')->select('u.name')->get();
         $this->grid->add('id_usuario','Usuario');
@@ -78,6 +84,17 @@ class comentariosModelController extends CrudController{
         //dd($generos);
         $this->edit->add('genero','Genero','select')->options($generos)->rule('required');
        */
+        $this->edit=\DataEdit::source(new \App\comentariosModel());
+        $this->edit->label("Autorizar comentario");
+      //  $this->edit->add('id', 'ID', 'text');
+        $this->edit->add('id_usuario', 'Usuario', 'text');
+        $this->edit->add('id_producto', 'Producto', 'text');
+        $this->edit->add('fecha', 'Fecha de Publicación', 'date');
+        $this->edit->add('comentario', 'Comentario', 'text');
+        $this->edit->add('autorizado', 'autorizado', 'checkbox');
+
+
+
         return $this->returnEditView();
     }
     public function comentar(Request $request){

@@ -173,6 +173,15 @@
                         </tr>
                     @endforeach
                 @endif
+                 @if(isset($pendientes))
+                    @foreach($pendientes as $c)
+                        <tr>
+                            <td>{{$c->fecha}}</td>
+                            <td>{{$c->name}}</td>
+                            <td>{{$c->comentario}}</td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
         </div>

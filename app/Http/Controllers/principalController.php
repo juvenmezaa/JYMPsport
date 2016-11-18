@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\productosModel;
 use App\categoriasModel;
+use Illuminate\Support\Facades\Auth;
 
 
 class principalController extends Controller
@@ -70,10 +71,22 @@ class principalController extends Controller
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
     	$producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id)->select("p.*","c.nombre as nombreCat","c.imagengen as generica")->get();
         $tallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion")->get();
-        $comentarios=DB::table("comentarios AS c")->join("users AS u", "c.id_usuario","=","u.id")->where("c.id_producto","=", $id)->select("c.comentario","c.fecha","u.name")->paginate(5);
+        $comentarios=DB::table("comentarios AS c")
+            ->join("users AS u", "c.id_usuario","=","u.id")
+            ->where("c.id_producto","=", $id)->where('c.autorizado','=',1)
+            ->select("c.comentario","c.fecha","u.name")->paginate(5);
+        if (Auth::check()) {
+            $id_usuario=Auth::User()->id;
+            $pendientes=DB::table("comentarios AS c")
+            ->join("users AS u", "c.id_usuario","=","u.id")
+            ->where("c.id_producto","=", $id)->where('c.autorizado','=',0)->where('c.id_usuario','=',$id_usuario)
+            ->select("c.comentario","c.fecha","u.name")->get();
+        }
+        
+        
         $calificacion=DB::table("calificaciones AS c")->join("users AS u", "c.id_usuario","=","u.id")->where("c.id_producto","=", $id)->select("c.calificacion")->get();
         $Ntallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion")->count();
-    	return view('detalleProducto', compact('producto','tallas','comentarios','calificacion','categoriasH','categoriasM','Ntallas'));
+    	return view('detalleProducto', compact('producto','tallas','comentarios','pendientes','calificacion','categoriasH','categoriasM','Ntallas'));
 
     }
 

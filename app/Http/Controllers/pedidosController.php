@@ -42,9 +42,9 @@ class pedidosController extends Controller
             return response()->json($estados);
         }
     }
-    public function getCiudades(Request $request, $id){
+    public function getCiudades(Request $request, $idE, $idP ){
             if($request->ajax()){
-            $ciudades=ciudad::ciudades($id);
+            $ciudades=ciudad::ciudades($idE,$idP);
             return response()->json($ciudades);
         }
     }

@@ -16,7 +16,7 @@ Route::get("/detalleProducto/{id}", "principalController@detalleProducto");
 Route::get("/panel/categoriasproductos/all","categoriasproductosController@asignarACategoria");
 Route::post("/panel/categoriasproductos/asignar","categoriasproductosController@asignar");
 //////////////
-Route::get("/panel/productosModel/edit","productosModelController@registrar");
+Route::get("/panel/productosModel/edit","productosModelController@gestionar");
 Route::get("/panel/productosModel/edit/{accion}","productosModelController@eliminar");
 Route::post("/panel/productosModel/guardar","productosModelController@guardar");
 //////////////
@@ -33,4 +33,4 @@ Route::post("/comentar", "comentariosModelController@comentar");
 
 //selects dinamicos
 Route::get("estados/{id}","pedidosController@getEstados");
-Route::get("ciudades/{id}","pedidosController@getCiudades");
+Route::get("ciudades/{idE}/{idP}","pedidosController@getCiudades");

@@ -103,7 +103,7 @@ class productosModelController extends CrudController{
 
         return $this->returnEditView();
     }    
-    public function registrar(Request $datos){
+    public function gestionar(Request $datos){
         //Se recibe la opción eliminar :
         if($datos->request->get('delete') !== null){
             //Eliminamos de la tabla Tallas_Productos:

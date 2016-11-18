@@ -92,13 +92,13 @@
 						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" /></td>
 					<td>{{$producto[0]->descripcion}}</td>
 					<td>
-						<select name="tallas" id="tallas" onchange="cascadaCantidad()">
+						<select name="tallas" id="tallas" onchange="cascadaCantidad()" class="form-control">
 							@foreach($tallas as $t)
 								<option value="{{$t->id}}" value2="{{$t->cantidad}}">{{$t->talla}}</option>
 							@endforeach
 						</select></td>
 					<td>
-						<select name="cantidad" id="cantidad">
+						<select name="cantidad" id="cantidad" class="form-control">
 							@for($i=1; $i<=$tallas[0]->cantidad; $i++)
 								<option value="{{$i}}">{{$i}}</option>
 							@endfor
@@ -111,6 +111,15 @@
 
 				</tr>
 			</table>
+			<hr>
+			<div class="col-sm-12">
+				<div class="pull-right col-sm-4">
+					<h4>CUPON</h4>
+					<input type="text" name="cupon" class="form-control">
+				</div>
+			</div>
+			&nbsp;
+			
 			<h4>Datos del Cliente</h4><br>
 			<div class="panel panel-default" style="width: 90%; margin-left: 5%;">
 				<div class="panel-body" style="text-align: center;">
@@ -131,67 +140,94 @@
 						<table class="table table-hover">	
 							<tr>
 								<td><label>Método de Envio</label></td>
-								<td >
-									<select name="envio" id="envio" style="margin-left: 30px; width: 200px;">
+								<td>
+									<div class="col-sm-6">
+										<select name="envio" id="envio" class="form-control">
 										<option value="DHL">DHL</option>
 										<option value="UPS">UPS</option>
 										<option value="Tufesa">Tufesa</option>
 										<option value="Correos de Mexico">Correos de Mexico</option>
 									</select>
+									</div>
+									
 								</td>		
 							</tr>
 							<tr>
 								<td><label>País</label></td>
 								<td >
-									{!! Form::select('pais',$paises,null,['id'=>'pais']) !!}
+									<div class="col-sm-6">
+										{!! Form::select('pais',$paises,null,['class'=>'form-control','id'=>'pais']) !!}
+									</div>
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Estado</label></td>
 								<td >
-									{!! Form::select('estado',['placeholder'=>'Selecciona'],null,['id'=>'estado']) !!}	
+									<div class="col-sm-6">
+										{!! Form::select('estado',['placeholder'=>'Selecciona'],null,['id'=>'estado','class'=>'form-control']) !!}	
+									</div>
 								</td>		
 							</tr>
 							<tr>
 								<td><label >Ciudad</label></td>
 								<td >
-									{!! Form::select('ciudad',['placeholder'=>'Selecciona'],null,['id'=>'ciudad']) !!}	
+									<div class="col-sm-6">
+										{!! Form::select('ciudad',['placeholder'=>'Selecciona'],null,['id'=>'ciudad', 'class'=>'form-control']) !!}	
+									</div>										
 								</td>		
 							</tr>
 							<tr>
 								<td><label >Código Postal</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;" id="codigoPostal" name="codigoPostal">
+									<div class="col-sm-6">
+										<input type="text" id="codigoPostal" name="codigoPostal" class="form-control" required>
+								
+									</div>
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Colonia</label></td>
 								<td>
-										<input type="text" id="colonia" name="colonia"style="margin-left: 30px; width: 200px;">
+									<div class="col-sm-6">
+										<input type="text" id="colonia" name="colonia" class="form-control" required>
+								
+									</div>
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Calle</label></td>
 								<td>
-										<input type="text" id="calle" name="calle"style="margin-left: 30px; width: 200px;">
+									<div class="col-sm-6">
+										<input type="text" id="calle" name="calle" class="form-control" required>
+								
+									</div>
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Número Exterior</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;" id="numero_ext" name="numero_ext">
+									<div class="col-sm-6">
+										<input type="text" id="numero_ext" name="numero_ext" class="form-control" required>
+								
+									</div>
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Número Interior</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;" id="numero_int" name="numero_int">
+									<div class="col-sm-6">
+										<input type="text" id="numero_int" name="numero_int" class="form-control">
+								
+									</div>
 								</td>		
 							</tr>
 							<tr>
 								<td><label>Télefono</label></td>
 								<td>
-										<input type="text" style="margin-left: 30px; width: 200px;" id="tel" name="tel">
+									<div class="col-sm-6">
+												<input type="text" id="tel" name="tel" class="form-control" required>
+								
+									</div>
 								</td>		
 							</tr>
 						</table>

@@ -75,6 +75,10 @@ class pedidosController extends Controller
         $dia        = $fechaF['mday'];
         $fecha      = $año."-".$mes."-".$dia;
         $precio     = $request->input('precio');
+        $cupon= $request->input('cupon');
+        if($cupon=="BUENFIN"){
+            $precio= $precio*0.75;
+        }
         $precio_total = $cantidad*$precio;
         $pais       =   $request->input('pais');    
         $estado     =   $request->input('estado');
@@ -85,6 +89,9 @@ class pedidosController extends Controller
         $calle          =   $request->input('calle');
         $numExt         =   $request->input('numero_ext');
         $numInt         =   $request->input('numero_int');
+        if($numInt==null){
+            $numInt="-";
+        }
         $tel            =   $request->input('tel');
 
         $pedido = new pedidosModel;

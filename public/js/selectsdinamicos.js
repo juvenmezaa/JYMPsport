@@ -20,7 +20,7 @@ $("#pais").change(function(event){
 });
 
 $("#estado").change(function(event){
-	//var pais=$("#pais").val();
+	var pais=$("#pais").val();
 	$.get("../ciudades/"+event.target.value+"/"+pais,function(response,estado){
 		//console.log(pais);
 		$("#ciudad").empty();

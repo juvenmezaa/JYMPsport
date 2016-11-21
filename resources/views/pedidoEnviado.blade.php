@@ -86,10 +86,10 @@
 						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" /></td>
 					<td>{{$producto[0]->descripcion}}</td>
 					<td>
-						<input type="text" value="{{$talla->talla}}" disabled>
+						<input type="text" value="{{$talla->talla}}" class="form-control" disabled>
 					</td>
 					<td>
-						<input type="number" id="cantidad" name="cantidad" value ={{$cantidad}} disabled>
+						<input type="number" id="cantidad" name="cantidad" value ={{$cantidad}} class="form-control" disabled>
 					</td>
 					<th>
 						{{$producto[0]->precio}}

@@ -118,14 +118,108 @@ class productosModelController extends CrudController{
             $producto = DB::table('productos AS P')->join('categorias AS C','C.id','=','P.id_categoria')->where('P.id',$id_Producto)->select('P.id','P.descripcion','P.precio','P.costo','P.color','P.imagen','P.genero','C.nombre')->get();
             $producto = $producto[0];
             $tallasCant = DB::table('tallas_productos AS TP')->join('tallas AS T','TP.id_talla','=','T.id')->where('id_producto',$id_Producto)->select('TP.id','TP.id_Producto','TP.id_talla','TP.cantidad','T.talla','T.descripcion')->get();
-            //dd($tallasCant);
             return view('mostrarProducto', compact('producto','tallasCant'));
-            dd($producto);
+        } else if ($datos->request->get('modify') !== null) {
+            $id_Producto = $datos->request->get('modify');
+            $producto = DB::table('productos AS P')->join('categorias AS C','C.id','=','P.id_categoria')->where('P.id',$id_Producto)->select('P.id','P.descripcion','P.precio','P.costo','P.color','P.imagen','P.genero','P.id_categoria','C.nombre')->get();
+            $producto = $producto[0];
+            //dd($producto);
+            $tallasCant = DB::table('tallas_productos AS TP')->join('tallas AS T','TP.id_talla','=','T.id')->where('id_producto',$id_Producto)->select('TP.id','TP.id_Producto','TP.id_talla','TP.cantidad','T.talla','T.descripcion')->get();
+            //dd($tallasCant);
+            $tallas = Tallas::all();
+            $categorias = categoriasModel::all();
+            return view('actualizarProducto', compact('producto','tallasCant','tallas','categorias'));
         }
 
         $categorias = categoriasModel::all();
         $tallas = Tallas::all();
         return view("registrarProducto", compact('categorias','tallas'));
+    }
+
+    public function actualizar(Request $datos){
+        $producto = productosModel::find($datos->input('id'));
+        $id_Producto = $datos->input('id');
+
+        $producto->descripcion = $datos->input('descripcion');
+        $producto->precio = $datos->input('precio');
+        $producto->costo = $datos->input('costo');
+        $producto->color = $datos->input('color');
+        $producto->imagen = $datos->input('img');
+        $producto->id_categoria = $datos->input('id_categoria');
+        $producto->genero = $datos->input('genero');
+        $producto->save();
+
+        $cantxs = $datos->input('tallaXS');
+        $cants = $datos->input('tallaS');
+        $cantm = $datos->input('tallaM');
+        $cantl = $datos->input('tallaL');
+
+        if($cantxs){
+            $idT = DB::table('tallas_productos')->where('id_producto','=',$id_Producto)->where('id_talla','=','1')->select('id')->first();
+            if($idT){
+                $tallasP = Tallas_ProductosModel::find($idT->id);
+                $tallasP->id_talla = 1;
+                $tallasP->id_producto = $id_Producto;
+                $tallasP->cantidad = $cantxs;
+                $tallasP->save();
+            } else {
+                $nuevoTP = new Tallas_ProductosModel;
+                $nuevoTP->id_talla = 1;
+                $nuevoTP->id_producto = $id_Producto;
+                $nuevoTP->cantidad = $cantxs;
+                $nuevoTP->save();
+            }
+        }
+        if($cants){
+            $idT = DB::table('tallas_productos')->where('id_producto','=',$id_Producto)->where('id_talla','=','2')->select('id')->first();
+            if($idT){
+                $tallasP = Tallas_ProductosModel::find($idT->id);
+                $tallasP->id_talla = 2;
+                $tallasP->id_producto = $id_Producto;
+                $tallasP->cantidad = $cants;
+                $tallasP->save();
+            } else {
+                $nuevoTP = new Tallas_ProductosModel;
+                $nuevoTP->id_talla = 2;
+                $nuevoTP->id_producto = $id_Producto;
+                $nuevoTP->cantidad = $cants;
+                $nuevoTP->save();
+            }
+        }
+        if($cantm){
+            $idT = DB::table('tallas_productos')->where('id_producto','=',$id_Producto)->where('id_talla','=','3')->select('id')->first();
+            if($idT){
+                $tallasP = Tallas_ProductosModel::find($idT->id);
+                $tallasP->id_talla = 3;
+                $tallasP->id_producto = $id_Producto;
+                $tallasP->cantidad = $cantm;
+                $tallasP->save();
+            } else {
+                $nuevoTP = new Tallas_ProductosModel;
+                $nuevoTP->id_talla = 3;
+                $nuevoTP->id_producto = $id_Producto;
+                $nuevoTP->cantidad = $cantm;
+                $nuevoTP->save();
+            }
+        }
+        if($cantl){
+            $idT = DB::table('tallas_productos')->where('id_producto','=',$id_Producto)->where('id_talla','=','4')->select('id')->first();
+            if($idT){
+                $tallasP = Tallas_ProductosModel::find($idT->id);
+                $tallasP->id_talla = 4;
+                $tallasP->id_producto = $id_Producto;
+                $tallasP->cantidad = $cantl;
+                $tallasP->save();
+            } else {
+                $nuevoTP = new Tallas_ProductosModel;
+                $nuevoTP->id_talla = 4;
+                $nuevoTP->id_producto = $id_Producto;
+                $nuevoTP->cantidad = $cantl;
+                $nuevoTP->save();
+            }
+        }
+
+        return Redirect('/panel/productosModel/all');
     }
 
     public function guardar(Request $datos){

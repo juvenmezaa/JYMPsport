@@ -6,9 +6,9 @@
             <div class="form">
 	        	<div class="btn-toolbar" role="toolbar">
 	                <div class="pull-left"><h2>Mostrar Producto</h2></div>
-	     			<div class="pull-right">
-	     				<a href="#" class="btn btn-default">Modify</a>
-	     			</div>
+	     			<!-- <div class="pull-right">
+	     				<a title="Modify" href="{{url('panel/productosModel/edit')}}" class="btn btn-default">Modify</a>
+	     			</div> -->
 	        	</div>
 	        	<br />
 	        	<div class="form-group clearfix" id="fg_descripcion" >

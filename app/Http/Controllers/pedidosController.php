@@ -13,7 +13,7 @@ use App\ciudad;
 use App\estado;
 use App\pais;
 use Illuminate\Support\Facades\Auth;
-use App\tallas_ProductosModel;
+use App\Tallas_ProductosModel;
 //use Alert;
 class pedidosController extends Controller
 {
@@ -116,7 +116,7 @@ class pedidosController extends Controller
         $pedido->save();
         
         $id_tallas_productos=DB::table('tallas_productos')->where('id_producto','=',$id_producto)->where('id_talla','=',$id_talla)->select('id')->get();
-        $restarCantidad=tallas_ProductosModel::find($id_tallas_productos[0]->id);
+        $restarCantidad=Tallas_ProductosModel::find($id_tallas_productos[0]->id);
         $restarCantidad->cantidad=($restarCantidad->cantidad)-1;
         $restarCantidad->save();
         

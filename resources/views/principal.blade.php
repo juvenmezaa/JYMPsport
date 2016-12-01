@@ -64,11 +64,11 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-                        <li><a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a>
+                        <li><a href="https://www.twitter.com/jjympstore"><i class="fa fa-twitter"></i></a>
                         </li>
-                        <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                        <li><a href="https://www.facebook.com/JYMPstore"><i class="fa fa-facebook"></i></a>
                         </li>
-                        <li><a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
+                        <li><a href="https://www.instagram.com/jympstore"><i class="fa fa-instagram"></i></a>
                         </li>
                     </ul>
                 </div>

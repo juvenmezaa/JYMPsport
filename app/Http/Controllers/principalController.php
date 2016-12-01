@@ -21,15 +21,15 @@ class principalController extends Controller
         foreach ($promedios as $p) {
             $prom[]=$p->id_producto;
         }
-        $destacados=DB::table('productos as p')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->whereIn('p.id',$prom)->get();
+        $destacados=DB::table('productos as p')->join('categorias as C', 'C.id','=','p.id_categoria')->select('p.*','C.imagengen as generica')->whereIn('p.id',$prom)->get();
 
         //select `p`.*, AVG(calificacion) as promedio from `calificaciones` as `c` inner join `productos` as `p` on `c`.`id_producto` = `P`.`id` group by `c`.`id_producto` limit 9
 
         //select * from productos as p inner JOIN calificaciones as c on p.id = c.id_producto group by p.id order by AVG(calificacion) DESC limit 9
 
-        $recientess1 =DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->latest()->limit(4)->get();
-        $recientess2 =DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->offset(4)->latest()->limit(4)->get();
-        $recientess3 =DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->offset(8)->latest()->limit(4)->get();
+        $recientess1 =DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('P.*','C.imagengen as generica')->latest()->limit(4)->get();
+        $recientess2 =DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('P.*','C.imagengen as generica')->offset(4)->latest()->limit(4)->get();
+        $recientess3 =DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('P.*','C.imagengen as generica')->offset(8)->latest()->limit(4)->get();
         return view('principalUser', compact('productos','categoriasH','categoriasM','destacados','recientess1','recientess2','recientess3'));
     }
 
@@ -43,7 +43,7 @@ class principalController extends Controller
         }
         $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
-         $productos = DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->where('genero','=',$genero)->paginate(4);
+         $productos = DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('P.*','C.imagengen as generica')->where('genero','=',$genero)->paginate(4);
        return view('productos', compact('breadcrumb','productos','categoriasH','categoriasM'));
     }
 
@@ -59,7 +59,7 @@ class principalController extends Controller
         $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
         $categoria = DB::table('categorias AS C')->where('nombre','=',$c)->get();
-        $productos = DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('p.*','C.imagengen as generica')->where('id_categoria','=',$categoria[0]->id)->where('genero','=',$genero)->paginate(4);
+        $productos = DB::table('productos as P')->join('categorias as C', 'C.id','=','P.id_categoria')->select('P.*','C.imagengen as generica')->where('id_categoria','=',$categoria[0]->id)->where('genero','=',$genero)->paginate(4);
         return view('productos', compact('breadcrumb','productos','categoriasH','categoriasM'));
     }
 

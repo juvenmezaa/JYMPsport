@@ -9,6 +9,7 @@
         "laravel/framework": "5.3.*",
         "greggilbert/recaptcha": "dev-master",
         "guzzlehttp/guzzle": "~5.3|~6.0",
+        "uxweb/sweet-alert": "~1.1",
         "serverfireteam/panel": "1.5.*"
     },
     "require-dev": {

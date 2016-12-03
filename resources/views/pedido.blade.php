@@ -234,7 +234,7 @@
 					</div>
 				</div>
 
-			<button type="submit" class="btn btn-primary" style="margin-left: 80%;">Enviar</a>
+			<input type="submit" class="btn btn-primary" style="margin-left: 80%;">
 		</div>
 	</div>
 </div>

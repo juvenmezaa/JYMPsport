@@ -14,7 +14,8 @@ use App\estado;
 use App\pais;
 use Illuminate\Support\Facades\Auth;
 use App\tallas_ProductosModel;
-//use Alert;
+use Alert;
+
 class pedidosController extends Controller
 {
     public function pedirProducto($id){
@@ -26,11 +27,6 @@ class pedidosController extends Controller
 		    $producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id)->select("p.*","c.nombre as nombreCat","c.imagengen as generica")->get();
 		    $tallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion","t.id")->get();
 		    $Ntallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion")->count();
-		    if($Ntallas ==0)
-		    	 /*alert()->error('El Pokémon que busca no fue encontrado, intenta con otro nombre...')->persistent('OK');*/
-        		return back()->withInput();
-		    
-		    //$paises=DB::table("country")->get();
             $paises=pais::pluck('Name','Code');
 		    return  view ('pedido', compact('categoriasH','categoriasM','producto','tallas','user','paises'));
 		}
@@ -62,6 +58,7 @@ class pedidosController extends Controller
         }
         return Redirect('/login');
     }
+
     public function pedidoEnviado(Request $request){
         $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
         $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
@@ -122,6 +119,7 @@ class pedidosController extends Controller
         
         $producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id_producto)->select("p.*","c.nombre as nombreCat","c.imagengen as generica")->get();
         $talla=DB::table("tallas")->find($id_talla);
-        return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio'));
+        return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio','pedido'));
+    
     }
 }

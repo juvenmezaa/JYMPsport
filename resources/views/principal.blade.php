@@ -33,6 +33,7 @@
     <link href="{{asset('css/carrusel.css')}}" rel="stylesheet">
     <link href="{{asset('css/productos.css')}}" rel="stylesheet">
     <link href="{{asset('css/stars.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
 
 </head>
 
@@ -192,6 +193,9 @@
 
     <!-- Theme JavaScript -->
     <script src="{{asset('js/agency.min.js')}}"></script>
+    <script src="sweetalert-master/dist/sweetalert.min.js"></script> 
+    @include('sweet::alert')
+
 </body>
 
 </html>

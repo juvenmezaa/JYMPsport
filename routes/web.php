@@ -19,6 +19,7 @@ Route::post("/panel/categoriasproductos/asignar","categoriasproductosController@
 Route::get("/panel/productosModel/edit","productosModelController@gestionar");
 Route::get("/panel/productosModel/edit/{accion}","productosModelController@eliminar");
 Route::post("/panel/productosModel/guardar","productosModelController@guardar");
+Route::post("/panel/productosModel/actualizar","productosModelController@actualizar");
 //////////////
 Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");
 Route::get("/pedidosUser", "pedidosController@pedidosUser");

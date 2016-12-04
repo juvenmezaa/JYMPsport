@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src'),
+    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'Zofe\\Rapyd\\' => array($vendorDir . '/serverfireteam/rapyd-laravel/src'),
     'Zofe\\Burp\\' => array($vendorDir . '/zofe/burp/src'),
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
@@ -47,6 +47,7 @@ return array(
     'Greggilbert\\Recaptcha\\' => array($vendorDir . '/greggilbert/recaptcha/src'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
+    'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Collective\\Html\\' => array($vendorDir . '/laravelcollective/html/src'),
@@ -54,5 +55,6 @@ return array(
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'Barryvdh\\elFinderFlysystemDriver\\' => array($vendorDir . '/barryvdh/elfinder-flysystem-driver/src'),
     'Barryvdh\\Elfinder\\' => array($vendorDir . '/barryvdh/laravel-elfinder/src'),
+    'Barryvdh\\DomPDF\\' => array($vendorDir . '/barryvdh/laravel-dompdf/src'),
     'App\\' => array($baseDir . '/app'),
 );

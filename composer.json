@@ -10,7 +10,8 @@
         "greggilbert/recaptcha": "dev-master",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "uxweb/sweet-alert": "~1.1",
-        "serverfireteam/panel": "1.5.*"
+        "serverfireteam/panel": "1.5.*",
+        "barryvdh/laravel-dompdf": "^0.7.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

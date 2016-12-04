@@ -14,8 +14,7 @@
 		},
 		function(isConfirm){
 		  if (isConfirm) {
-		  		$this.submit();
-       			swal("Enviado", "Su pedido esta en camino", "success");
+       		swal("Enviado", "Su pedido esta en camino", "success");
 		  } else {
 		    swal("Cancelado", "El envio ha sido cancelado, confirme los datos", "error");
 		  }

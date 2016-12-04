@@ -120,4 +120,11 @@ class pedidosController extends Controller
         return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio','pedido'));
     
     }
+    public function pdfPedidos(){
+        $vista = view('/pdfPedidos');
+        $dompdf = \App::make('dompdf.wrapper');
+        $dompdf->loadHTML($vista);
+        return $dompdf->stream();
+
+    }
 }

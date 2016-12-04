@@ -24,7 +24,7 @@ Route::post("/panel/productosModel/actualizar","productosModelController@actuali
 Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");
 Route::get("/pedidosUser", "pedidosController@pedidosUser");
 Route::post("/pedidoEnviado","pedidosController@pedidoEnviado");
-Auth::routes();
+Route::get("/pdfPedidos","pedidosController@pdfPedidos");
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 
 Route::get("/productosCategoria/{g}/{c}", "principalController@productosCategoria");

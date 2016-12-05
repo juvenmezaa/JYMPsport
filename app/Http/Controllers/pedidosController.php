@@ -100,6 +100,13 @@ class pedidosController extends Controller
         return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio','pedido'));
     
     }
+    public function pdfPedidos(){
+        $vista = view('/pdfPedidos');
+        $dompdf = \App::make('dompdf.wrapper');
+        $dompdf->loadHTML($vista);
+        return $dompdf->stream();
+
+
     public function eliminarPedido($id){
         $pedido = pedidosModel::find($id);
         $id_tallas_productos=DB::table('tallas_productos')->where('id_producto','=',$pedido->id_producto)->where('id_talla','=',$pedido->id_talla)->select('id')->get();

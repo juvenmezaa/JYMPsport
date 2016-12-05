@@ -41,7 +41,8 @@
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
                         @else
-                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
+                        <li><a href="{{ url('/pedidosUser') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true">Pedidos</span></a></li>
+                        <li><a href="{{ url('/comprasUser') }}"><span class="glyphicon glyphicon-saved" aria-hidden="true"> Compras</a></a></li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -113,7 +114,7 @@
             {!! $pedidos->render() !!}
         </div>
         <div class="row text-center">
-            <a href="{{url('/compra')}}" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> COMPRAR</span></a>
+            <a href="{{url('/compra')}}" class="btn btn-primary"> COMPRAR</a>
         </div>
         <hr>
     </div>

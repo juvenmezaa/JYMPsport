@@ -100,13 +100,13 @@ class pedidosController extends Controller
         return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio','pedido'));
     
     }
-    public function pdfPedidos(){
-        $vista = view('/pdfPedidos');
+    public function compraPDF(){
+        $vista = view('/compraPDF');
         $dompdf = \App::make('dompdf.wrapper');
         $dompdf->loadHTML($vista);
         return $dompdf->stream();
 
-
+}
     public function eliminarPedido($id){
         $pedido = pedidosModel::find($id);
         $id_tallas_productos=DB::table('tallas_productos')->where('id_producto','=',$pedido->id_producto)->where('id_talla','=',$pedido->id_talla)->select('id')->get();
@@ -189,5 +189,18 @@ class pedidosController extends Controller
             $ped->save();
         }
         return Redirect('/comprasUser');
+    }
+    public function comprasUser(){
+        if (Auth::check()) {
+            $id_usuario=Auth::User()->id;
+            $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
+            $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
+            $compras=DB::table("compras")->where("id_usuario","=", $id_usuario)->select("*")->paginate(5);
+
+
+            return view('comprasUser', compact('categoriasH','categoriasM','compras'));
+
+        }
+        return Redirect('/login');
     }
 }

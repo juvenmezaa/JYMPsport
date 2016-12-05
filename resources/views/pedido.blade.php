@@ -42,7 +42,8 @@
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
                         @else
-                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
+                        <li><a href="{{ url('/pedidosUser') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Pedidos</span></a></li>
+                        <li><a href="{{ url('/comprasUser') }}"><span class="glyphicon glyphicon-saved" aria-hidden="true"> Compras</a></a></li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -73,7 +74,7 @@
 <input type="hidden" name="_token" value="{{csrf_token()}}">
 <div style="margin-left: 5%;">
 	<div class="panel panel-warning" style="width: 95%;">
-		<div class="panel-heading"> <h1>GENERAR PEDIDO</h1></div>
+		<div class="panel-heading"> <h1>Agregar al carrito</h1></div>
 		<div class="panel-body">
 			<h4>Datos del Pedido</h4><br>
 			<table class="table table-hover">
@@ -121,7 +122,7 @@
 			&nbsp;
 		</div>
 	</div>
-	<input type="submit" class="btn btn-primary" style="margin-left: 80%;">
+	<input type="submit" class="btn btn-primary" style="margin-left: 80%;" value="Agregar">
 </div>
 </form>
 @stop

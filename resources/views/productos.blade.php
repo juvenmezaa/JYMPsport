@@ -43,7 +43,8 @@
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
                         @else
-                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
+                        <li><a href="{{ url('/pedidosUser') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Pedidos</span></a></li>
+                        <li><a href="{{ url('/comprasUser') }}"><span class="glyphicon glyphicon-saved" aria-hidden="true"> Compras</a></a></li>
                         @endif
                         <li class="divider"></li>
                         <li>

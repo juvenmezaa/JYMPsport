@@ -26,9 +26,10 @@ Route::get("/pedidosUser", "pedidosController@pedidosUser");
 Route::get("/eliminarPedido/{id}", "pedidosController@eliminarPedido");
 Route::post("/pedidoEnviado","pedidosController@pedidoEnviado");
 
-Route::get("/pdfPedidos","pedidosController@pdfPedidos");
+Route::get("/compraPDF","pedidosController@compraPDF");
 Route::get("/compra", "pedidosController@compra");
 Route::post("/compraEnviada","pedidosController@compraEnviada");
+Route::get("/comprasUser","pedidosController@comprasUser");
 Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 
@@ -36,7 +37,6 @@ Route::get("/productosCategoria/{g}/{c}", "principalController@productosCategori
 Route::get("/home", "HomeController@index");
 Route::post("/rating", "RatingController@rateJ");
 Route::post("/comentar", "comentariosModelController@comentar");
-
 //selects dinamicos
 Route::get("estados/{id}","pedidosController@getEstados");
 Route::get("ciudades/{idE}/{idP}","pedidosController@getCiudades");

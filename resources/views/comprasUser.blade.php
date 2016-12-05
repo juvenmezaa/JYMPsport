@@ -32,6 +32,7 @@
                     </ul>
                 </li>
             </ul>
+            
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
                 <li class="dropdown">
@@ -41,7 +42,7 @@
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
                         @else
                         <li><a href="{{ url('/pedidosUser') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Pedidos</span></a></li>
-                        <li><a href="{{ url('/comprasUser') }}">Compras</a></li>
+                        <li><a href="{{ url('/comprasUser') }}"><span class="glyphicon glyphicon-saved" aria-hidden="true"> Compras</a></a></li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -66,47 +67,46 @@
     <!-- /.container-fluid -->
 </nav>
 @stop
-@section("1")
-<br><br><br><br>
-<div class="panel panel-success" style="width: 95%;">
-	<div class="panel-heading"> <h1>Se agrego al carrito</h1></div>
-		<div class="panel-body">
-			<h4>Datos del Pedido</h4><br>
-			<table class="table table-hover">
-				<tr>
-					<th>Id. del producto</th>
-					<th>Imagen</th>
-					<th>Descripcion</th>
-					<th>Talla</th>
-					<th>Cantidad</th>
-					<th>Precio Unitario</th>
-				</tr>
-				<tr>
-					<td><input type="hidden" value="{{$producto[0]->id}}" name="id_producto">{{$producto[0]->id}}</td>
-					<td style="width: 15%;">
-						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" /></td>
-					<td>{{$producto[0]->descripcion}}</td>
-					<td>
-						<input type="text" value="{{$talla->talla}}" class="form-control" disabled>
-					</td>
-					<td>
-						<input type="number" id="cantidad" name="cantidad" value ={{$cantidad}} class="form-control" disabled>
-					</td>
-					<th>
-						{{$producto[0]->precio}}
-					</th>
-
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>TOTAL </td>
-					<td>{{$precio_total}}</td>
-				</tr>
-			</table>
-		</div>
-</div>
+@section('1')
+<br><br><br>
+    <br><br>    
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-warning col-md-12">
+                <div class="panel-heading row text-center"><h1>TUS COMPRAS</h1></div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-2">ID</th>
+                                <th class="col-md-3">Fecha</th>
+                                <th class="col-md-3">Subtotal</th>
+                                <th class="col-md-2">Impuesto</th>
+                                <th class="col-md-2">Total</th>
+                                <th class="col-md-1">PDF</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($compras as $c)
+                                <tr>
+                                    <td>{{$c->id}}</td>
+                                    <td>{{$c->fecha}}</td>
+                                    <td>{{$c->subtotal}}</td>
+                                    <td>{{$c->impuesto}}</td>
+                                    <td>{{$c->precio_total}}</td>
+                                    <td><a href="{{url('/compraPDF')}}" class="btn btn-warning"><span class="glyphicon glyphicon-book" aria-hidden="true"> Descargar PDF</span></a></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="paginas">
+            {!! $compras->render() !!}
+        </div>
+        <hr>
+    </div>
 
 @stop

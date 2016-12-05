@@ -42,6 +42,8 @@
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
                         @else
                         <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
+                        <li><a href="{{ url('/comprasUser') }}">Compras</a></li>
+                        
                         @endif
                         <li class="divider"></li>
                         <li>

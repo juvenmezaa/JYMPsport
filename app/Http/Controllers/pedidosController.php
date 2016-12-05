@@ -183,4 +183,17 @@ class pedidosController extends Controller
         }
         return Redirect('/comprasUser');
     }
+    public function comprasUser(){
+        if (Auth::check()) {
+            $id_usuario=Auth::User()->id;
+            $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
+            $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
+            $compras=DB::table("compras")->where("id_usuario","=", $id_usuario)->select("*")->paginate(5);
+
+
+            return view('comprasUser', compact('categoriasH','categoriasM','compras'));
+
+        }
+        return Redirect('/login');
+    }
 }

@@ -1,7 +1,5 @@
 @extends("principal")
 @section("navbar")
-<script src="{{asset('js/pedidosCascada.js')}}"></script>
-
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container">
@@ -34,6 +32,7 @@
                     </ul>
                 </li>
             </ul>
+            
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
                 <li class="dropdown">
@@ -68,61 +67,46 @@
     <!-- /.container-fluid -->
 </nav>
 @stop
-@section("1")
+@section('1')
 <br><br><br>
-<form action="{{url('/pedidoEnviado')}}" method="POST">
-<input type="hidden" name="_token" value="{{csrf_token()}}">
-<div style="margin-left: 5%;">
-	<div class="panel panel-warning" style="width: 95%;">
-		<div class="panel-heading"> <h1>GENERAR PEDIDO</h1></div>
-		<div class="panel-body">
-			<h4>Datos del Pedido</h4><br>
-			<table class="table table-hover">
-				<tr>
-					<th>Id. del producto</th>
-					<th>Imagen</th>
-					<th>Descripcion</th>
-					<th>Talla</th>
-					<th>Cantidad</th>
-					<th>Precio Unitario</th>
-				</tr>
-				<tr>
-				<input type="hidden" value="{{$producto[0]->id}}" name="id_producto">
-					<td>{{$producto[0]->id}}</td>
-					<td style="width: 15%;">
-						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" /></td>
-					<td>{{$producto[0]->descripcion}}</td>
-					<td>
-						<select name="tallas" id="tallas" onchange="cascadaCantidad()" class="form-control">
-							@foreach($tallas as $t)
-								<option value="{{$t->id}}" value2="{{$t->cantidad}}">{{$t->talla}}</option>
-							@endforeach
-						</select></td>
-					<td>
-						<select name="cantidad" id="cantidad" class="form-control">
-							@for($i=1; $i<=$tallas[0]->cantidad; $i++)
-								<option value="{{$i}}">{{$i}}</option>
-							@endfor
-						</select>
-					</td>
-					<input type="hidden" value="{{$producto[0]->precio}}" id="precio" name="precio">
-					<th>
-						{{$producto[0]->precio}}
-					</th>
+    <br><br>    
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-warning col-md-12">
+                <div class="panel-heading row text-center"><h1>TUS COMPRAS</h1></div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-2">ID</th>
+                                <th class="col-md-3">Fecha</th>
+                                <th class="col-md-3">Subtotal</th>
+                                <th class="col-md-2">Impuesto</th>
+                                <th class="col-md-2">Total</th>
+                                <th class="col-md-1">PDF</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($compras as $c)
+                                <tr>
+                                    <td>{{$c->id}}</td>
+                                    <td>{{$c->fecha}}</td>
+                                    <td>{{$c->subtotal}}</td>
+                                    <td>{{$c->impuesto}}</td>
+                                    <td>{{$c->precio_total}}</td>
+                                    <td><a href="{{url('/compraPDF')}}/{{$c->id}}" class="btn btn-danger"><span class="glyphicon glyphicon-book" aria-hidden="true"> HOLA SOY TAREA DE YUKIE</span></a></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="paginas">
+            {!! $compras->render() !!}
+        </div>
+        <hr>
+    </div>
 
-				</tr>
-			</table>
-			<hr>
-			<div class="col-sm-12">
-				<div class="pull-right col-sm-4">
-					<h4>CUPON</h4>
-					<input type="text" name="cupon" class="form-control">
-				</div>
-			</div>
-			&nbsp;
-		</div>
-	</div>
-	<input type="submit" class="btn btn-primary" style="margin-left: 80%;">
-</div>
-</form>
 @stop

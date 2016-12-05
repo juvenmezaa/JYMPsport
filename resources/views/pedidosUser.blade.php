@@ -68,45 +68,52 @@
 @stop
 @section('1')
 <br><br><br>
-    <div class="row text-center">
-        <h1>Tus Pedidos</h1>
-    </div>
     <br><br>    
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="col-md-2">Fecha</th>
-                        <th class="col-md-3">Producto</th>
-                        <th class="col-md-3">Categoria</th>
-                        <th class="col-md-2">Imagen</th>
-                        <th class="col-md-1">Talla</th>
-                        <th class="col-md-1">Cantidad</th>
-                        <th class="col-md-2">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($pedidos as $p)
-                        <tr>
-                            <th>{{$p->fecha}}</th>
-                            <th>{{$p->descripcion}}</th>
-                            <th>{{$p->nombreCat}}</th>
-                            <td style="width: 15%;">
-                                <img id= "imagenP" src="{{ asset('img/productos')}}/{{$p->imagen}}" style="width: 30%;" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'" />
-                            </td>
-                            <th>{{$p->talla}}</th>
-                            <th>{{$p->cantidad}}</th>
-                            <th>{{$p->precio_total}}</th>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="panel panel-warning col-md-12">
+                <div class="panel-heading row text-center"><h1>TUS PEDIDOS</h1></div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-2">Fecha</th>
+                                <th class="col-md-3">Producto</th>
+                                <th class="col-md-3">Categoria</th>
+                                <th class="col-md-2">Imagen</th>
+                                <th class="col-md-1">Talla</th>
+                                <th class="col-md-1">Cantidad</th>
+                                <th class="col-md-2">Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($pedidos as $p)
+                                <tr>
+                                    <td>{{$p->fecha}}</td>
+                                    <td>{{$p->descripcion}}</td>
+                                    <td>{{$p->nombreCat}}</td>
+                                    <td style="width: 15%;">
+                                        <img id= "imagenP" src="{{ asset('img/productos')}}/{{$p->imagen}}" style="width: 30%;" onerror="this.src='{{ asset('img/categorias')}}/{{$p->generica}}'" />
+                                    </td>
+                                    <td>{{$p->talla}}</td>
+                                    <td>{{$p->cantidad}}</td>
+                                    <td>{{$p->precio_total}}</td>
+                                    <td>
+                                        <a href="{{url('/eliminarPedido')}}/{{$p->id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="paginas">
             {!! $pedidos->render() !!}
+        </div>
+        <div class="row text-center">
+            <a href="{{url('/compra')}}" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> COMPRAR</span></a>
         </div>
         <hr>
     </div>

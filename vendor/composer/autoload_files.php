@@ -7,9 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
-    '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
+    'bafadb3d2f078dd1688530954181f76c' => $vendorDir . '/symfony/event-dispatcher/src/helpers.php',
+    '8be7d2b25ff71994d9c42b7586de9c78' => $vendorDir . '/symfony/console/Resources/functions/dump.php',
     '1d1b89d124cc9cb8219922c9d5569199' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
     'a0edc8309cc5e1d60e3047b5df6b7052' => $vendorDir . '/guzzlehttp/psr7/src/functions_include.php',
+    '5e4a0b6369268488d71b2163867e5aec' => $vendorDir . '/symfony/http-foundation/src/helpers.php',
+    '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
+    '84d0cc528d328d6b36a4f6715bd4a933' => $vendorDir . '/symfony/finder/bootstrap.php',
     '5255c38a0faeba867671b61dfda6d864' => $vendorDir . '/paragonie/random_compat/lib/random.php',
     '2c102faa651ef8ea5874edb585946bce' => $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
     '14812156da62770d06ccc3ede5af6de1' => $vendorDir . '/zofe/burp/src/helpers.php',

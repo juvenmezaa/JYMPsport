@@ -34,7 +34,7 @@
     <link href="{{asset('css/productos.css')}}" rel="stylesheet">
     <link href="{{asset('css/stars.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body id="page-top" class="index">

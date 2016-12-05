@@ -33,7 +33,7 @@
     <link href="{{asset('css/carrusel.css')}}" rel="stylesheet">
     <link href="{{asset('css/productos.css')}}" rel="stylesheet">
     <link href="{{asset('css/stars.css')}}" rel="stylesheet">
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body id="page-top" class="index">

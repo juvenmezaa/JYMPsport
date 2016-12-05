@@ -23,8 +23,13 @@ Route::post("/panel/productosModel/actualizar","productosModelController@actuali
 //////////////
 Route::get("/pedirProducto/{id}", "pedidosController@pedirProducto");
 Route::get("/pedidosUser", "pedidosController@pedidosUser");
+Route::get("/eliminarPedido/{id}", "pedidosController@eliminarPedido");
 Route::post("/pedidoEnviado","pedidosController@pedidoEnviado");
+
 Route::get("/pdfPedidos","pedidosController@pdfPedidos");
+Route::get("/compra", "pedidosController@compra");
+Route::post("/compraEnviada","pedidosController@compraEnviada");
+Auth::routes();
 //Route::get("/")
 Route::get("/productos/{g}", "principalController@productos"); 
 Route::get("/productosCategoria/{g}/{c}", "principalController@productosCategoria");

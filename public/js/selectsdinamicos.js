@@ -10,7 +10,7 @@ $(function() {
 
 
 $("#pais").change(function(event){
-	$.get("../estados/"+event.target.value+"",function(response,pais){
+	$.get("estados/"+event.target.value+"",function(response,pais){
 		//console.log(event.target.value);
 		$("#estado").empty();
 		for(i=0;i<response.length;i++){
@@ -21,7 +21,7 @@ $("#pais").change(function(event){
 
 $("#estado").change(function(event){
 	var pais=$("#pais").val();
-	$.get("../ciudades/"+event.target.value+"/"+pais,function(response,estado){
+	$.get("ciudades/"+event.target.value+"/"+pais,function(response,estado){
 		//console.log(pais);
 		$("#ciudad").empty();
 		for(i=0;i<response.length;i++){

@@ -83,6 +83,17 @@ class CreateAllTables extends Migration
             $table->double('subtotal');
             $table->double('impuesto');
             $table->double('precio_total');
+            $table->string('pais',35);
+            $table->string('estado',35);
+            $table->string('ciudad',35);
+            $table->enum('metodo_envio', array('DHL','UPS','Tufesa','Correos de Mexico'));
+            $table->string('codigo_postal',5);
+            $table->string('colonia',35);
+            $table->string('calle',35);
+            $table->string('num_ext',5);
+            $table->string('num_int',5);
+            $table->string('tel',10);
+
             $table->timestamps();
             $table->foreign('id_usuario')->references('id')->on('users');
         });
@@ -119,16 +130,6 @@ class CreateAllTables extends Migration
             $table->double('precio_total');
             $table->timestamps();
             $table->foreign('id_pedido')->references('id')->on('pedidos');
-            $table->foreign('id_producto')->references('id')->on('productos');
-        });
-        Schema::create('carrito', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_usuario')->unsigned();
-            $table->integer('id_producto')->unsigned();
-            $table->integer('cantidad');
-            $table->date('fecha_agregado');
-            $table->timestamps();
-            $table->foreign('id_usuario')->references('id')->on('users');
             $table->foreign('id_producto')->references('id')->on('productos');
         });
     }

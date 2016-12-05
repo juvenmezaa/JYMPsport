@@ -85,7 +85,7 @@ class principalController extends Controller
         
         
         $calificacion=DB::table("calificaciones AS c")->join("users AS u", "c.id_usuario","=","u.id")->where("c.id_producto","=", $id)->select("c.calificacion")->get();
-        $Ntallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion")->count();
+        $Ntallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->where("cantidad",">",0)->select("tp.cantidad","t.talla","t.descripcion")->count();
     	return view('detalleProducto', compact('producto','tallas','comentarios','pendientes','calificacion','categoriasH','categoriasM','Ntallas'));
 
     }

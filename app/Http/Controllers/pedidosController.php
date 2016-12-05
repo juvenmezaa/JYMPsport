@@ -15,6 +15,8 @@ use App\estado;
 use App\pais;
 use Illuminate\Support\Facades\Auth;
 use App\Tallas_ProductosModel;
+use App\usersModel;
+
 class pedidosController extends Controller
 {
     public function pedirProducto($id){
@@ -100,9 +102,12 @@ class pedidosController extends Controller
         return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio','pedido'));
     
     }
-    public function compraPDF(){
-        $vista = view('/compraPDF');
-        $dompdf = \App::make('dompdf.wrapper');
+    public function compraPDF($id){
+        $compra     = comprasModel::find($id);
+        $id_usuario = $compra->id_usuario;
+        $usuario    = usersModel::find($id_usuario);
+        $vista      = view('/compraPDF',compact('compra','usuario'));
+        $dompdf     = \App::make('dompdf.wrapper');
         $dompdf->loadHTML($vista);
         return $dompdf->stream();
 

@@ -113,7 +113,7 @@
                 <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Agregar al carrito</span></a>
             @else
                 <h4><button disabled class="btn btn-danger">SOLD OUT</button></h4>
-                <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary" disabled><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Agregar <br>al carrito</span></a>
+                <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary" disabled><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Agregar al carrito</span></a>
             @endif
             
             <br><br>

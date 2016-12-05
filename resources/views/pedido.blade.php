@@ -10,7 +10,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">JYMPstore</a>
+            <a class="navbar-brand page-scroll" href="{{url('/')}}">JYMPstore</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -119,124 +119,9 @@
 				</div>
 			</div>
 			&nbsp;
-			
-			<h4>Datos del Cliente</h4><br>
-			<div class="panel panel-default" style="width: 90%; margin-left: 5%;">
-				<div class="panel-body" style="text-align: center;">
-					<div class="col-lg-2">
-						<label for="">Nombre</label><br><br><br>
-						<label for="">Apellido</label><br><br><br>
-					</div>
-					<div class="col-lg-8">
-						<input type="hidden" value="{{$user->id}}" id="usuario_id" name="usuario_id">
-						<input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon2" disabled value ="{{$user->name}}" name="usuario_nombre" id="usuario_nombre"><br>
-						<input type="text" class="form-control" placeholder="Last Name" aria-describedby="sizing-addon2" disabled value="{{$user->lastname}}" name="usuario_apellido" id="usuario_apellido"><br>
-					</div>
-				</div>
-			</div>
-			<h4>Datos de Envio</h4><br>
-				<div class="panel panel-default" style="width: 90%; margin-left: 5%;">
-					<div class="panel-body">
-						<table class="table table-hover">	
-							<tr>
-								<td><label>Método de Envio</label></td>
-								<td>
-									<div class="col-sm-6">
-										<select name="envio" id="envio" class="form-control">
-										<option value="DHL">DHL</option>
-										<option value="UPS">UPS</option>
-										<option value="Tufesa">Tufesa</option>
-										<option value="Correos de Mexico">Correos de Mexico</option>
-									</select>
-									</div>
-									
-								</td>		
-							</tr>
-							<tr>
-								<td><label>País</label></td>
-								<td >
-									<div class="col-sm-6">
-										{!! Form::select('pais',$paises,null,['class'=>'form-control','id'=>'pais']) !!}
-									</div>
-								</td>		
-							</tr>
-							<tr>
-								<td><label>Estado</label></td>
-								<td >
-									<div class="col-sm-6">
-										{!! Form::select('estado',['placeholder'=>'Selecciona'],null,['id'=>'estado','class'=>'form-control']) !!}	
-									</div>
-								</td>		
-							</tr>
-							<tr>
-								<td><label >Ciudad</label></td>
-								<td >
-									<div class="col-sm-6">
-										{!! Form::select('ciudad',['placeholder'=>'Selecciona'],null,['id'=>'ciudad', 'class'=>'form-control']) !!}	
-									</div>										
-								</td>		
-							</tr>
-							<tr>
-								<td><label >Código Postal</label></td>
-								<td>
-									<div class="col-sm-6">
-										<input type="text" id="codigoPostal" name="codigoPostal" class="form-control" required>
-								
-									</div>
-								</td>		
-							</tr>
-							<tr>
-								<td><label>Colonia</label></td>
-								<td>
-									<div class="col-sm-6">
-										<input type="text" id="colonia" name="colonia" class="form-control" required>
-								
-									</div>
-								</td>		
-							</tr>
-							<tr>
-								<td><label>Calle</label></td>
-								<td>
-									<div class="col-sm-6">
-										<input type="text" id="calle" name="calle" class="form-control" required>
-								
-									</div>
-								</td>		
-							</tr>
-							<tr>
-								<td><label>Número Exterior</label></td>
-								<td>
-									<div class="col-sm-6">
-										<input type="text" id="numero_ext" name="numero_ext" class="form-control" required>
-								
-									</div>
-								</td>		
-							</tr>
-							<tr>
-								<td><label>Número Interior</label></td>
-								<td>
-									<div class="col-sm-6">
-										<input type="text" id="numero_int" name="numero_int" class="form-control">
-								
-									</div>
-								</td>		
-							</tr>
-							<tr>
-								<td><label>Télefono</label></td>
-								<td>
-									<div class="col-sm-6">
-												<input type="text" id="tel" name="tel" class="form-control" required>
-								
-									</div>
-								</td>		
-							</tr>
-						</table>
-					</div>
-				</div>
-
-			<button type="submit" class="btn btn-primary" style="margin-left: 80%;">Enviar</a>
 		</div>
 	</div>
+	<input type="submit" class="btn btn-primary" style="margin-left: 80%;">
 </div>
 </form>
 @stop

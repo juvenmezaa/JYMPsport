@@ -105,6 +105,8 @@
 					<td>{{$precio_total}}</td>
 				</tr>
 			</table>
+                <a href="{{url('/pdfPedidos')}}">Imprimir PDF</a>
 		</div>
 </div>
+
 @stop

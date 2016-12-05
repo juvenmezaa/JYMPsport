@@ -33,6 +33,7 @@
     <link href="{{asset('css/carrusel.css')}}" rel="stylesheet">
     <link href="{{asset('css/productos.css')}}" rel="stylesheet">
     <link href="{{asset('css/stars.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
@@ -64,11 +65,11 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-                        <li><a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a>
+                        <li><a href="https://www.twitter.com/jjympstore"><i class="fa fa-twitter"></i></a>
                         </li>
-                        <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                        <li><a href="https://www.facebook.com/JYMPstore"><i class="fa fa-facebook"></i></a>
                         </li>
-                        <li><a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
+                        <li><a href="https://www.instagram.com/jympstore"><i class="fa fa-instagram"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -192,6 +193,9 @@
 
     <!-- Theme JavaScript -->
     <script src="{{asset('js/agency.min.js')}}"></script>
+    <script src="sweetalert-master/dist/sweetalert.min.js"></script> 
+    @include('sweet::alert')
+
 </body>
 
 </html>

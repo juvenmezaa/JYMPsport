@@ -7,12 +7,12 @@
 </head>
 <body>
 	<span id="barraLogo">
-		<img id="logo" src="{{asset('/img/barraPDF.png')}}"" alt="">
+		<img id="logo" src="{{asset('img/barraPDF.png')}}">
 	</span>
 	<div>
-	<div class="panel-heading" id="pedido"> <h2>Pedido Enviado</h2></div>
+	<div class="panel-heading" id="pedido"> <h2>Compra Finalizada</h2></div>
 		<div id="datosPedido">
-			<label style="font-weight: bold; font-size: 20px;">Datos del pedido</label> <br>
+			<label style="font-weight: bold; font-size: 20px;">Datos de la compra</label> <br>
 			<label style="font-weight: bold;">No. de pedido </label>
 
 			<table class="table table-hover">

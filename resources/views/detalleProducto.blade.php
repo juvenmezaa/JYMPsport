@@ -41,8 +41,8 @@
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
                         @else
-                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
-                        <li><a href="{{ url('/comprasUser') }}">Compras</a></li>
+                        <li><a href="{{ url('/pedidosUser') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Pedidos</span></a></li>
+                        <li><a href="{{ url('/comprasUser') }}"><span class="glyphicon glyphicon-saved" aria-hidden="true"> Compras</a></a></li>
                         
                         @endif
                         <li class="divider"></li>
@@ -110,10 +110,10 @@
                 @foreach($tallas as $t)
                     <h6>- {{$t->talla}}</h6>
                 @endforeach
-                <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary">Generar Pedido</a>
+                <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Agregar al carrito</span></a>
             @else
                 <h4><button disabled class="btn btn-danger">SOLD OUT</button></h4>
-                <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary" disabled>Generar Pedido</a>
+                <a href="{{url('/pedirProducto')}}/{{$producto[0]->id}}" class="btn btn-primary" disabled><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Agregar <br>al carrito</span></a>
             @endif
             
             <br><br>

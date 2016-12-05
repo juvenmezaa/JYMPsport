@@ -41,8 +41,8 @@
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
                         @else
-                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
-                        <li><a href="{{ url('/comprasUser') }}">Compras</a></li>
+                        <li><a href="{{ url('/pedidosUser') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Pedidos</span></a></li>
+                        <li><a href="{{ url('/comprasUser') }}"><span class="glyphicon glyphicon-saved" aria-hidden="true"> Compras</a></a></li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -95,7 +95,7 @@
                                     <td>{{$c->subtotal}}</td>
                                     <td>{{$c->impuesto}}</td>
                                     <td>{{$c->precio_total}}</td>
-                                    <td><a href="{{url('/compraPDF')}}/{{$c->id}}" class="btn btn-danger"><span class="glyphicon glyphicon-book" aria-hidden="true"> HOLA SOY TAREA DE YUKIE</span></a></td>
+                                    <td><a href="{{url('/compraPDF')}}" class="btn btn-warning"><span class="glyphicon glyphicon-book" aria-hidden="true"> Descargar PDF</span></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

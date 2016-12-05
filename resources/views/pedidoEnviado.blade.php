@@ -40,7 +40,7 @@
                         @if(Auth::User()->type==1)
                         <li><a href="{{ url('/panel') }}">Administrador</a></li>
                         @else
-                        <li><a href="{{ url('/pedidosUser') }}">Pedidos</a></li>
+                        <li><a href="{{ url('/pedidosUser') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Pedidos</span></a></li>
                         <li><a href="{{ url('/comprasUser') }}">Compras</a></li>
                         @endif
                         <li class="divider"></li>
@@ -69,7 +69,7 @@
 @section("1")
 <br><br><br><br>
 <div class="panel panel-success" style="width: 95%;">
-	<div class="panel-heading"> <h1>PEDIDO ENVIADO</h1></div>
+	<div class="panel-heading"> <h1>Se agrego al carrito</h1></div>
 		<div class="panel-body">
 			<h4>Datos del Pedido</h4><br>
 			<table class="table table-hover">
@@ -106,7 +106,6 @@
 					<td>{{$precio_total}}</td>
 				</tr>
 			</table>
-                <a href="{{url('/pdfPedidos')}}">Imprimir PDF</a>
 		</div>
 </div>
 

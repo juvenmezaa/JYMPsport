@@ -101,7 +101,6 @@
 				   	</a><br>
 				    Precio: ${{$producto->precio}}<br>
 				    Color: <a class="glyphicon glyphicon-stop" style="color:{{$producto->color}}; font-size:1.5em"></a><br>
-				    Tallas: <br>
 				  </div>
 				</div>
 			@endforeach

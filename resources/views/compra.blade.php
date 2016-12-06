@@ -247,7 +247,11 @@
 					</table>
 				</div>
 			</div>
-		<input type="submit" class="btn btn-primary" style="margin-left: 80%;">
+		@if(count($pedidos)>0)
+            <input type="submit" class="btn btn-primary" style="margin-left: 80%;">
+        @else
+            <input type="submit" class="btn btn-primary" style="margin-left: 80%;" disabled>
+        @endif
 	</form>
 </div>
 

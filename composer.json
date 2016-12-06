@@ -12,7 +12,8 @@
         "serverfireteam/panel": "1.5.*",
         "google/recaptcha": "~1.1",
         "uxweb/sweet-alert": "~1.1",
-        "barryvdh/laravel-dompdf": "^0.7.0"
+        "barryvdh/laravel-dompdf": "^0.7.0",
+        "narutimateum/toastr-5.2-laravel": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
+use Toastr;
 
 class RegisterController extends Controller
 {
@@ -87,8 +88,20 @@ class RegisterController extends Controller
         return redirect($this->redirectPath());*/
     }
 
-    public function confirmEmail($token){
-        User::whereToken($token)->firstOrFail()->hasVerified();
-        return redirect('login')->with('status', 'Ya has confirmado tu correo electrónico. Puedes iniciar sesión');
-    }
+    public function confirmEmail($token)
+    {
+        $user = User::whereToken($token)->first();
+
+        if ($user) { // user with token was found
+            $user->hasVerified();
+            $message = 'Ya has confirmado tu correo electrónico. Puedes iniciar sesión';
+            Toastr::success($message, $title = null, $options = []);
+        } else {
+            // no user was found for that token
+            $message = "Token de confirmacion no válido";
+            Toastr::error($message, $title = null, $options = []);
+        }
+
+        return redirect('login');
+   }
 }

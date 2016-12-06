@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\ComprasEmail;
+use Illuminate\Support\Facades\Mail;
 use DB;
 use App\Http\Requests;
 use App\productosModel;
@@ -193,6 +195,7 @@ class pedidosController extends Controller
             $ped->id_compra = $compra->id;
             $ped->save();
         }
+        Mail::to(Auth::User()->email)->send(new ComprasEmail(Auth::User()));
         return Redirect('/comprasUser');
     }
     public function comprasUser(){

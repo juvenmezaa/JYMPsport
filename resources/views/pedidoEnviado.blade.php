@@ -84,7 +84,7 @@
 				<tr>
 					<td><input type="hidden" value="{{$producto[0]->id}}" name="id_producto">{{$producto[0]->id}}</td>
 					<td style="width: 15%;">
-						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" /></td>
+						<img id= "imagenP" src="{{ asset('img/productos')}}/{{$producto[0]->imagen}}" style="width: 30%;" onerror="this.src='{{ asset('img/categorias')}}/{{$producto[0]->generica}}'"/></td>
 					<td>{{$producto[0]->descripcion}}</td>
 					<td>
 						<input type="text" value="{{$talla->talla}}" class="form-control" disabled>

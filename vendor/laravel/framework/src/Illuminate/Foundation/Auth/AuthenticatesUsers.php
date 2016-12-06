@@ -63,7 +63,10 @@ trait AuthenticatesUsers
             $this->username() => 'required', 'password' => 'required','g-recaptcha-response' => 'required|recaptcha',
         ]);*/
         $this->validate($request, [
-            $this->username() => 'required', 'password' => 'required'
+
+            $this->username() => 'required', 'password' => 'required',
+
+            #$this->username() => 'required', 'password' => 'required','g-recaptcha-response' => 'required|recaptcha',
         ]);
     }
 

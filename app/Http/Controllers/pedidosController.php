@@ -17,6 +17,8 @@ use App\estado;
 use App\pais;
 use Illuminate\Support\Facades\Auth;
 use App\Tallas_ProductosModel;
+use App\usersModel;
+
 class pedidosController extends Controller
 {
     public function pedirProducto($id){
@@ -26,7 +28,7 @@ class pedidosController extends Controller
 		    $categoriasH = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '1')->select('nombre')->distinct()->get();
 		    $categoriasM = DB::table('categorias AS C')->join('productos AS P', 'C.id','=','P.id_categoria')->where('genero','=', '0')->select('nombre')->distinct()->get();
 		    $producto=DB::table("productos AS p")->join("categorias AS c", "p.id_categoria","=","c.id")->where("p.id","=", $id)->select("p.*","c.nombre as nombreCat","c.imagengen as generica")->get();
-		    $tallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion","t.id")->get();
+		    $tallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->where("cantidad",">",0)->select("tp.cantidad","t.talla","t.descripcion","t.id")->get();
 		    $Ntallas=DB::table("tallas_productos AS tp")->join("tallas AS t", "tp.id_talla","=","t.id")->join("productos AS p", "tp.id_producto","=","p.id")->where("p.id","=", $id)->select("tp.cantidad","t.talla","t.descripcion")->count();
             $paises=pais::pluck('Name','Code');
 		    return  view ('pedido', compact('categoriasH','categoriasM','producto','tallas','user','paises'));
@@ -102,9 +104,12 @@ class pedidosController extends Controller
         return view('pedidoEnviado', compact('precio_total','categoriasM','categoriasH','producto','talla','cantidad','precio','pedido'));
     
     }
-    public function compraPDF(){
-        $vista = view('/compraPDF');
-        $dompdf = \App::make('dompdf.wrapper');
+    public function compraPDF($id){
+        $compra     = comprasModel::find($id);
+        $id_usuario = $compra->id_usuario;
+        $usuario    = usersModel::find($id_usuario);
+        $vista      = view('/compraPDF',compact('compra','usuario'));
+        $dompdf     = \App::make('dompdf.wrapper');
         $dompdf->loadHTML($vista);
         return $dompdf->stream();
 

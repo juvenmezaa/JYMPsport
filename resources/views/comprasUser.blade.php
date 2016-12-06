@@ -95,7 +95,7 @@
                                     <td>{{$c->subtotal}}</td>
                                     <td>{{$c->impuesto}}</td>
                                     <td>{{$c->precio_total}}</td>
-                                    <td><a href="{{url('/compraPDF')}}" class="btn btn-warning"><span class="glyphicon glyphicon-book" aria-hidden="true"> Descargar PDF</span></a></td>
+                                    <td><a href="{{url('/compraPDF')}}/{{$c->id}}" class="btn btn-warning"><span class="glyphicon glyphicon-book" aria-hidden="true"> Descargar PDF</span></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

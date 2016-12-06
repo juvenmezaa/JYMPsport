@@ -26,7 +26,7 @@ Route::get("/pedidosUser", "pedidosController@pedidosUser");
 Route::get("/eliminarPedido/{id}", "pedidosController@eliminarPedido");
 Route::post("/pedidoEnviado","pedidosController@pedidoEnviado");
 
-Route::get("/compraPDF","pedidosController@compraPDF");
+Route::get("/compraPDF/{id}","pedidosController@compraPDF");
 Route::get("/compra", "pedidosController@compra");
 Route::post("/compraEnviada","pedidosController@compraEnviada");
 Route::get("/comprasUser","pedidosController@comprasUser");

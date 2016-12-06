@@ -9,3 +9,23 @@
 #pedido{
 	margin-left: 5px;
 }
+#tablaUsuario{
+
+}
+.tdDatos{
+	text-align: left;
+}
+.tdTitulos{
+	font-weight: bold;
+}
+table{	
+	color:black;
+	background-color:;
+	border-collapse: collapse;
+}
+td{
+	width: 350px;
+	border-top: 2px solid rgb(250,210,61);
+	border-bottom: 2px solid rgb(250,210,61); 
+	text-align: left;
+}

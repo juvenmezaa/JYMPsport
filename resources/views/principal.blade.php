@@ -22,6 +22,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- Theme CSS -->
     <link href="{{asset('css/agency.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/toastr.css')}}" rel="stylesheet"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -194,8 +195,12 @@
     <!-- Theme JavaScript -->
     <script src="{{asset('js/agency.min.js')}}"></script>
     <script src="sweetalert-master/dist/sweetalert.min.js"></script> 
-    @include('sweet::alert')
 
+    <!--TOASTR-->
+    
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    @include('sweet::alert')
+{!! Toastr::render() !!}
 </body>
 
 </html>

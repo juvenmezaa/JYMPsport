@@ -181,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Serverfireteam\Panel\PanelServiceProvider::class,
+        'narutimateum\Toastr\ToastrServiceProvider',
 
     ],
 
@@ -231,7 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
-
+        'Toastr' => 'narutimateum\Toastr\Facades\Toastr',
 
     ],
 

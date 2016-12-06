@@ -40,3 +40,8 @@ Route::post("/comentar", "comentariosModelController@comentar");
 //selects dinamicos
 Route::get("estados/{id}","pedidosController@getEstados");
 Route::get("ciudades/{idE}/{idP}","pedidosController@getCiudades");
+//confirmacion de correo
+Route::get('register/confirm/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'Auth\RegisterController@confirmEmail'
+]);

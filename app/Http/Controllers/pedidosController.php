@@ -195,7 +195,15 @@ class pedidosController extends Controller
             $ped->id_compra = $compra->id;
             $ped->save();
         }
-        Mail::to(Auth::User()->email)->send(new ComprasEmail(Auth::User()));
+
+        $id_usuario = $compra->id_usuario;
+        $usuario    = usersModel::find($id_usuario);
+        $vista      = view('/compraPDF',compact('compra','usuario'));
+        $dompdf     = \App::make('dompdf.wrapper');
+        $dompdf->loadHTML($vista);
+        //return $dompdf->stream();
+
+        Mail::to(Auth::User()->email)->send(new ComprasEmail(Auth::User(),$compra,$dompdf));
         return Redirect('/comprasUser');
     }
     public function comprasUser(){

@@ -106,10 +106,12 @@
 					<td>{{$precio_total}}</td>
 				</tr>
 			</table>
-		<a type="button"> <span class="glyphicon glyphicon-home" aria-hidden="true">Seguir comprando</span></a>
-        <a type="button"> <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Ir al carrito</span></a
+            <div align="right">   
+                    <a class="btn btn-primary" href="{{url('/')}}"><span class="glyphicon glyphicon-home" aria-hidden="true"> Seguir comprando</span></a>
+                    <a class="btn btn-primary" href="{{url('/pedidosUser')}}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Ir al carrito</span></a>
+            </div>
+
         </div>
 
 </div>
-
 @stop

@@ -113,16 +113,16 @@
 				</tr>
 			</table>
 			<hr>
-			<div class="col-sm-12">
+			<!--div class="col-sm-12">
 				<div class="pull-right col-sm-4">
 					<h4>CUPON</h4>
 					<input type="text" name="cupon" class="form-control">
 				</div>
-			</div>
-			&nbsp;
+			</div-->
+			
+                <input type="submit" class="btn btn-primary" style="margin-left: 80%;" value="Agregar">
 		</div>
-	</div>
-	<input type="submit" class="btn btn-primary" style="margin-left: 80%;" value="Agregar">
+    </div>
 </div>
 </form>
 @stop

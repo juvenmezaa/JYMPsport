@@ -4827,6 +4827,7 @@
     {
         "name": "google/recaptcha",
         "version": "1.1.2",
+        "version_normalized": "1.1.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/google/recaptcha.git",
@@ -4844,6 +4845,7 @@
         "require-dev": {
             "phpunit/phpunit": "4.5.*"
         },
+        "time": "2015-09-02 17:23:59",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -4866,7 +4868,6 @@
             "captcha",
             "recaptcha",
             "spam"
-        ],
-        "time": "2015-09-02 17:23:59"
+        ]
     }
 ]

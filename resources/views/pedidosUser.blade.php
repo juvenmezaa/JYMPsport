@@ -114,7 +114,11 @@
             {!! $pedidos->render() !!}
         </div>
         <div class="row text-center">
-            <a href="{{url('/compra')}}" class="btn btn-primary"> COMPRAR</a>
+            @if(count($pedidos)>0)
+                <a href="{{url('/compra')}}" class="btn btn-primary"> COMPRAR</a>
+            @else
+                <a class="btn btn-primary" disabled> COMPRAR</a>
+            @endif
         </div>
         <hr>
     </div>
